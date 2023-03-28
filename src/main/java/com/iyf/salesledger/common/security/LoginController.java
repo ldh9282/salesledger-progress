@@ -2,13 +2,15 @@ package com.iyf.salesledger.common.security;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class LoginController {
-
+	
+	
 	@GetMapping("/login")
 	public String showLoginPage(HttpServletRequest request, String error, String logout, Model model) {
 	
@@ -24,6 +26,8 @@ public class LoginController {
 		return "login";
 		
 	}
+	
+	
 	
 
 }

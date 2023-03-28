@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="empPoolns">
-	<resultMap type="empPool" id="empPoolMap">
+<mapper namespace="com.iyf.salesledger.dao.EmpPoolDao">
+	<resultMap type="com.iyf.salesledger.model.EmpPool" id="empPoolMap">
 		<result property="emp_pool_id" column="EMP_POOL_ID"/>
 		<result property="sourcing_manager" column="SOURCING_MANAGER"/>
 		<result property="name" column="NAME"/>
@@ -56,7 +56,7 @@
 		    project_assign,
 		    del 
 		FROM t_emp_pool
-		WHERE name = #{name} and phonenumber = #{phonenumber}
+		WHERE name = #{name} and phonenumber = #{phonenumber} and del != 'Y'
 	</select>
 	<select id="list" resultMap="empPoolMap">
 		SELECT

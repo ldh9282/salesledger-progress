@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class EmpPoolPageController {
 
 	// empPoolList.jsp 페이지
-	@GetMapping("/empPoolList.do")
+	@GetMapping("/empPoolList")
 	public String showEmpPoolListPage() {
 		return "empPool/empPoolList";
 	}
 	
 	// empPoolRegister.jsp 페이지
-	@GetMapping("/empPoolRegister.do")
+	@GetMapping("/empPoolRegister")
 	public String showEmpPoolRegisterPage() {
 		return "empPool/empPoolRegister";
 	}
 	
 	// empPoolRegister.jsp 페이지
-	@GetMapping("/empPoolDetail.do")
+	@GetMapping("/empPoolDetail")
 	public String showEmpPoolDetailPage() {
 		return "empPool/empPoolDetail";
 	}

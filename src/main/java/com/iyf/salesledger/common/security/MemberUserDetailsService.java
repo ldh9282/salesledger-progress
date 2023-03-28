@@ -5,27 +5,23 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.iyf.salesledger.service.MemberService;
+import com.iyf.salesledger.dao.MemberDao;
 
 import lombok.Setter;
 
-public class MemberUserDetailsService
-			implements UserDetailsService {
+public class MemberUserDetailsService implements UserDetailsService {
 	
-	@Setter(onMethod_ = { @Autowired })
-	private MemberService memberService;
-
-
+	@Setter(onMethod_ = @Autowired)
+	private MemberDao memberDao;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Member member = memberService.selectOne(username);
+		Member member = memberDao.selectOne(username);
+		
 		if (member == null) {
 			throw new UsernameNotFoundException(username);
 		}
-		
 		return new MemberUser(member);
 	}
-	
-	
+
 }

@@ -3,6 +3,8 @@ package com.iyf.salesledger.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.iyf.salesledger.model.EmpLedger;
 
 public interface EmpLedgerDao {

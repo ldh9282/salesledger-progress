@@ -1,5 +1,7 @@
 package com.iyf.salesledger.dao;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.iyf.salesledger.model.Client;
 
 public interface ClientDao {

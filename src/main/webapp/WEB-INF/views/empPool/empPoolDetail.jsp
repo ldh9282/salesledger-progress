@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../setting.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,9 +12,42 @@
     <meta content="" name="keywords">
 
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- NiceAdmin: Vendor CSS Files -->
+    <link href="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/bootstrap/css/bootstrap.min.css"
+        rel="stylesheet">
+    <link
+        href="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+        rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/boxicons/css/boxicons.min.css"
+        rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/quill/quill.snow.css"
+        rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/quill/quill.bubble.css"
+        rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/remixicon/remixicon.css"
+        rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/simple-datatables/style.css"
+        rel="stylesheet">
+
+    <!-- NiceAdmin: Template Main CSS File -->
+    <link href="${pageContext.request.contextPath}/resources/NiceAdmin/assets/css/style.css" rel="stylesheet">
+
+    <!-- toast-grid -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 
 <body>
+
+	
     <main id="main" class="main">
         <section>
             <div class="container">
@@ -26,47 +58,38 @@
                     <input type="hidden" id="del" name="del">
                     <div class="form-group mb-3">
                         <label for="sourcingManager">소싱담당자:</label>
-                        <input type="text" class="form-control" id="sourcingManager" name="sourcing_manager" disabled="disabled">
+                        <input type="text" class="form-control" id="sourcing_manager" name="sourcing_manager"
+                        >
                     </div>
                     <div class="form-group mb-3">
                         <label for="name">이름:</label>
-                        <input type="text" class="form-control" id="name" name="name" disabled="disabled">
+                        <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group mb-3">
                         <label for="phoneNumber">전화번호:</label>
-                        <input type="text" class="form-control" id="phoneNumber" name="phonenumber" disabled="disabled">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="phoneNumber">전화번호:</label>
-                        <input type="text" class="form-control" id="phoneNumber" name="phonenumber" disabled="disabled">
+                        <input type="text" class="form-control" id="phonenumber" name="phonenumber">
                     </div>
                     <div class="form-group mb-3">
                         <label for="birthdate">생년월일:</label>
-                        <input type="date" class="form-control" id="birthdate" name="birthdate" disabled="disabled">
+                        <input type="date" class="form-control" id="birthdate" name="birthdate">
                     </div>
                     <div class="form-group mb-3">
                         <label for="email">이메일:</label>
-                        <input type="email" class="form-control" id="email" name="email" disabled="disabled">
+                        <input type="email" class="form-control" id="email" name="email">
                     </div>
                     <div class="form-group mb-3">
                         <label for="address">주소:</label>
-                        <input type="text" class="form-control" id="address" name="address" disabled="disabled">
+                        <input type="text" class="form-control" id="address" name="address">
                     </div>
-                    <div class="form-group mb-3" id="empResumeDownBox">
-                        <label for="empResumeDown">이력서 :</label>
-                        <a id="empResumeDown"  download></a>
-                    </div>
-                    <div class="form-group mb-3" id="empResumeDownBoxNo">
-                        <label for="empResumeDownNo">이력서 :</label>
-                        <label for="empResumeDownNo">이력서 없음</label>
-                    </div>
+                    
                     <div class="form-group mb-3" id="empResumeNewBox">
-                        <label for="empResumeNew">이력서 변경:</label>
-                        <input type="file" class="form-control" id="empResumeNew" name="empResumeNew" disabled="disabled">
+                        <label for="empResumeNew">이력서:</label>
+                        <input type="file" class="form-control" id="empResumeNew" name="empResumeNew"
+                        >
                     </div>
                     <div class="form-group mb-3">
                         <label for="education">학력:</label>
-                        <select class="form-control" id="education" name="education" disabled="disabled">
+                        <select class="form-control" id="education" name="education">
                             <option value="미기입">미기입</option>
                             <option value="고졸">고졸</option>
                             <option value="전문졸">전문졸</option>
@@ -77,23 +100,25 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="schoolName">학교명:</label>
-                        <input type="text" class="form-control" id="schoolName" name="school_name" disabled="disabled">
+                        <input type="text" class="form-control" id="schoolName" name="school_name">
                     </div>
                     <div class="form-group mb-3">
                         <label for="major">학과:</label>
-                        <input type="text" class="form-control" id="major" name="major" disabled="disabled">
+                        <input type="text" class="form-control" id="major" name="major">
                     </div>
                     <div class="form-group mb-3">
                         <label for="careerYears">경력:</label>
-                        <input type="text" class="form-control" id="careerYears" name="career_years" disabled="disabled">
+                        <input type="text" class="form-control" id="careerYears" name="career_years"
+                        >
                     </div>
                     <div class="form-group mb-3">
                         <label for="careerField">분야:</label>
-                        <input type="text" class="form-control" id="careerField" name="career_field" disabled="disabled">
+                        <input type="text" class="form-control" id="careerField" name="career_field"
+                        >
                     </div>
                     <div class="form-group mb-3">
                         <label for="careerLevel">등급:</label>
-                        <select class="form-control" id="careerLevel" name="career_level" disabled="disabled">
+                        <select class="form-control" id="careerLevel" name="career_level">
                             <option value="미기입">미기입</option>
                             <option value="초급">초급</option>
                             <option value="중급">중급</option>
@@ -102,48 +127,27 @@
                         </select>
                     </div>
                     <button type="button" class="btn btn-primary" id="btnUpdate">수정</button>
-                    <button type="button" class="btn btn-secondary" id="btnCancel">취소</button>
-                    <button type="button" class="btn btn-primary" id="btnSave">수정등록</button>
-                    <button type="button" class="btn btn-secondary" id="btnSaveCancel">수정취소</button>
                     <button type="button" class="btn btn-danger float-end" id="btnDelete">삭제</button>
+                    <button type="button" class="btn btn-secondary" id="btnCancel">취소</button>
                 </form>
             </div>
         </section>
-    
+
     </main><!-- End #main -->
+    
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             const urlParmas = new URLSearchParams(window.location.search);
-            const empPoolId = urlParmas.get('emp_pool_id'); 
-            
-          	//이력서 정보 불러오기
-          	$('#empResumeDownBoxNo').hide();
-          	$('#empResumeNewBox').hide();
-          	$.post('${pageContext.request.contextPath}/empResumeDetail.ajax', "empPoolId=" + empPoolId, function(data) { 
-    			if(data == null || data == ""){
-    				$('#empResumeDownBox').hide();
-    				$('#empResumeDownBoxNo').show();
-    			}else{
-    				$('#empResumeDown').text(data);
-    				$('#empResumeDown').attr("href", "${pageContext.request.contextPath}/resources/upload/"+data);	
-    			}
-            	
-    		});
-            
-            
-            
-            
-            //수정등록, 수정취소 버튼 시작시 숨김
-            $('#btnSave').hide();
-            $('#btnSaveCancel').hide();
-            
+            const empPoolId = urlParmas.get('emp_pool_id');
+
+
             // 인력 상세 정보 조회
             $.ajax({
                 url: '${pageContext.request.contextPath}/empPool.ajax/' + empPoolId,
                 type: 'GET',
                 dataType: 'json',
-                success: function(empPool) {
+                success: function (empPool) {
                     // 생년월일 Formatting
                     const birthdate = new Date(empPool.birthdate);
                     empPool.birthdate = birthdate.getFullYear() + '-' + String(Number(birthdate.getMonth() + 1)).padStart(2, '0') + '-' + String(birthdate.getDate()).padStart(2, '0');
@@ -164,57 +168,33 @@
                     $('#project_assign').val(empPool.project_assign);
                     $('#del').val(empPool.del);
                 },
-                error: function(xhr, status, error) {
-                    
+                error: function (xhr, status, error) {
+
                 }
             });
 
-            // 수정 버튼 클릭 이벤트
+            // 수정 버튼 클릭 시 이벤트
             $('#btnUpdate').click(function() {
-            	//인풋태그의 disabled 속성 제거
-            	$("input").removeAttr("disabled");
-            	$("select").removeAttr("disabled");
-            	$("#btnUpdate").hide();
-            	$("#btnCancel").hide();
-            	$('#btnSave').show();
-            	$('#btnSaveCancel').show();
-            	$('#empResumeNewBox').show();
-            });
-            
-            // 수정취소 버튼 클릭 이벤트
-            $('#btnSaveCancel').click(function() { 
-            	//인풋태그의 disabled 속성 추가
-            	$("input").attr("disabled",true);
-            	$("select").attr("disabled",true);
-            	$("#btnUpdate").show();
-            	$("#btnCancel").show();
-            	$('#btnSave').hide();
-            	$('#btnSaveCancel').hide();
-            	$('#empResumeNewBox').hide();
-            });
-            
-            // 수정등록 버튼 클릭 이벤트
-            $('#btnSave').click(function() {
                 const empPool = {
                     emp_pool_id: $('#emp_pool_id').val(),
-					sourcing_manager: $('#sourcingManager').val(),
-					name: $('#name').val(),
-					phonenumber: $('#phoneNumber').val(),
-					birthdate: new Date($('#birthdate').val()),
-					email: $('#email').val(),
-					address: $('#address').val(),
-					education: $('#education').val(),
-					school_name: $('#schoolName').val(),
-					major: $('#major').val(),
-					career_years: $('#careerYears').val(),
-					career_field: $('#careerField').val(),
-					career_level: $('#careerLevel').val(),
-					project_assign: $('#project_assign').val(),
-					del: $('#del').val()
-				};
+                    sourcing_manager: $('#sourcing_manager').val(),
+                    name: $('#name').val(),
+                    phonenumber: $('#phonenumber').val(),
+                    email: $('#email').val(),
+                    address: $('#address').val(),
+                    education: $('#education').val(),
+                    school_name: $('#school_name').val(),
+                    major: $('#major').val(),
+                    career_years: $('#career_years').val(),
+                    career_field: $('#career_field').val(),
+                    career_level: $('#career_level').val(),
+                    project_assign: $('#project_assign').val(),
+                    birthdate: new Date($('#birthdate').val()),
+                    del: $('#del').val(),
+                }
                 $.ajax({
                     type: 'PUT',
-                    url: '${pageContext.request.contextPath}/empPool.ajax',
+                    url: '${pageContext.request.contextPath}/empPool.ajax/',
                     data: JSON.stringify(empPool),
                     contentType: 'application/json',
                     success: function() {
@@ -225,64 +205,69 @@
                         opener.parent.location.reload();
                         window.close();
                     }
-                });
-                updateResume();
-            })
+                })
+            });
+
             
-            
-            // 취소 버튼 클릭 시 이벤트
-            $('#btnCancel').click(function() {
-                window.close();
-            })
 
             // 삭제 버튼 클릭 시 이벤트: 실제 삭제가 아니라 del 컬럼 'Y'로 수정
-            $('#btnDelete').click(function() {
+            $('#btnDelete').click(function () {
                 const emp_pool_id = $('#emp_pool_id').val();
                 const del = 'Y';
-                $.ajax({
-                    type: 'PATCH',
-                    url: '${pageContext.request.contextPath}/empPool.ajax/' + emp_pool_id + '/del/' + del,
-                    success: function() {
-                        opener.parent.location.reload();
-                        window.close();
-                    },
-                    error: function() {
-                        opener.parent.location.reload();
-                        window.close();
-                    }
-                });
+
+                if ($('#project_assign').val() === '투입대기') {
+                    
+                    $.ajax({
+                        type: 'PATCH',
+                        url: '${pageContext.request.contextPath}/empPool.ajax/' + emp_pool_id + '/del/' + del,
+                        success: function () {
+                            opener.parent.location.reload();
+                            window.close();
+                        },
+                        error: function () {
+                            opener.parent.location.reload();
+                            window.close();
+                        }
+                    });
+                } else {
+                    alert('투입대기인 인력만 삭제할 수 있습니다...');
+                }
+            })
+
+            // 취소 버튼 클릭 시 이벤트
+            $('#btnCancel').click(function () {
+                window.close();
             })
         });
-		
-        //수정버튼 클릭시 이력서 저장 
-        function updateResume() {
-    		var empResumeForm = new FormData();
-        	var empResume = $('#empResumeNew').get(0).files[0];
-        	var emp_pool_id = $('#emp_pool_id').val();
-        	
-        	empResumeForm.append('file', empResume);
-        	empResumeForm.append('emp_pool_id',emp_pool_id);
-        	
-        	if(empResume != null){
-            	$.ajax({
-                    type: 'POST',
-                    url: '${pageContext.request.contextPath}/empPoolResumeUpdate.ajax',
-                    processData:false,
-            		contentType: false,
-                    data: empResumeForm,
-                    success: function() {
-                    	alert("2차 통신성공");
-                        opener.parent.location.reload();
-                        window.close();
-                    },
-                    error: function() {
-                        opener.parent.location.reload();
-                        window.close();
-                    }
-                });
-        	}
-		}
-</script>
+
+    </script>
+
+
+    
+
+    <!-- Excel Export JS File-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+
+
+    <!-- toast-grid -->
+    <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
+
+    <!-- Vendor JS Files -->
+    <script
+        src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script
+        src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/chart.js/chart.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/echarts/echarts.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/quill/quill.min.js"></script>
+    <script
+        src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/tinymce/tinymce.min.js"></script>
+    <script
+        src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- NiceAdmin: Template Main JS File -->
+    <script src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/js/main.js"></script>
 
 </body>
 

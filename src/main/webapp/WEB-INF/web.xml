@@ -21,7 +21,6 @@
 		<url-pattern>/*</url-pattern>
 		<!--<servlet-name>appServlet</servlet-name> -->
 	</filter-mapping>
-	<!-- 
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -29,8 +28,7 @@
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
-
+	</filter-mapping>
 	
 	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
@@ -38,7 +36,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/spring/root-context.xml
-			<!-- /WEB-INF/spring/security-context.xml -->
+			/WEB-INF/spring/security-context.xml
 			/WEB-INF/spring/mybatis-context.xml
 		</param-value>
 		
@@ -58,6 +56,12 @@
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		<multipart-config>
+			<location>C:\\</location><!-- 임시 업로드 경로 -->
+			<max-file-size>20971520</max-file-size><!-- 20MB: 업로드가 허용되는 한 개 파일의 최대크기 -->
+			<max-request-size>41943040</max-request-size><!-- 40MB: 한 번의 업로드 요청에서 허용되는 최대 파일 크기 -->
+			<file-size-threshold>20971520</file-size-threshold><!-- 20MB --><!-- 메모리 제한 크기 -->
+		</multipart-config>
 	</servlet>
 		
 	<servlet-mapping>

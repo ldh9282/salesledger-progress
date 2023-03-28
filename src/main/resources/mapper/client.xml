@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="clientns">
+<mapper namespace="com.iyf.salesledger.dao.ClientDao">
 
-	<resultMap type="client" id="clientMap">
+	<resultMap type="com.iyf.salesledger.model.Client" id="clientMap">
 		<result property="client_id" column="client_id"/>
 		<result property="sales_source" column="sales_source"/>
 		<result property="subcontract" column="subcontract"/>

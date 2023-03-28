@@ -35,42 +35,28 @@
 <!-- mybatis-spring 연동: DAO 객체가 CP의 connection 하나를 가져옴 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<!-- 
 		<property name="mapperLocations">
 			<list>
-				<value>classpath:com/iyf/salesledger/mapper/*.xml</value>
+				<value>classpath:mapper/*.xml</value>
 			</list>
-		</property> -->
-		<property name="configLocation" value="classpath:configuration.xml" />
+		</property>
 	</bean>
 	
-<!-- mybatis-spring 연동: SqlSessionFactory 보다 쓰레드에 안전 -->
+	<!-- mybatis-spring 연동: SqlSessionFactory 보다 쓰레드에 안전 -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 	
-<!-- 매퍼인터패이스 자동 빈 생성 -->
-<!-- 설정된 패키지에 DAO클래스를 대신하는 매퍼-인터페이스가 있습니다. -->
-	<!-- <mybatis-spring:scan base-package="com.iyf.salesledger.mapper"/> -->
+	<!-- 매퍼인터패이스 자동 빈 생성 -->
+	<!-- 설정된 패키지에 DAO클래스를 대신하는 매퍼-인터페이스가 있습니다. -->
+	<mybatis-spring:scan base-package="com.iyf.salesledger.dao"/>
 
+	<tx:annotation-driven/>
 
-
-<!-- Spring Transaction 관리자 빈(dataSource빈을 주입받음) -->
+	<!-- Spring Transaction 관리자 빈(dataSource빈을 주입받음) -->
 	<bean id="transactionManager"
 		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		  
 		  <property name="dataSource" ref="dataSource"/>
 	</bean>
-
-
-
-
-
-
-
-
-
-
-
-
 </beans>
