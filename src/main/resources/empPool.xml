@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="empPoolns">
+	<resultMap type="empPool" id="empPoolMap">
+		<result property="emp_pool_id" column="EMP_POOL_ID"/>
+		<result property="sourcing_manager" column="SOURCING_MANAGER"/>
+		<result property="name" column="NAME"/>
+		<result property="phonenumber" column="PHONENUMBER"/>
+		<result property="birthdate" column="BIRTHDATE"/>
+		<result property="email" column="EMAIL"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="education" column="EDUCATION"/>
+		<result property="school_name" column="SCHOOL_NAME"/>
+		<result property="major" column="MAJOR"/>
+		<result property="career_years" column="CAREER_YEARS"/>
+		<result property="career_field" column="CAREER_FIELD"/>
+		<result property="career_level" column="CAREER_LEVEL"/>
+		<result property="project_assign" column="PROJECT_ASSIGN"/>
+	</resultMap>
+	<select id="selectOne" resultMap="empPoolMap">
+		SELECT
+		    emp_pool_id, 
+		    sourcing_manager, 
+		    name, 
+		    phonenumber, 
+		    birthdate, 
+		    email, 
+		    address, 
+		    education, 
+		    school_name, 
+		    major, 
+		    career_years, 
+		    career_field, 
+		    career_level, 
+		    project_assign,
+		    del 
+		FROM t_emp_pool
+		WHERE emp_pool_id = #{emp_pool_id}
+	</select>
+	<select id="findByNameAndPhoneNumber" parameterType="map" resultMap="empPoolMap">
+		SELECT
+		    emp_pool_id, 
+		    sourcing_manager, 
+		    name, 
+		    phonenumber, 
+		    birthdate, 
+		    email, 
+		    address, 
+		    education, 
+		    school_name, 
+		    major, 
+		    career_years, 
+		    career_field, 
+		    career_level, 
+		    project_assign,
+		    del 
+		FROM t_emp_pool
+		WHERE name = #{name} and phonenumber = #{phonenumber}
+	</select>
+	<select id="list" resultMap="empPoolMap">
+		SELECT
+		    emp_pool_id, 
+		    sourcing_manager, 
+		    name, 
+		    phonenumber, 
+		    birthdate, 
+		    email, 
+		    address, 
+		    education, 
+		    school_name, 
+		    major, 
+		    career_years, 
+		    career_field, 
+		    career_level, 
+		    project_assign,
+		    del 
+		FROM t_emp_pool
+		ORDER BY 1 DESC
+	</select>
+	
+	<update id="update">
+		UPDATE t_emp_pool 
+		SET
+			emp_pool_id = #{emp_pool_id},
+			sourcing_manager = #{sourcing_manager},
+			name = #{name},
+			phonenumber = #{phonenumber},
+			birthdate = #{birthdate},
+			email = #{email},
+			address = #{address},
+			education = #{education},
+			school_name = #{school_name},
+			major = #{major},
+			career_years = #{career_years},
+			career_field = #{career_field},
+			career_level = #{career_level},
+			project_assign = #{project_assign},
+			del = #{del}
+		WHERE emp_pool_id = #{emp_pool_id}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM t_emp_pool
+		WHERE emp_pool_id = #{emp_pool_id}
+	</delete>
+	
+	<insert id="insert">
+		INSERT INTO t_emp_pool
+		(
+			emp_pool_id,
+			sourcing_manager,
+			name,
+			phonenumber,
+			birthdate,
+			email,
+			address,
+			education,
+			school_name,
+			major,
+			career_years,
+			career_field,
+			career_level,
+			project_assign,
+			del
+		)
+			VALUES 
+		(
+			DEFAULT,
+			#{sourcing_manager},
+			#{name},
+			#{phonenumber},
+			#{birthdate},
+			#{email},
+			#{address},
+			#{education},
+			#{school_name},
+			#{major},
+			#{career_years},
+			#{career_field},
+			#{career_level},
+			'투입대기',
+			'N'
+		);
+	</insert>
+</mapper>
