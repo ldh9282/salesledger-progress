@@ -10,9 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.iyf.salesledger.dao.ClientDao;
 import com.iyf.salesledger.dao.EmpLedgerDao;
 import com.iyf.salesledger.dao.EmpPoolDao;
+import com.iyf.salesledger.dao.SalesLedgerDao;
 import com.iyf.salesledger.model.Client;
 import com.iyf.salesledger.model.EmpLedger;
 import com.iyf.salesledger.model.EmpPool;
+import com.iyf.salesledger.model.SalesLedger;
 
 @Service
 public class EmpLedgerServiceImpl implements EmpLedgerService {
@@ -25,6 +27,9 @@ public class EmpLedgerServiceImpl implements EmpLedgerService {
 	
 	@Autowired
 	private EmpPoolDao empPoolDao;
+	
+	@Autowired
+	private SalesLedgerDao salesLedgerDao;
 	
 	@Override
 	public List<EmpLedger> list() {
@@ -60,6 +65,8 @@ public class EmpLedgerServiceImpl implements EmpLedgerService {
 		clientDao.insert(client);
 		empLedger.setClient_id(client.getClient_id());
 		empLedgerDao.insert(empLedger);
+		
+		
 	}
 
 	@Override
@@ -74,6 +81,12 @@ public class EmpLedgerServiceImpl implements EmpLedgerService {
 		if (empLedger != null) {
 			empLedger.setProgress(progress);
 			empLedgerDao.update(empLedger);
+		}
+		
+		if (progress.equals("투입")) {
+			SalesLedger salesLedger = new SalesLedger();
+			salesLedger.setEmp_id(empLedger.getEmp_id());
+			salesLedgerDao.insert(salesLedger);
 		}
 	}
 
@@ -108,6 +121,16 @@ public class EmpLedgerServiceImpl implements EmpLedgerService {
 		empLedgerDao.update(empLedger);
 		
 		
+	}
+
+	@Override
+	public void patchDel(long emp_id, String del) {
+		 EmpLedger empLedger = empLedgerDao.selectOne(emp_id);
+		 if (empLedger != null) {
+			empLedger.setDel(del);
+			
+			empLedgerDao.update(empLedger);
+		}
 	}
 
 }

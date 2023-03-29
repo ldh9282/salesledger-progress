@@ -57,7 +57,7 @@
                     <input type="hidden" id="project_assign" name="project_assign">
                     <input type="hidden" id="del" name="del">
                     <div class="form-group mb-3">
-                        <label for="sourcingManager">소싱담당자:</label>
+                        <label for="sourcing_manager">소싱담당자:</label>
                         <input type="text" class="form-control" id="sourcing_manager" name="sourcing_manager"
                         >
                     </div>
@@ -66,7 +66,7 @@
                         <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="phoneNumber">전화번호:</label>
+                        <label for="phonenumber">전화번호:</label>
                         <input type="text" class="form-control" id="phonenumber" name="phonenumber">
                     </div>
                     <div class="form-group mb-3">
@@ -99,21 +99,21 @@
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="schoolName">학교명:</label>
-                        <input type="text" class="form-control" id="schoolName" name="school_name">
+                        <label for="school_name">학교명:</label>
+                        <input type="text" class="form-control" id="school_name" name="school_name">
                     </div>
                     <div class="form-group mb-3">
                         <label for="major">학과:</label>
                         <input type="text" class="form-control" id="major" name="major">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="careerYears">경력:</label>
-                        <input type="text" class="form-control" id="careerYears" name="career_years"
+                        <label for="career_years">경력:</label>
+                        <input type="text" class="form-control" id="career_years" name="career_years"
                         >
                     </div>
                     <div class="form-group mb-3">
-                        <label for="careerField">분야:</label>
-                        <input type="text" class="form-control" id="careerField" name="career_field"
+                        <label for="career_field">분야:</label>
+                        <input type="text" class="form-control" id="career_field" name="career_field"
                         >
                     </div>
                     <div class="form-group mb-3">
@@ -128,7 +128,6 @@
                     </div>
                     <button type="button" class="btn btn-primary" id="btnUpdate">수정</button>
                     <button type="button" class="btn btn-danger float-end" id="btnDelete">삭제</button>
-                    <button type="button" class="btn btn-secondary" id="btnCancel">취소</button>
                 </form>
             </div>
         </section>
@@ -153,17 +152,17 @@
                     empPool.birthdate = birthdate.getFullYear() + '-' + String(Number(birthdate.getMonth() + 1)).padStart(2, '0') + '-' + String(birthdate.getDate()).padStart(2, '0');
 
                     $('#emp_pool_id').val(empPool.emp_pool_id);
-                    $('#sourcingManager').val(empPool.sourcing_manager);
+                    $('#sourcing_manager').val(empPool.sourcing_manager);
                     $('#name').val(empPool.name);
-                    $('#phoneNumber').val(empPool.phonenumber);
+                    $('#phonenumber').val(empPool.phonenumber);
                     $('#birthdate').val(empPool.birthdate);
                     $('#email').val(empPool.email);
                     $('#address').val(empPool.address);
                     $('#education').val(empPool.education);
-                    $('#schoolName').val(empPool.school_name);
+                    $('#school_name').val(empPool.school_name);
                     $('#major').val(empPool.major);
-                    $('#careerYears').val(empPool.career_years);
-                    $('#careerField').val(empPool.career_field);
+                    $('#career_years').val(empPool.career_years);
+                    $('#career_field').val(empPool.career_field);
                     $('#careerLevel').val(empPool.career_level);
                     $('#project_assign').val(empPool.project_assign);
                     $('#del').val(empPool.del);
@@ -215,7 +214,7 @@
                 const emp_pool_id = $('#emp_pool_id').val();
                 const del = 'Y';
 
-                if ($('#project_assign').val() === '투입대기') {
+                if ($('#project_assign').val() === '대기') {
                     
                     $.ajax({
                         type: 'PATCH',
@@ -230,14 +229,10 @@
                         }
                     });
                 } else {
-                    alert('투입대기인 인력만 삭제할 수 있습니다...');
+                    alert('대기인 인력만 삭제할 수 있습니다...');
                 }
             })
 
-            // 취소 버튼 클릭 시 이벤트
-            $('#btnCancel').click(function () {
-                window.close();
-            })
         });
 
     </script>

@@ -28,26 +28,5 @@ public class EmpLedger {
     private String result;
     private String result_reason;
     private String issues;
-    //empPool 에서 받아올 추가필드
-    private String sourcing_manager;
-	private String name;
-	private String phonenumber;
-	private Date birthdate;
-	private String email;
-	private String address;
-	private String education;
-	private String school_name;
-	private String major;
-	private String career_years;
-	private String career_field;
-	private String career_level;
-	private String project_assign;
-	private String del;
-	//client에서 받아올 추가 필드
-	private String sales_source;
-	private String client;
-	private String subcontract;
-	private String project_name;
-	private String business_department;
-	private String business_manager;
+    private String del;
 }

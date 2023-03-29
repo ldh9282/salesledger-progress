@@ -15,6 +15,7 @@
 	  	  class="com.iyf.salesledger.common.security.AccessDeniedHandler" />
 	
 	<security:http>
+		<security:csrf disabled="true"/>
 	
 		<!-- 로그인 페이지, (로그인 페이지 form action과 일치해야함), 성공 후 페이지 -->
 		<security:form-login />

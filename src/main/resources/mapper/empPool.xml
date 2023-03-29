@@ -38,7 +38,7 @@
 		FROM t_emp_pool
 		WHERE emp_pool_id = #{emp_pool_id}
 	</select>
-	<select id="findByNameAndPhoneNumber" parameterType="map" resultMap="empPoolMap">
+	<select id="findByNameAndPhoneNumber" resultMap="empPoolMap">
 		SELECT
 		    emp_pool_id, 
 		    sourcing_manager, 

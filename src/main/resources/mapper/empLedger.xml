@@ -76,26 +76,7 @@
 	
 	<select id="list" resultMap="empLedgerMap">
 		SELECT 
-			emp_id,
-			emp_pool_id,
-			client_id,
-			company,
-			assign_date,
-			end_date,
-			sales_mm,
-			purchase_mm,
-			sales_unit,
-			purchase_unit,
-			comments,
-			resume_submit_date,
-			resign_date,
-			i_contract_date,
-			c_contract_date,
-			progress,
-			progress_reason,
-			result,
-			result_reason,
-			issues
+			*
 		FROM t_emp_ledger
 	</select>
 	<select id="listByCompany" resultMap="t1t2t3map">
@@ -106,31 +87,12 @@
 		ON t1.emp_pool_id = t2.emp_pool_id
 		INNER JOIN t_client t3
 		ON t1.client_id = t3.client_id
-		WHERE t1.company = #{company}
-		ORDER BY t2.emp_pool_id, t3.client_id
+		WHERE t1.company = #{company} and t1.del != 'Y'
+		ORDER BY t1.emp_pool_id desc
 	</select>
 	<select id="selectOne" resultMap="empLedgerMap">
 		SELECT 
-			emp_id,
-			emp_pool_id,
-			client_id,
-			company,
-			assign_date,
-			end_date,
-			sales_mm,
-			purchase_mm,
-			sales_unit,
-			purchase_unit,
-			comments,
-			resume_submit_date,
-			resign_date,
-			i_contract_date,
-			c_contract_date,
-			progress,
-			progress_reason,
-			result,
-			result_reason,
-			issues
+			*
 		FROM t_emp_ledger
 		WHERE emp_id = #{emp_id}
 	</select>
@@ -157,7 +119,8 @@
 			progress_reason,
 			result,
 			result_reason,
-			issues
+			issues,
+			del
 		)
 			VALUES 
 		(
@@ -180,7 +143,8 @@
 			#{progress_reason}, 
 			#{result}, 
 			#{result_reason}, 
-			#{issues}
+			#{issues},
+			'N'
 		)
 		<selectKey keyProperty="emp_id" keyColumn="emp_id" order="AFTER" resultType="long">
 			SELECT currval('t_emp_ledger_emp_id_seq')
@@ -207,7 +171,8 @@
 		progress_reason = #{progress_reason}, 
 		result = #{result}, 
 		result_reason = #{result_reason}, 
-		issues = #{issues}
+		issues = #{issues},
+		del = #{del}
 	WHERE emp_id = #{emp_id}
 	</update>
 </mapper>

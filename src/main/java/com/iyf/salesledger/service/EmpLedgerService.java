@@ -26,5 +26,7 @@ public interface EmpLedgerService {
 	void update(EmpLedger empLedger, Client client, EmpPool empPool);
 
 	void insert(EmpLedger empLedger, Client client);
+
+	void patchDel(long emp_id, String del);
 	
 }

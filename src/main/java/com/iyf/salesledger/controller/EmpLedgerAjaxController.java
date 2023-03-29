@@ -54,17 +54,11 @@ public class EmpLedgerAjaxController {
 	
 	@PatchMapping("/empLedger.ajax/{emp_id}/progress/{progress}")
 	public void patchProgress(@PathVariable long emp_id, @PathVariable String progress) {
-		EmpLedger empLedger = empLedgerService.selectOne(emp_id);
-		empLedger.setProgress(progress);
-		
 		empLedgerService.patchProgress(emp_id, progress);
 	}
 	
 	@PatchMapping("/empLedger.ajax/{emp_id}/progress_reason/{progress_reason}")
 	public void patchProgressReason(@PathVariable long emp_id, @PathVariable(required = false) String progress_reason) {
-		EmpLedger empLedger = empLedgerService.selectOne(emp_id);
-		empLedger.setProgress_reason(progress_reason);
-		
 		empLedgerService.patchProgress(emp_id, progress_reason);
 	}
 	
@@ -77,5 +71,10 @@ public class EmpLedgerAjaxController {
 		EmpPool empPool= gson.fromJson(gson.toJson(requestBodyMap.get("empPool")), EmpPool.class);
 		
 		empLedgerService.update(empLedger, client, empPool);
+	}
+	
+	@PatchMapping("/empLedger.ajax/{emp_id}/del/{del}")
+	public void patchDel(@PathVariable long emp_id, @PathVariable String del) {
+		empLedgerService.patchDel(emp_id, del);
 	}
 }

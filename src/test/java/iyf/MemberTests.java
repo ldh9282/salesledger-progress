@@ -25,7 +25,7 @@ import lombok.Setter;
 	"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
 	"file:src/main/webapp/WEB-INF/spring/security-context.xml",
 })
-public class MemberTest {
+public class MemberTests {
 	
 
 	@Setter(onMethod_ = @Autowired)
@@ -39,7 +39,6 @@ public class MemberTest {
 		Member member = new Member();
 		member.setUsername("admin");
 		member.setPassword(passwordEncoder.encode("admin"));
-		
 		memberDao.insertMember(member);
 		
 		MemberAuthority memberAuthority = new MemberAuthority();

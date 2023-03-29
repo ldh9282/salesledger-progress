@@ -54,7 +54,7 @@
                 <h1>인력 등록 페이지</h1>
                 <div class="form-group mb-3">
                     <label for="sourcingManager">소싱담당자:</label>
-                    <input type="text" class="form-control" id="sourcingManager" name="sourcing_manager">
+                    <input type="text" class="form-control" id="sourcing_manager" name="sourcing_manager">
                 </div>
                 <div class="form-group mb-3">
                     <label for="name">이름:</label>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="phoneNumber">전화번호:</label>
-                    <input type="text" class="form-control" id="phoneNumber" name="phonenumber">
+                    <input type="text" class="form-control" id="phonenumber" name="phonenumber">
                 </div>
                 <div class="form-group mb-3">
                     <label for="birthdate">생년월일:</label>
@@ -93,7 +93,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="schoolName">학교명:</label>
-                    <input type="text" class="form-control" id="schoolName" name="school_name">
+                    <input type="text" class="form-control" id="school_name" name="school_name">
                 </div>
                 <div class="form-group mb-3">
                     <label for="major">학과:</label>
@@ -101,15 +101,15 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="careerYears">경력:</label>
-                    <input type="text" class="form-control" id="careerYears" name="career_years">
+                    <input type="text" class="form-control" id="career_years" name="career_years">
                 </div>
                 <div class="form-group mb-3">
                     <label for="careerField">분야:</label>
-                    <input type="text" class="form-control" id="careerField" name="career_field">
+                    <input type="text" class="form-control" id="career_field" name="career_field">
                 </div>
                 <div class="form-group mb-3">
                     <label for="careerLevel">등급:</label>
-                    <select class="form-control" id="careerLevel" name="career_level">
+                    <select class="form-control" id="career_level" name="career_level">
                         <option value="미기입">미기입</option>
                         <option value="초급">초급</option>
                         <option value="중급">중급</option>
@@ -129,18 +129,18 @@
             // 인력 등록 버튼 클릭 이벤트
             $('#btnRegister').click(function () {
                 const empPool = {
-                    sourcing_manager: $('#sourcingManager').val(),
+                    sourcing_manager: $('#sourcing_manager').val(),
                     name: $('#name').val(),
-                    phonenumber: $('#phoneNumber').val(),
+                    phonenumber: $('#phonenumber').val(),
                     birthdate: new Date($('#birthdate').val()),
                     email: $('#email').val(),
                     address: $('#address').val(),
                     education: $('#education').val(),
-                    school_name: $('#schoolName').val(),
+                    school_name: $('#school_name').val(),
                     major: $('#major').val(),
-                    career_years: $('#careerYears').val(),
-                    career_field: $('#careerField').val(),
-                    career_level: $('#careerLevel').val(),
+                    career_years: $('#career_years').val(),
+                    career_field: $('#career_field').val(),
+                    career_level: $('#career_level').val(),
                 };
 
                 $.ajax({

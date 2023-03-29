@@ -229,7 +229,7 @@
                 <button type="button" class="btn btn-primary" id="btnConfirm">투입확정</button>
                 <button type="button" class="btn btn-primary" id="btnDrop">드랍</button>
                 <button type="button" class="btn btn-primary" id="btnUpdate">수정</button>
-                <button type="button" class="btn btn-danger float-end" id="btnCancle">취소</button>
+                <button type="button" class="btn btn-danger float-end" id="btnDelete">삭제</button>
             </div>
         </section>
     
@@ -504,9 +504,28 @@
                 });
             });
 
-            $('#btnCancel').click(function() {
-                opener.parent.location.reload();
-                window.close();
+            $('#btnDelete').click(function() {
+                const emp_id = $('#emp_id').val();
+                const del = 'Y';
+
+                if ($('#progress').val() === '드랍') {
+                    debugger
+                    $.ajax({
+                        type: 'PATCH',
+                        url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/del/' + del,
+                        success: function () {
+                            opener.parent.location.reload();
+                            window.close();
+                        },
+                        error: function () {
+                            opener.parent.location.reload();
+                            window.close();
+                        }
+                    });
+                } else {
+                    debugger
+                    alert('드랍인 인력만 삭제할 수 있습니다...');
+                }
             })
 
         });
