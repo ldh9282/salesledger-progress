@@ -142,8 +142,8 @@
                                 <label for="phoneNumber">전화번호:</label>
                                 <input type="text" class="form-control" id="phoneNumber" name="phonenumber">
                             </div>
-                            <div id="search-error" class="alert alert-danger d-none">조회 결과 없는 인력입니다...</div>
-                            <button type="button" class="btn btn-primary mb-3" id="btnSearch">검색</button>
+                            <div id="search-error" class="alert alert-danger d-none">조회 결과 없는 인력입니다.</div>
+                            <button type="button" class="btn btn-primary mb-3" id="btnSearch" title="인력풀에 있는 인력의 이름과 전화번호를 모두 기입해주세요. 검색 후 인력투입예정을 할 수 있습니다.">검색</button>
                         </form>
                         <hr>
                         <form id="empDetailForm">
@@ -325,6 +325,8 @@
                 e.target.value = formattedValue;
                 
             });
+            
+            $('#btnSearch').tooltip();
 
 
 

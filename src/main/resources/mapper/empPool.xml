@@ -18,6 +18,7 @@
 		<result property="career_level" column="CAREER_LEVEL"/>
 		<result property="project_assign" column="PROJECT_ASSIGN"/>
 	</resultMap>
+	
 	<select id="selectOne" resultMap="empPoolMap">
 		SELECT
 		    emp_pool_id, 
@@ -60,25 +61,10 @@
 	</select>
 	<select id="list" resultMap="empPoolMap">
 		SELECT
-		    emp_pool_id, 
-		    sourcing_manager, 
-		    name, 
-		    phonenumber, 
-		    birthdate, 
-		    email, 
-		    address, 
-		    education, 
-		    school_name, 
-		    major, 
-		    career_years, 
-		    career_field, 
-		    career_level, 
-		    project_assign,
-		    del 
+		    *
 		FROM t_emp_pool
 		ORDER BY 1 DESC
 	</select>
-	
 	<update id="update">
 		UPDATE t_emp_pool 
 		SET
@@ -139,7 +125,7 @@
 			#{career_years},
 			#{career_field},
 			#{career_level},
-			'투입대기',
+			0,
 			'N'
 		);
 	</insert>

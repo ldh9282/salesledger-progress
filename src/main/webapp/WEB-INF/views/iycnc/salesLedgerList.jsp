@@ -104,8 +104,8 @@
                         <div class="col">
                             <label class="form-check">
                                 <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column"
-                                    value="result" checked>
-                                <span class="form-check-label">결과</span>
+                                    value="`" checked>
+                                <span class="form-check-label">진행사유</span>
                             </label>
                         </div>
                         <div class="col">
@@ -420,10 +420,6 @@
                 </div>
                 <!-- End 그리드에서 보여줄 필드 체크리스트-->
 
-                <div class="d-flex mt-3 mb-3">
-                    <button type="button" class="btn btn-primary ms-2" id="btnShowRegisterPage">인력투입예정페이지</button>
-                </div>
-
 
                 <div id="grid" style="width: 70vw;"></div>
             </div>
@@ -454,8 +450,8 @@
                         align: 'center',
                     },
                     {
-                        header: '결과',
-                        name: 'result',
+                        header: '진행사유',
+                        name: 'progress_reason',
                         width: 'auto',
                         align: 'center',
                     },
@@ -859,18 +855,6 @@
                     });
                 }
             }
-
-            // 인력투입예정페이지 버튼 클릭시 이벤트: 페이지팝업
-            $('#btnShowRegisterPage').click(function () {
-                const popupUrl = '${pageContext.request.contextPath}/iycnc/salesLedgerRegister.do';
-                const popupName = 'salesLedgerRegister.do-popup';
-                const popupWidth = 800;
-                const popupHeight = 600;
-                const left = (screen.width - popupWidth) / 2;
-                const top = (screen.height - popupHeight) / 2;
-
-                window.open(popupUrl, popupName, 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + left + ', top=' + top);
-            });
 
             // 그리드 Row 더블 클릭시 이벤트: 상세정보페이지 팝업
             grid.on('dblclick', function (ev) {

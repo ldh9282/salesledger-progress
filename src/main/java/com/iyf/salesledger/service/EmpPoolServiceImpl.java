@@ -58,7 +58,7 @@ public class EmpPoolServiceImpl implements EmpPoolService {
 	}
 
 	@Override
-	public void patchProjectAssign(long emp_pool_id, String project_assign) {
+	public void patchProjectAssign(long emp_pool_id, int project_assign) {
 		EmpPool empPool = empPoolDao.selectOne(emp_pool_id);
 		empPool.setProject_assign(project_assign);
 		

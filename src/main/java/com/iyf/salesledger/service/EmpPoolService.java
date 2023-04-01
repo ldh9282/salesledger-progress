@@ -20,7 +20,7 @@ public interface EmpPoolService {
 	
 	void patchDel(long emp_pool_id, String del);
 
-	void patchProjectAssign(long emp_pool_id, String project_assign);
+	void patchProjectAssign(long emp_pool_id, int project_assign);
 	
 	
 	

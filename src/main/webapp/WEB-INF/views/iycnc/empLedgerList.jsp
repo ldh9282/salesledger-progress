@@ -65,6 +65,8 @@
                                 <span class="form-check-label">ALL</span>
                             </label>
                         </div>
+                    </div>
+                    <div class="row row-cols-4 mb-3">
                         <div class="col">
                             <label class="form-check">
                                 <input class="form-check-input" type="checkbox" name="check-client"
@@ -98,9 +100,9 @@
                         </div>
                         <div class="col">
                             <label class="form-check">
-                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="result"
+                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="progress_reason"
                                     checked>
-                                <span class="form-check-label">결과</span>
+                                <span class="form-check-label">진행사유</span>
                             </label>
                         </div>
                         <div class="col">
@@ -290,7 +292,7 @@
                         </div>
                         <div class="col">
                             <label class="form-check">
-                                <input class="form-check-input"data-table="emp-ledger" type="checkbox" name="column" value="i_contract_date"
+                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="i_contract_date"
                                     checked>
                                 <span class="form-check-label">개인계약일</span>
                             </label>
@@ -337,7 +339,7 @@
                 scrollX: true,
                 scrollY: true,
                 columnOptions: {
-                    minWidth: 110,
+                    minWidth: 120,
                 },
                 columns: [
                     {
@@ -345,126 +347,147 @@
                         name: 'progress',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
-                        header: '결과',
-                        name: 'result',
+                        header: '진행사유',
+                        name: 'progress_reason',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '매출처',
                         name: 'sales_source',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '거래처',
                         name: 'client',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '도급내역',
                         name: 'subcontract',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '프로젝트명',
                         name: 'project_name',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '사업부서',
                         name: 'business_department',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '사업관리담당자',
                         name: 'business_manager',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '소싱담당자',
                         name: 'sourcing_manager',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '이름',
                         name: 'name',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '전화번호',
                         name: 'phonenumber',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '생년월일',
                         name: 'birthdate',
                         width: 'auto',
                         align: 'center',
+                        
                     },
                     {
                         header: '이메일',
                         name: 'email',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '주소',
                         name: 'address',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '학력',
                         name: 'education',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '학교명',
                         name: 'school_name',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '학과',
                         name: 'major',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '경력',
                         name: 'career_years',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '분야',
                         name: 'career_field',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '등급',
                         name: 'career_level',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '소속',
                         name: 'company',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '투입일',
@@ -483,30 +506,35 @@
                         name: 'sales_mm',
                         width: 'auto',
                         align: 'center',
+                        filter: 'number'
                     },
                     {
                         header: '매입MM',
                         name: 'purchase_mm',
                         width: 'auto',
                         align: 'center',
+                        filter: 'number'
                     },
                     {
                         header: '매출단가',
                         name: 'sales_unit',
                         width: 'auto',
                         align: 'right',
+                        filter: 'number'
                     },
                     {
                         header: '매입단가',
                         name: 'purchase_unit',
                         width: 'auto',
                         align: 'right',
+                        filter: 'number'
                     },
                     {
                         header: '비고',
                         name: 'comments',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '이력서제출일자',
@@ -537,6 +565,7 @@
                         name: 'issues',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
 
                 ]

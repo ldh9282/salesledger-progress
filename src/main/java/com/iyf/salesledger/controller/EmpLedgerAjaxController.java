@@ -77,4 +77,9 @@ public class EmpLedgerAjaxController {
 	public void patchDel(@PathVariable long emp_id, @PathVariable String del) {
 		empLedgerService.patchDel(emp_id, del);
 	}
+	
+	@PatchMapping("/empLedger.ajax/{emp_id}/ForceDel/{del}")
+	public void patchForceDel(@PathVariable long emp_id, @PathVariable String del) {
+		empLedgerService.patchForceDel(emp_id, del);
+	}
 }

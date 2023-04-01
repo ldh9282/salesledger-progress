@@ -18,4 +18,6 @@ public interface SalesLedgerService {
 	void update(SalesLedger salesLedger);
 	
 	void delete(long sales_id);
+	
+	void patchDel(long sales_id, String del);
 }

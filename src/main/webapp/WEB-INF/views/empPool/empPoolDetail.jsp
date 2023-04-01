@@ -127,7 +127,7 @@
                         </select>
                     </div>
                     <button type="button" class="btn btn-primary" id="btnUpdate">수정</button>
-                    <button type="button" class="btn btn-danger float-end" id="btnDelete">삭제</button>
+                    <button type="button" class="btn btn-danger float-end" id="btnDelete" title="진행중인 프로젝트 수가 0인 인력만 삭제할 수 있습니다">삭제</button>
                 </form>
             </div>
         </section>
@@ -198,7 +198,8 @@
                     contentType: 'application/json',
                     success: function() {
                         opener.parent.location.reload();
-                        window.close();
+                       	window.location.reload(); 
+                        
                     },
                     error: function() {
                         opener.parent.location.reload();
@@ -214,7 +215,7 @@
                 const emp_pool_id = $('#emp_pool_id').val();
                 const del = 'Y';
 
-                if ($('#project_assign').val() === '대기') {
+                if ($('#project_assign').val() <= 0) {
                     
                     $.ajax({
                         type: 'PATCH',
@@ -229,9 +230,11 @@
                         }
                     });
                 } else {
-                    alert('대기인 인력만 삭제할 수 있습니다...');
+                    alert('진행중인 프로젝트가 없는 인력만 삭제할 수 있습니다.');
                 }
             })
+            
+            $('#btnDelete').tooltip();
 
         });
 

@@ -18,6 +18,8 @@ public interface SalesLedgerDao {
 	void update(SalesLedger salesLedger);
 	
 	void delete(long sales_id);
+
+	SalesLedger findByEmpId(long emp_id);
 	
 
 	

@@ -25,8 +25,6 @@ public class EmpLedger {
     private Date c_contract_date;
     private String progress;
     private String progress_reason;
-    private String result;
-    private String result_reason;
     private String issues;
     private String del;
 }

@@ -90,7 +90,7 @@
 		on t2.emp_pool_id = t3.emp_pool_id
 		inner join t_client t4
 		on t2.client_id = t4.client_id
-		WHERE t2.company = #{company}
+		WHERE t2.company = #{company} and (t1.del != 'Y' or t1.del is null)
 	</select>
 	
 	
@@ -105,6 +105,13 @@
 			* 
 	 	from t_sales_ledger
 	 	where sales_id = #{sales_id} 
+	</select>
+	
+	<select id="findByEmpId" resultMap="salesLedgerMap">
+		select
+			*
+		from t_sales_ledger
+		where emp_id = #{emp_id}
 	</select>
 	
 	<insert id="insert">

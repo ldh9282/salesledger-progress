@@ -42,7 +42,6 @@
     
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
 </head>
 
 <body>
@@ -211,25 +210,24 @@
 
                 <form action="notImportantForm">
                     <div class="form-group mb-3">
-                        <label for="result">결과:</label>
-                        <input type="text" class="form-control" id="result" name="result">
+                        <label for="issues">특이사항:</label>
+                        <input type="text" class="form-control" id="issues" name="issues">
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="result_reason">결과사유:</label>
-                        <input type="text" class="form-control" id="result_reason" name="result_reason">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="c_contract_date">특이사항:</label>
-                        <input type="text" class="form-control" id="result_reason" name="result_reason">
-                    </div>
-
                 </form>
                 
-
-                <button type="button" class="btn btn-primary" id="btnConfirm">투입확정</button>
-                <button type="button" class="btn btn-primary" id="btnDrop">드랍</button>
-                <button type="button" class="btn btn-primary" id="btnUpdate">수정</button>
-                <button type="button" class="btn btn-danger float-end" id="btnDelete">삭제</button>
+				<div class="row">
+	                <div class="text-frist">
+		                <button type="button" class="btn btn-primary" id="btnUpdate">수정</button>
+		                <button type="button" class="btn btn-danger float-end" id="btnDelete" title="드랍된 인력만 삭제가 가능합니다">삭제</button>
+	                </div>
+					<div class="text-center">
+		                <button type="button" class="btn btn-primary" id="btnConfirm" title="투입확정시 해당인력이 매출원장에 또한 반영됩니다">투입확정</button>
+		                <button type="button" class="btn btn-danger " id="btnDrop" title="면접에서 드랍된 인력일 때 이용하세요.">드랍</button>
+					</div>
+					<div class="text-end">
+		                <button type="button" class="btn btn-danger" id="btnForceDelete" title="투입확정시 자동으로 추가된 매출데이터도 강제로 삭제됩니다. 실수로 투입확정하였을 때만 이용하세요">강제삭제</button>
+					</div>
+				</div>
             </div>
         </section>
     
@@ -245,13 +243,18 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(empLedger) {
-                    if (empLedger.progress === '진행') {
+                    if (empLedger.progress === '투입예정') {
+                    	$('#btnForceDelete').css('visibility', 'hidden')
                     }
                     if (empLedger.progress === '드랍') {
                         $('#btnDrop').attr('disabled', true)
+                        $('#btnConfirm').css('visibility', 'hidden')
+                        $('#btnForceDelete').css('visibility', 'hidden')
                     }
                     if (empLedger.progress === '투입') {
                         $('#btnConfirm').attr('disabled', true)
+                        $('#btnDrop').css('visibility', 'hidden')
+                        $('#btnDelete').css('visibility', 'hidden')
                     }
                     
                     // Date 년월일 Formatting
@@ -291,7 +294,6 @@
                     $('#c_contract_date').val(empLedger.c_contract_date);
                     $('#progress').val(empLedger.progress);
                     $('#progress_reason').val(empLedger.progress_reason);
-                    $('#result').val(empLedger.result);
                     $('#issues').val(empLedger.issues);
 
                     // ajax 2: client 상세정보 조회
@@ -353,32 +355,20 @@
                 const emp_id = $('#emp_id').val();
                 const progress = '투입'
 
-                const emp_pool_id = $('#emp_pool_id').val();
-                const project_assign = '투입';
-
                 $.ajax({
                     type: 'PATCH',
                     url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/progress/' + progress,
                     success: function() {
-                        $.ajax({
+                    	$.ajax({
                             type: 'PATCH',
-                            url: '${pageContext.request.contextPath}/empPool.ajax/' + emp_pool_id + '/project_assign/' + project_assign,
+                            url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/progress_reason/' + progress_reason,
                             success: function() {
-                                $.ajax({
-                                type: 'PATCH',
-                                url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/progress_reason/' + progress_reason,
-                                success: function() {
-                                    opener.parent.location.reload();
-                                    window.close();
-                                },
-                                error: function() {
-                                    opener.parent.location.reload();
-                                    window.close();
-                                }
-                            });
+                                opener.parent.location.reload();
+                                window.location.reload();
                             },
                             error: function() {
-
+                                opener.parent.location.reload();
+                                window.close();
                             }
                         });
                     },
@@ -395,40 +385,28 @@
                 const progress = '드랍';
                 const progress_reason = $('#progress_reason').val();
 
-                const emp_pool_id = $('#emp_pool_id').val();
-                const project_assign = '대기';
-
                 $.ajax({
                     type: 'PATCH',
                     url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/progress/' + progress,
                     success: function() {
-                        $.ajax({
-                            type: 'PATCH',
-                            url: '${pageContext.request.contextPath}/empPool.ajax/' + emp_pool_id + '/project_assign/' + project_assign,
-                            success: function() {
-                                if (progress_reason) {
-                                    $.ajax({
-                                        type: 'PATCH',
-                                        url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/progress_reason/' + progress_reason,
-                                        success: function() {
-                                            opener.parent.location.reload();
-                                            window.close();
-                                        },
-                                        error: function() {
-                                            opener.parent.location.reload();
-                                            window.close();
-                                        }
-                                    });
-                                } else {
-                                    opener.parent.location.reload();
-                                    window.close();
-                                }
+	                    if (progress_reason) {
+	                        $.ajax({
+	                            type: 'PATCH',
+	                            url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/progress_reason/' + progress_reason,
+	                            success: function() {
+	                                opener.parent.location.reload();
+	                                window.location.reload();
+	                            },
+	                            error: function() {
+	                                opener.parent.location.reload();
+	                                window.close();
+	                            }
+	                        });
+	                    } else {
+	                        opener.parent.location.reload();
+	                        window.close();
+	                    }
                                 
-                            },
-                            error: function() {
-
-                            }
-                        });
                     },
                     error: function() {
                         
@@ -460,8 +438,6 @@
                         "resign_date": new Date($('input[name=resign_date]').val()),
                         "progress": $('input[name=progress]').val(),
                         "progress_reason": $('input[name=progress_reason]').val(),
-                        "result": $('input[name=result]').val(),
-                        "result_reason": $('input[name=result_reason]').val(),
                         "issues": $('input[name=issues]').val(),
                     },
                     "client": {
@@ -495,7 +471,7 @@
                     data: JSON.stringify(jsonObject),
                     success: function() {
                         opener.parent.location.reload();
-                        window.close();
+                        window.location.reload();
                     },
                     error: function() {
                         opener.parent.location.reload();
@@ -509,7 +485,6 @@
                 const del = 'Y';
 
                 if ($('#progress').val() === '드랍') {
-                    debugger
                     $.ajax({
                         type: 'PATCH',
                         url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/del/' + del,
@@ -523,10 +498,36 @@
                         }
                     });
                 } else {
-                    debugger
-                    alert('드랍인 인력만 삭제할 수 있습니다...');
+                    alert($('#name').val() + '은(는) 드랍되어 있지 않아 ' + $('#company').val() + ' 인력원장에서 삭제할 수 없습니다.');
                 }
             })
+            
+            $('#btnForceDelete').click(function () {
+            	const emp_id = $('#emp_id').val();
+                const del = 'Y';
+                if (confirm("강제삭제 시 연관된 매출원장의 데이터도 삭제됩니다. 실수로 투입확정을 누르셔서 강제삭제하겠습니까?")) {
+                	$.ajax({
+    					type: 'PATCH',
+    					url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/ForceDel/' + del,
+    					success: function () {
+                            opener.parent.location.reload();
+                            window.close();
+                        },
+                        error: function () {
+                            opener.parent.location.reload();
+                            window.close();
+                        }
+    				});
+           		} else {
+           			
+           		}
+				
+			});
+            
+            $('#btnDelete').tooltip();
+            $('#btnConfirm').tooltip();
+            $('#btnDrop').tooltip();
+            $('#btnForceDelete').tooltip();
 
         });
 

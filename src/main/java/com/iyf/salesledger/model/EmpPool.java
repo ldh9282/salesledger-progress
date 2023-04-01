@@ -22,6 +22,6 @@ public class EmpPool {
 	private String career_years;
 	private String career_field;
 	private String career_level;
-	private String project_assign;
+	private int project_assign;
 	private String del;
 }

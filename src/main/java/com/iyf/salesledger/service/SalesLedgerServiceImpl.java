@@ -44,4 +44,15 @@ public class SalesLedgerServiceImpl implements SalesLedgerService{
 	public void delete(long sales_id) {
 		salesLedgerDao.delete(sales_id);
 	}
+
+	@Override
+	public void patchDel(long sales_id, String del) {
+		SalesLedger salesLedger = salesLedgerDao.selectOne(sales_id);
+		
+		if (salesLedger != null) {
+			salesLedger.setDel(del);
+			
+			salesLedgerDao.update(salesLedger);
+		}
+	}
 }

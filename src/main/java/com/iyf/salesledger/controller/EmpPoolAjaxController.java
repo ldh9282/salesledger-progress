@@ -53,7 +53,7 @@ public class EmpPoolAjaxController {
 	
 	// empPoolDetail.jsp 페이지에서 삭제시 del 컬럼 Y로 patch
 	@PatchMapping("/empPool.ajax/{emp_pool_id}/project_assign/{project_assign}")
-	public void patchProjectAssign(@PathVariable long emp_pool_id, @PathVariable String project_assign) {
+	public void patchProjectAssign(@PathVariable long emp_pool_id, @PathVariable int project_assign) {
 		empPoolService.patchProjectAssign(emp_pool_id, project_assign);
 	}
 	

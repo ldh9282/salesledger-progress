@@ -54,14 +54,12 @@ public class EmpLedgerServiceImpl implements EmpLedgerService {
 	
 	@Override @Transactional
 	public void insert(EmpLedger empLedger, Client client) {
-		// 1: empPool의 현재투입여부와 empLedger의 진행상태를 모두 투입예정으로 해야함(테이블 설계상)
 		EmpPool empPool = empPoolDao.selectOne(empLedger.getEmp_pool_id());
-		empPool.setProject_assign("투입예정");
+		empPool.setProject_assign(empPool.getProject_assign() + 1);
 		empPoolDao.update(empPool);
 		
 		empLedger.setProgress("투입예정");
 		
-		//2: insert함(After insert, selectKey에 의해 키값 가져옴)
 		clientDao.insert(client);
 		empLedger.setClient_id(client.getClient_id());
 		empLedgerDao.insert(empLedger);
@@ -74,9 +72,10 @@ public class EmpLedgerServiceImpl implements EmpLedgerService {
 		empLedgerDao.update(empLedger);
 	}
 
-	@Override
+	@Override @Transactional
 	public void patchProgress(long emp_id, String progress) {
 		EmpLedger empLedger = empLedgerDao.selectOne(emp_id);
+		EmpPool empPool = empPoolDao.selectOne(empLedger.getEmp_pool_id());
 		
 		if (empLedger != null) {
 			empLedger.setProgress(progress);
@@ -87,6 +86,13 @@ public class EmpLedgerServiceImpl implements EmpLedgerService {
 			SalesLedger salesLedger = new SalesLedger();
 			salesLedger.setEmp_id(empLedger.getEmp_id());
 			salesLedgerDao.insert(salesLedger);
+		}
+		
+		if (progress.equals("드랍")) {
+			if (empPool != null) {
+				empPool.setProject_assign(empPool.getProject_assign() - 1);
+				empPoolDao.update(empPool);
+			}
 		}
 	}
 
@@ -123,7 +129,7 @@ public class EmpLedgerServiceImpl implements EmpLedgerService {
 		
 	}
 
-	@Override
+	@Override @Transactional
 	public void patchDel(long emp_id, String del) {
 		 EmpLedger empLedger = empLedgerDao.selectOne(emp_id);
 		 if (empLedger != null) {
@@ -131,6 +137,28 @@ public class EmpLedgerServiceImpl implements EmpLedgerService {
 			
 			empLedgerDao.update(empLedger);
 		}
+	}
+	
+	@Override @Transactional
+	public void patchForceDel(long emp_id, String del) {
+		EmpLedger empLedger = empLedgerDao.selectOne(emp_id);
+		SalesLedger salesLedger = salesLedgerDao.findByEmpId(emp_id);
+		
+		if (empLedger != null) {
+			empLedger.setDel(del);
+			empLedgerDao.update(empLedger);
+		}
+		if (salesLedger != null) {
+			salesLedger.setDel(del);
+			salesLedgerDao.update(salesLedger);
+		}
+		
+		EmpPool empPool = empPoolDao.selectOne(empLedger.getEmp_pool_id());
+		if (empPool != null) {
+			empPool.setProject_assign(empPool.getProject_assign() - 1);
+			empPoolDao.update(empPool);
+		}
+		
 	}
 
 }

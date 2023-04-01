@@ -20,8 +20,6 @@
 		<result property="c_contract_date" column="C_CONTRACT_DATE"/>
 		<result property="progress" column="PROGRESS"/>
 		<result property="progress_reason" column="PROGRESS_REASON"/>
-		<result property="result" column="RESULT"/>
-		<result property="result_reason" column="RESULT_REASON"/>
 		<result property="issues" column="ISSUES"/>
 	</resultMap>
 	
@@ -43,8 +41,6 @@
 		<result property="c_contract_date" column="C_CONTRACT_DATE" javaType="java.util.Date"/>
 		<result property="progress" column="PROGRESS"/>
 		<result property="progress_reason" column="PROGRESS_REASON"/>
-		<result property="result" column="RESULT"/>
-		<result property="result_reason" column="RESULT_REASON"/>
 		<result property="issues" column="ISSUES"/>
 		<!-- emp pool  -->
 		<result property="emp_pool_id" column="EMP_POOL_ID"/>
@@ -87,7 +83,7 @@
 		ON t1.emp_pool_id = t2.emp_pool_id
 		INNER JOIN t_client t3
 		ON t1.client_id = t3.client_id
-		WHERE t1.company = #{company} and t1.del != 'Y'
+		WHERE t1.company = 'IYCNC' and (t1.del != 'Y' or t1.del is null)
 		ORDER BY t1.emp_pool_id desc
 	</select>
 	<select id="selectOne" resultMap="empLedgerMap">
@@ -117,8 +113,6 @@
 			c_contract_date,
 			progress,
 			progress_reason,
-			result,
-			result_reason,
 			issues,
 			del
 		)
@@ -141,8 +135,6 @@
 			#{c_contract_date}, 
 			#{progress}, 
 			#{progress_reason}, 
-			#{result}, 
-			#{result_reason}, 
 			#{issues},
 			'N'
 		)
@@ -169,8 +161,6 @@
 		c_contract_date = #{c_contract_date}, 
 		progress = #{progress}, 
 		progress_reason = #{progress_reason}, 
-		result = #{result}, 
-		result_reason = #{result_reason}, 
 		issues = #{issues},
 		del = #{del}
 	WHERE emp_id = #{emp_id}

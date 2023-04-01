@@ -3,10 +3,18 @@
 <footer id="footer" class="mt-5">
   <section>
     <div class="container">
-      <div class="text-center text-black">
+      <div class="text-center my-3">
         <span>&copy; <span id="currentYear"></span>. IYF All rights reserved</span>
       </div>
-      <a href="#" class="btn btn-outline-secondary float-end">맨 위로 가기</a>
+      
+      <div class="text-center my-3">
+		  <span class="text-muted">추가 요구사항 및 버그 제보:</span>
+		  <a href="mailto:ldh9282@naver.com" class="text-dark ms-1">ldh9282@naver.com</a>
+	  </div>
+	  
+	  <div class="d-flex justify-content-end mt-3">
+	  	<a href="#" class="btn btn-outline-secondary">맨 위로 가기</a>
+	  </div>
     </div>
   </section>
 </footer>
