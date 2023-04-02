@@ -77,10 +77,6 @@
                     <input type="text" class="form-control" id="address" name="address">
                 </div>
                 <div class="form-group mb-3">
-                    <label for="empResume">이력서:</label>
-                    <input type="file" class="form-control" id="empResume" name="empResume">
-                </div>
-                <div class="form-group mb-3">
                     <label for="careerLevel">학력:</label>
                     <select class="form-control" id="education" name="education">
                         <option value="미기입">미기입</option>

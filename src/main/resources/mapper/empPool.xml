@@ -127,6 +127,15 @@
 			#{career_level},
 			0,
 			'N'
-		);
+		)
 	</insert>
+	
+	<select id="selectCntProjectAssign" resultType="int">
+		select count(*)
+		from t_emp_pool t1
+		inner join t_emp_ledger t2
+		on t1.emp_pool_id = t2.emp_pool_id
+		where t1.emp_pool_id = #{emp_pool_id} and t2.progress in ('투입예정', '투입')
+		and (t2.del = 'N' or t2.del is null)
+	</select>
 </mapper>

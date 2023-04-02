@@ -54,6 +54,7 @@
                 <input type="hidden" id="client_id" name="client_id">
                 <input type="hidden" id="del" name="del">
                 
+                <h1>IYCNC 인력기초원장 상세 페이지</h1>
                 <form id="progressForm">
                     <div class="form-group mb-3">
                         <label for="progress">진행:</label>
@@ -94,7 +95,7 @@
                     </div>
                 </form>
                 <hr>
-                <form id="employeeForm">
+                <form id="employeePoolForm">
 
 
                     <div class="form-group mb-3">
@@ -115,7 +116,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="email">이메일:</label>
-                        <input type="email" class="form-control" id="email" name="email">
+                        <input type="text" class="form-control" id="email" name="email">
                     </div>
                     <div class="form-group mb-3">
                         <label for="address">주소:</label>
@@ -205,16 +206,13 @@
                         <label for="c_contract_date">업체계약일:</label>
                         <input type="date" class="form-control" id="c_contract_date" name="c_contract_date">
                     </div>
-
-                </form>
-
-                <form action="notImportantForm">
                     <div class="form-group mb-3">
                         <label for="issues">특이사항:</label>
                         <input type="text" class="form-control" id="issues" name="issues">
                     </div>
+
                 </form>
-                
+
 				<div class="row">
 	                <div class="text-frist">
 		                <button type="button" class="btn btn-primary" id="btnUpdate">수정</button>
@@ -223,6 +221,7 @@
 					<div class="text-center">
 		                <button type="button" class="btn btn-primary" id="btnConfirm" title="투입확정시 해당인력이 매출원장에 또한 반영됩니다">투입확정</button>
 		                <button type="button" class="btn btn-danger " id="btnDrop" title="면접에서 드랍된 인력일 때 이용하세요.">드랍</button>
+		                <button type="button" class="btn btn-danger " id="btnResign" title="해당 인력이 프로젝트에서 철수할 때 이용하세요. 철수일이 포함된 달까지 매출실적에 반영됩니다.">철수</button>
 					</div>
 					<div class="text-end">
 		                <button type="button" class="btn btn-danger" id="btnForceDelete" title="투입확정시 자동으로 추가된 매출데이터도 강제로 삭제됩니다. 실수로 투입확정하였을 때만 이용하세요">강제삭제</button>
@@ -245,14 +244,22 @@
                 success: function(empLedger) {
                     if (empLedger.progress === '투입예정') {
                     	$('#btnForceDelete').css('visibility', 'hidden')
+                    	$('#btnResign').css('visibility', 'hidden')
                     }
                     if (empLedger.progress === '드랍') {
                         $('#btnDrop').attr('disabled', true)
                         $('#btnConfirm').css('visibility', 'hidden')
+                        $('#btnResign').css('visibility', 'hidden')
                         $('#btnForceDelete').css('visibility', 'hidden')
                     }
                     if (empLedger.progress === '투입') {
                         $('#btnConfirm').attr('disabled', true)
+                        $('#btnDrop').css('visibility', 'hidden')
+                        $('#btnDelete').css('visibility', 'hidden')
+                    }
+                    if (empLedger.progress === '철수') {
+                        $('#btnResign').attr('disabled', true)
+                        $('#btnConfirm').css('visibility', 'hidden')
                         $('#btnDrop').css('visibility', 'hidden')
                         $('#btnDelete').css('visibility', 'hidden')
                     }
@@ -295,6 +302,7 @@
                     $('#progress').val(empLedger.progress);
                     $('#progress_reason').val(empLedger.progress_reason);
                     $('#issues').val(empLedger.issues);
+                    $('#include').val(empLedger.include);
 
                     // ajax 2: client 상세정보 조회
                     $.ajax({
@@ -354,28 +362,92 @@
             $('#btnConfirm').click(function() {
                 const emp_id = $('#emp_id').val();
                 const progress = '투입'
+               	const progress_reason = $('#progress_reason').val();
 
-                $.ajax({
-                    type: 'PATCH',
-                    url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/progress/' + progress,
-                    success: function() {
-                    	$.ajax({
-                            type: 'PATCH',
-                            url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/progress_reason/' + progress_reason,
-                            success: function() {
-                                opener.parent.location.reload();
-                                window.location.reload();
-                            },
-                            error: function() {
-                                opener.parent.location.reload();
-                                window.close();
-                            }
-                        });
-                    },
-                    error: function() {
-                        
+                	const jsonObject = {
+                        "empLedger": {
+                            "emp_id": $('input[name=emp_id]').val(),
+                            "emp_pool_id": $('input[name=emp_pool_id]').val(),
+                            "client_id": $('input[name=client_id]').val(),
+                            "company": $('input[name=company]').val(),
+                            "assign_date": new Date($('input[name=assign_date]').val()),
+                            "end_date": new Date($('input[name=end_date]').val()),
+                            "sales_mm": $('input[name=sales_mm]').val() ? $('input[name=sales_mm]').val() : 0,
+                            "purchase_mm": $('input[name=purchase_mm]').val() ? $('input[name=purchase_mm]').val() : 0,
+                            "sales_unit": $('input[name=sales_unit]').val().replaceAll(',', '') ? $('input[name=sales_unit]').val().replaceAll(',', '') : 0,
+                            "purchase_unit": $('input[name=purchase_unit]').val().replaceAll(',', '') ? $('input[name=purchase_unit]').val().replaceAll(',', '') : 0,
+                            "comments": $('input[name=comments]').val(),
+                            "resume_submit_date": new Date($('input[name=resume_submit_date]').val()),
+                            "resign_date": new Date($('input[name=resign_date]').val()),
+                            "progress": $('input[name=progress]').val(),
+                            "progress_reason": $('input[name=progress_reason]').val(),
+                            "issues": $('input[name=issues]').val(),
+                            "include": $('input[name=include]').val()
+                        },
+                        "client": {
+                            "sales_source": $('input[name=sales_source]').val(),
+                            "client": $('input[name=client]').val(),
+                            "subcontract": $('input[name=subcontract]').val(),
+                            "project_name": $('input[name=project_name]').val(),
+                            "business_department": $('input[name=business_department]').val(),
+                            "business_manager": $('input[name=business_manager]').val()
+                        },
+                        "empPool": {
+                            "sourcing_manager": $('input[name=sourcing_manager]').val(),
+                            "name": $('input[name=name]').val(),
+                            "phonenumber": $('input[name=phonenumber]').val(),
+                            "birthdate": new Date($('input[name=birthdate]').val()),
+                            "email": $('input[name=email]').val(),
+                            "address": $('input[name=address]').val(),
+                            "school_name": $('input[name=school_name]').val(),
+                            "major": $('input[name=major]').val(),
+                            "career_years": $('input[name=career_years]').val(),
+                            "career_field": $('input[name=career_field]').val(),
+                            "career_level": $('input[name=career_level]').val(),
+                            "project_assign": $('input[name=project_assign]').val(),
+                            "del": $('input[name=del]').val(),
+                        }
                     }
-                });
+                 	
+                    $.ajax({
+                        type: "PUT",
+                        url: "${pageContext.request.contextPath}/empLedger.ajax",
+                        contentType: "application/json",
+                        data: JSON.stringify(jsonObject),
+                        success: function() {
+     	            	   $.ajax({
+     	                       type: 'PATCH',
+     	                       url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/progress/' + progress,
+     	                       success: function() {
+	     	                       	if (progress_reason) {
+		     	                       	$.ajax({
+		   	                               type: 'PATCH',
+		   	                               url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/progress_reason/' + progress_reason,
+		   	                               success: function() {
+		   	                                   opener.parent.location.reload();
+		   	                                   window.location.reload();
+		   	                               },
+		   	                               error: function() {
+		   	                                   opener.parent.location.reload();
+		   	                                   window.close();
+		   	                               }
+		   	                           });
+									} else {
+										opener.parent.location.reload();
+	                                    window.close();
+									}
+     	                       	
+     	                       },
+     	                       error: function() {
+     	                           
+     	                       }
+     	                   });
+                        },
+                        error: function() {
+                            opener.parent.location.reload();
+                            window.close();
+                        }
+                    });
 
                 
             })
@@ -439,6 +511,7 @@
                         "progress": $('input[name=progress]').val(),
                         "progress_reason": $('input[name=progress_reason]').val(),
                         "issues": $('input[name=issues]').val(),
+                        "include": $('input[name=include]').val()
                     },
                     "client": {
                         "sales_source": $('input[name=sales_source]').val(),
@@ -524,10 +597,114 @@
 				
 			});
             
+            $('#btnResign').click(function() {
+            	
+            	const emp_id = $('#emp_id').val();
+            	const progress = '철수';
+            	const progress_reason = $('#progress_reason').val();
+            	
+            	if (!$('input[name=resign_date]').val()) {
+            		alert('철수 날짜를 입력해주세요');
+					return;
+				}
+            	
+            	if (!confirm('해당인력의 철수 날짜가 ' + $('input[name=resign_date]').val() + '이 맞습니까?')) {
+            		alert('철수 날짜를 수정해주세요');
+            		return;
+				}
+            	
+            	const jsonObject = {
+                   "empLedger": {
+                       "emp_id": $('input[name=emp_id]').val(),
+                       "emp_pool_id": $('input[name=emp_pool_id]').val(),
+                       "client_id": $('input[name=client_id]').val(),
+                       "company": $('input[name=company]').val(),
+                       "assign_date": new Date($('input[name=assign_date]').val()),
+                       "end_date": new Date($('input[name=end_date]').val()),
+                       "sales_mm": $('input[name=sales_mm]').val() ? $('input[name=sales_mm]').val() : 0,
+                       "purchase_mm": $('input[name=purchase_mm]').val() ? $('input[name=purchase_mm]').val() : 0,
+                       "sales_unit": $('input[name=sales_unit]').val().replaceAll(',', '') ? $('input[name=sales_unit]').val().replaceAll(',', '') : 0,
+                       "purchase_unit": $('input[name=purchase_unit]').val().replaceAll(',', '') ? $('input[name=purchase_unit]').val().replaceAll(',', '') : 0,
+                       "comments": $('input[name=comments]').val(),
+                       "resume_submit_date": new Date($('input[name=resume_submit_date]').val()),
+                       "resign_date": new Date($('input[name=resign_date]').val()),
+                       "progress": $('input[name=progress]').val(),
+                       "progress_reason": $('input[name=progress_reason]').val(),
+                       "issues": $('input[name=issues]').val(),
+                       "include": $('input[name=include]').val(),
+                   },
+                   "client": {
+                       "sales_source": $('input[name=sales_source]').val(),
+                       "client": $('input[name=client]').val(),
+                       "subcontract": $('input[name=subcontract]').val(),
+                       "project_name": $('input[name=project_name]').val(),
+                       "business_department": $('input[name=business_department]').val(),
+                       "business_manager": $('input[name=business_manager]').val()
+                   },
+                   "empPool": {
+                       "sourcing_manager": $('input[name=sourcing_manager]').val(),
+                       "name": $('input[name=name]').val(),
+                       "phonenumber": $('input[name=phonenumber]').val(),
+                       "birthdate": new Date($('input[name=birthdate]').val()),
+                       "email": $('input[name=email]').val(),
+                       "address": $('input[name=address]').val(),
+                       "school_name": $('input[name=school_name]').val(),
+                       "major": $('input[name=major]').val(),
+                       "career_years": $('input[name=career_years]').val(),
+                       "career_field": $('input[name=career_field]').val(),
+                       "career_level": $('input[name=career_level]').val(),
+                       "project_assign": $('input[name=project_assign]').val(),
+                       "del": $('input[name=del]').val(),
+                   }
+               }
+            	
+               $.ajax({
+                   type: "PUT",
+                   url: "${pageContext.request.contextPath}/empLedger.ajax",
+                   contentType: "application/json",
+                   data: JSON.stringify(jsonObject),
+                   success: function() {
+	            	   $.ajax({
+	                       type: 'PATCH',
+	                       url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/progress/' + progress,
+	                       success: function() {
+	                    	   if (progress_reason) {
+	     	                       	$.ajax({
+	   	                               type: 'PATCH',
+	   	                               url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/progress_reason/' + progress_reason,
+	   	                               success: function() {
+	   	                                   opener.parent.location.reload();
+	   	                                   window.location.reload();
+	   	                               },
+	   	                               error: function() {
+	   	                                   opener.parent.location.reload();
+	   	                                   window.close();
+	   	                               }
+	   	                           });
+								} else {
+									opener.parent.location.reload();
+                                    window.close();
+								}
+	                       },
+	                       error: function() {
+	                           
+	                       }
+	                   });
+                   },
+                   error: function() {
+                       opener.parent.location.reload();
+                       window.close();
+                   }
+               });
+
+                
+			});
+            
             $('#btnDelete').tooltip();
             $('#btnConfirm').tooltip();
             $('#btnDrop').tooltip();
             $('#btnForceDelete').tooltip();
+            $('#btnResign').tooltip();
 
         });
 

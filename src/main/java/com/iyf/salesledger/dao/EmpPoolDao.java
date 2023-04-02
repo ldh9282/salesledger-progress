@@ -21,4 +21,6 @@ public interface EmpPoolDao {
 	void delete(long emp_pool_id);
 	
 	void insert(EmpPool empPool);
+
+	int selectCntProjectAssign(long emp_pool_id);
 }

@@ -18,6 +18,7 @@
 		<result property="recent_amount_history" column="RECENT_AMOUNT_HISTORY"/>
 		<result property="modifier" column="MODIFIER"/>
 		<result property="payday" column="PAYDAY"/>
+		<result property="include" column="INCLUDE"/>
 	</resultMap>
 	
 	<resultMap type="map" id="t1t2t3t4map">
@@ -36,6 +37,7 @@
 		<result property="recent_amount_history" column="RECENT_AMOUNT_HISTORY"/>
 		<result property="modifier" column="MODIFIER"/>
 		<result property="payday" column="PAYDAY"/>
+		<result property="include" column="INCLUDE"/>
 		<!-- emp ledger  -->
 		<result property="emp_id" column="EMP_ID"/>
 		<result property="company" column="COMPANY"/>
@@ -91,6 +93,7 @@
 		inner join t_client t4
 		on t2.client_id = t4.client_id
 		WHERE t2.company = #{company} and (t1.del != 'Y' or t1.del is null)
+		order by t1.sales_id desc
 	</select>
 	
 	
@@ -122,7 +125,7 @@
 			job_level, job_role, job_field, 
 			baby_leave_comments, emp_type, 
 			i_c_class, i_c_company_name, recent_amount_history, 
-			modifier, payday, del
+			modifier, payday, del, include
 		)
 		values 
 		(
@@ -131,7 +134,7 @@
 			#{job_level}, #{job_role}, #{job_field}, 
 			#{baby_leave_comments}, #{emp_type}, 
 			#{i_c_class}, #{i_c_company_name}, #{recent_amount_history}, 
-			#{modifier}, #{payday}, 'N'
+			#{modifier}, #{payday}, 'N', 'Y'
 		)
 		<selectKey keyProperty="sales_id" keyColumn="sales_id" order="AFTER" resultType="long">
 			SELECT currval('t_sales_ledger_sales_id_seq')
@@ -155,7 +158,8 @@
 			recent_amount_history = #{recent_amount_history},
 			modifier = #{modifier},
 			payday = #{payday},
-			del = #{del}
+			del = #{del},
+			include = #{include}
 		where sales_id = #{sales_id}
 	</update>
 	

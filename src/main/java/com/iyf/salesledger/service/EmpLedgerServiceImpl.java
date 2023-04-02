@@ -54,15 +54,18 @@ public class EmpLedgerServiceImpl implements EmpLedgerService {
 	
 	@Override @Transactional
 	public void insert(EmpLedger empLedger, Client client) {
-		EmpPool empPool = empPoolDao.selectOne(empLedger.getEmp_pool_id());
-		empPool.setProject_assign(empPool.getProject_assign() + 1);
-		empPoolDao.update(empPool);
-		
 		empLedger.setProgress("투입예정");
-		
 		clientDao.insert(client);
 		empLedger.setClient_id(client.getClient_id());
 		empLedgerDao.insert(empLedger);
+		
+		EmpPool empPool = empPoolDao.selectOne(empLedger.getEmp_pool_id());
+		if (empPool != null) {
+			
+			int cntProjectAssign = empPoolDao.selectCntProjectAssign(empPool.getEmp_pool_id());
+			empPool.setProject_assign(cntProjectAssign);
+			empPoolDao.update(empPool);
+		}
 		
 		
 	}
@@ -86,14 +89,16 @@ public class EmpLedgerServiceImpl implements EmpLedgerService {
 			SalesLedger salesLedger = new SalesLedger();
 			salesLedger.setEmp_id(empLedger.getEmp_id());
 			salesLedgerDao.insert(salesLedger);
+			
+		} else if (progress.equals("드랍")) {
+			
+		} else if (progress.equals("철수")) {
+			
 		}
 		
-		if (progress.equals("드랍")) {
-			if (empPool != null) {
-				empPool.setProject_assign(empPool.getProject_assign() - 1);
-				empPoolDao.update(empPool);
-			}
-		}
+		
+		empPool.setProject_assign(empPoolDao.selectCntProjectAssign(empPool.getEmp_pool_id()));
+		empPoolDao.update(empPool);
 	}
 
 	@Override
@@ -121,7 +126,7 @@ public class EmpLedgerServiceImpl implements EmpLedgerService {
 		if (theEmpPool != null) {
 			
 			empPool.setEmp_pool_id(theEmpPool.getEmp_pool_id());
-			empPoolDao.update(theEmpPool);
+			empPoolDao.update(empPool);
 		}
 		
 		empLedgerDao.update(empLedger);
@@ -155,7 +160,7 @@ public class EmpLedgerServiceImpl implements EmpLedgerService {
 		
 		EmpPool empPool = empPoolDao.selectOne(empLedger.getEmp_pool_id());
 		if (empPool != null) {
-			empPool.setProject_assign(empPool.getProject_assign() - 1);
+			empPool.setProject_assign(empPoolDao.selectCntProjectAssign(empPool.getEmp_pool_id()));
 			empPoolDao.update(empPool);
 		}
 		

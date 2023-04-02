@@ -57,107 +57,110 @@
     <main id="main" class="main">
         <section>
             <div class="container">
-
-                <!-- ======= 그리드에서 보여줄 필드 체크리스트 ======= -->
-                <div class="checkbox-container mb-3">
-                	<div class="row row-cols-4 mb-3">
-                        <div class="col">
-                            <label class="form-check">
-                                <input class="form-check-input" type="checkbox" name="all-check"
-                                    checked>
-                                <span class="form-check-label">ALL</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row row-cols-4">
-                        <div class="col">
-                            <label class="form-check">
-                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="project_assign"
-                                    checked>
-                                <span class="form-check-label">진행프로젝트 수</span>
-                            </label>
-                        </div>
-                        <div class="col">
-                            <label class="form-check">
-                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="sourcing_manager"
-                                    checked>
-                                <span class="form-check-label">소싱담당자</span>
-                            </label>
-                        </div>
-                        <div class="col">
-                            <label class="form-check">
-                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="name" checked>
-                                <span class="form-check-label">이름</span>
-                            </label>
-                        </div>
-                        <div class="col">
-                            <label class="form-check">
-                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="phonenumber"
-                                    checked>
-                                <span class="form-check-label">전화번호</span>
-                            </label>
-                        </div>
-                        <div class="col">
-                            <label class="form-check">
-                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="birthdate" checked>
-                                <span class="form-check-label">생년월일</span>
-                            </label>
-                        </div>
-                        <div class="col">
-                            <label class="form-check">
-                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="email" checked>
-                                <span class="form-check-label">이메일</span>
-                            </label>
-                        </div>
-                        <div class="col">
-                            <label class="form-check">
-                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="address" checked>
-                                <span class="form-check-label">주소</span>
-                            </label>
-                        </div>
-                        <div class="col">
-                            <label class="form-check">
-                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="education" checked>
-                                <span class="form-check-label">학력</span>
-                            </label>
-                        </div>
-                        <div class="col">
-                            <label class="form-check">
-                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="school_name"
-                                    checked>
-                                <span class="form-check-label">학교명</span>
-                            </label>
-                        </div>
-                        <div class="col">
-                            <label class="form-check">
-                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="major" checked>
-                                <span class="form-check-label">학과</span>
-                            </label>
-                        </div>
-                        <div class="col">
-                            <label class="form-check">
-                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="career_years"
-                                    checked>
-                                <span class="form-check-label">경력</span>
-                            </label>
-                        </div>
-                        <div class="col">
-                            <label class="form-check">
-                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="career_field"
-                                    checked>
-                                <span class="form-check-label">분야</span>
-                            </label>
-                        </div>
-                        <div class="col">
-                            <label class="form-check">
-                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="career_level"
-                                    checked>
-                                <span class="form-check-label">등급</span>
-                            </label>
-                        </div>
-                    </div>
+                <i class="ri-arrow-down-s-fill" id="toggle-icon"><span>접기/내리기</span></i>
+                <div class="toggle-content mt-3" id="toggle-item">
+                	<!-- ======= 그리드에서 보여줄 필드 체크리스트 ======= -->
+	                <div class="checkbox-container mb-3">
+	                	<div class="row row-cols-4 mb-3">
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" type="checkbox" name="all-check"
+	                                    checked>
+	                                <span class="form-check-label">ALL</span>
+	                            </label>
+	                        </div>
+	                    </div>
+	                    <div class="row row-cols-4">
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="project_assign"
+	                                    checked>
+	                                <span class="form-check-label">진행프로젝트 수</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="sourcing_manager"
+	                                    checked>
+	                                <span class="form-check-label">소싱담당자</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="name" checked>
+	                                <span class="form-check-label">이름</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="phonenumber"
+	                                    checked>
+	                                <span class="form-check-label">전화번호</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="birthdate" checked>
+	                                <span class="form-check-label">생년월일</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="email" checked>
+	                                <span class="form-check-label">이메일</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="address" checked>
+	                                <span class="form-check-label">주소</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="education" checked>
+	                                <span class="form-check-label">학력</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="school_name"
+	                                    checked>
+	                                <span class="form-check-label">학교명</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="major" checked>
+	                                <span class="form-check-label">학과</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="career_years"
+	                                    checked>
+	                                <span class="form-check-label">경력</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="career_field"
+	                                    checked>
+	                                <span class="form-check-label">분야</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="career_level"
+	                                    checked>
+	                                <span class="form-check-label">등급</span>
+	                            </label>
+	                        </div>
+	                    </div>
+	                </div>
+	                <!-- End 그리드에서 보여줄 필드 체크리스트-->
                 </div>
-                <!-- End 그리드에서 보여줄 필드 체크리스트-->
+
 
 
 
@@ -388,10 +391,21 @@
                 window.open(popupUrl, popupName, 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + left + ', top=' + top);
             });
             
-            grid.on('filter', ev => {
-           	  console.log(ev);
-           	  
-           	});
+            // 체크리스트 접기/내리기 토글 이벤트
+            $("#toggle-icon").click(function () {
+                if (document.querySelector('#toggle-icon').classList.value === 'ri-arrow-up-s-fill') {
+                    document.querySelector('#toggle-icon').classList.remove('ri-arrow-up-s-fill');
+                    document.querySelector('#toggle-icon').classList.add('ri-arrow-down-s-fill');
+                    $('#toggle-item').slideDown();
+
+                } else {
+                    document.querySelector('#toggle-icon').classList.remove('ri-arrow-down-s-fill');
+                    document.querySelector('#toggle-icon').classList.add('ri-arrow-up-s-fill');
+                    $('#toggle-item').slideUp();
+
+
+                }
+            });
             
 
         });

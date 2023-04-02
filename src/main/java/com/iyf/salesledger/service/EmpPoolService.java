@@ -23,5 +23,4 @@ public interface EmpPoolService {
 	void patchProjectAssign(long emp_pool_id, int project_assign);
 	
 	
-	
 }

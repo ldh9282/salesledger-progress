@@ -21,5 +21,6 @@ public class SalesLedger {
 	private String modifier;
 	private int payday;
 	private String del;
+	private String include;
 	
 }

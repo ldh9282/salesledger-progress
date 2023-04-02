@@ -82,11 +82,6 @@
                         <input type="text" class="form-control" id="address" name="address">
                     </div>
                     
-                    <div class="form-group mb-3" id="empResumeNewBox">
-                        <label for="empResumeNew">이력서:</label>
-                        <input type="file" class="form-control" id="empResumeNew" name="empResumeNew"
-                        >
-                    </div>
                     <div class="form-group mb-3">
                         <label for="education">학력:</label>
                         <select class="form-control" id="education" name="education">
