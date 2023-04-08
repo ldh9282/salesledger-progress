@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>IYCNC 인력기초원장: IYF 인력기초원장/매출원장</title>
+    <title>IYCNC 매출원장: IYF 인력기초원장/매출원장</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">

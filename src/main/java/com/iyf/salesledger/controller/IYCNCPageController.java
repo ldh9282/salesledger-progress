@@ -38,5 +38,11 @@ public class IYCNCPageController {
 	public String showSalesledgerDetailPage() {
 		return "iycnc/salesLedgerDetail";
 	}
+	
+	// iycnc salesResultList.jsp 매출실적 목록페이지
+	@GetMapping("/iycnc/salesResultList")
+	public String showSalesResultPage() {
+		return "iycnc/salesResultList";
+	}
 
 }

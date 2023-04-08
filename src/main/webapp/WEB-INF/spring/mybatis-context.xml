@@ -50,6 +50,7 @@
 	<!-- 매퍼인터패이스 자동 빈 생성 -->
 	<!-- 설정된 패키지에 DAO클래스를 대신하는 매퍼-인터페이스가 있습니다. -->
 	<mybatis-spring:scan base-package="com.iyf.salesledger.dao"/>
+	<mybatis-spring:scan base-package="com.iyf.salesledger.common.batch.dao"/>
 
 	<tx:annotation-driven/>
 
