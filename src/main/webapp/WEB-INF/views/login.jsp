@@ -1,15 +1,18 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>회원가입: IYF 인력기초원장/매출원장</title>
+  <title>로그인: IYF 인력기초원장/매출원장</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -41,6 +44,7 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="${pageContext.request.contextPath}/" class="logo d-flex align-items-center w-auto">
+                  <img src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/img/logo.png" alt="">
                   <span class="d-none d-lg-block">IYF</span>
                 </a>
               </div><!-- End Logo -->
@@ -50,59 +54,54 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">회원가입</h5>
-                    <p class="text-center small">계정정보를 입력해주세요</p>
+                    <h5 class="card-title text-center pb-0 fs-4">로그인</h5>
+                    <p class="text-center small">아이디와 비밀번호를 입력해주세요</p>
                   </div>
 
                   <form class="row g-3 needs-validation" novalidate
-                        action="${pageContext.request.contextPath}/register" method="POST">
+                        action="${pageContext.request.contextPath }/login" method="POST">
+                    
+                    <c:if test="${param.error != null }">
+	
+                        <i class="text-danger">아이디 또는 비밀번호가 틀립니다!</i>
+                        
+                    </c:if>
+                    
+                    
                     <div class="col-12">
-                      <label for="username" class="form-label">아이디</label>
-                      <input type="text" name="username" class="form-control" id="username" required>
-                      <div class="invalid-feedback">아이디를 입력해주세요!</div>
+                      <label for="yourUsername" class="form-label">아이디</label>
+                      <div class="input-group has-validation">
+                        <span class="input-group-text" id="inputGroupPrepend">ID</span>
+                        <input type="text" name="username" class="form-control" id="yourUsername" required>
+                        <div class="invalid-feedback">아이디를 입력해주세요!</div>
+                      </div>
                     </div>
 
                     <div class="col-12">
-                      <label for="password" class="form-label">비밀번호</label>
-                      <input type="text" name="password" class="form-control" id="password" required>
-                      <label class="form-check-label" for="hide" class="form-label">비밀번호 감추기</label>
-                      <input class="form-check-input" type="checkbox" name="hide" id="hide">
+                      <label for="yourPassword" class="form-label">비밀번호</label>
+                      <input type="password" name="password" class="form-control" id="yourPassword" required>
                       <div class="invalid-feedback">비밀번호를 입력해주세요!</div>
                     </div>
 
                     <div class="col-12">
-                      <label for="name" class="form-label">이름</label>
-                      <input type="text" name="name" class="form-control" id="name" required>
-                      <div class="invalid-feedback">이름을 입력해주세요!</div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="company" class="form-label">회사</label>
-                      <input type="text" name="company" class="form-control" id="company" required>
-                      <div class="invalid-feedback">회사명을 입력해주세요!</div>
-                    </div>
-
-
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
-                    <div class="col-12">
                       <div class="form-check">
-                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                        <label class="form-check-label" for="acceptTerms"><a id="instruction" title="회원가입 후 통합관리자에게 권한과 승인을 요청하세요">회원가입 시 안내사항</a></label>
-                        <div class="invalid-feedback">안내사항을 확인하셔야합니다.</div>
+                        <input class="form-check-input" type="checkbox" name="remember-me" value="true" id="remember-me">
+                        <label class="form-check-label" for="remember-me">Remember me</label>
                       </div>
                     </div>
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">회원가입</button>
+                      <button class="btn btn-primary w-100" type="submit">로그인</button>
+                      <security:csrfInput/>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">이미 계정이 존재하신가요? <a href="${pageContext.request.contextPath}/login">로그인</a></p>
+                      <p class="small mb-0">계정이 없으신가요? <a href="${pageContext.request.contextPath}/register">계정만들기</a></p>
                     </div>
+                    <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
                   </form>
 
                 </div>
               </div>
-
+			  
               <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you purchased the pro version. -->
@@ -134,50 +133,6 @@
 
   <!-- Template Main JS File -->
   <script src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/js/main.js"></script>
-
-  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-  <script>
-
-    function checkUsername(username) {
-      $.ajax({
-        url: "${pageContext.request.contextPath}/member.ajax/username/" + username,
-        method: "GET",
-        success: function(member) {
-        	if (member) {
-				alert("이미 존재하는 아이디입니다. 다른 아이디를 입력해주세요.");
-	        	$("input[name=username]").val("");
-			} else {
-				
-			}
-        }
-      });
-          
-    }
-
-    function hidePassword() {
-      if ($("#hide")[0].checked === false) {
-          $("#password").attr("type", "text");
-      } else {
-          $("#password").attr("type", "password");
-      }
-    }
-
-    $(document).ready(function() {
-      $("#hide").click(function() {
-          hidePassword()
-      });
-
-      $("input[name=username]").change(function() {
-        if ($(this).val()) {
-        	checkUsername($(this).val());
-        }
-      });
-      
-      
-      $('#instruction').tooltip();
-
-    });
-  </script>
 
 </body>
 

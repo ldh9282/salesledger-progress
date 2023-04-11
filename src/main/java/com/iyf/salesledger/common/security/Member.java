@@ -12,5 +12,5 @@ public class Member {
 	private List<MemberAuthority> authorities;
 	private String name;
 	private String company;
-	private String permit;
+	private String enabled;
 }

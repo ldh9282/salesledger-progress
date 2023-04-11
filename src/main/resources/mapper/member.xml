@@ -14,7 +14,7 @@
 		<result property="password" column="password"/>
 		<result property="name" column="name"/>
 		<result property="company" column="company"/>
-		<result property="permit" column="permit"/>
+		<result property="enabled" column="enabled"/>
 		<collection property="authorities" resultMap="memberAuthorityMap"/>
 	</resultMap>
 	
@@ -26,12 +26,20 @@
 		on m.username = a.username
 		where m.username = #{username} 
 	</select>
-	
-	<!-- dafault permit: 'N', default enabled: '1'  -->
+	<!-- enabled: 1(가입승인) 0(가입승인 전)  -->
 	<insert id="insertMember">
-		insert into t_member (username, password, name, company, permit, enabled) 
-		values (#{username}, #{password}, #{name}, #{company}, default, default);	
+		insert into t_member (username, password, name, company, enabled) 
+		values (#{username}, #{password}, #{name}, #{company}, '0');	
 	</insert>
+	<update id="update">
+		update t_member set
+			username = #{username}, 
+			password = #{password}, 
+			name = #{name}, 
+			company = #{company}, 
+			enabled = #{enabled}
+		where username = #{username}
+	</update>
 	<!-- authority: 'ROLE_ADMIN', 'ROLE_IYCNC' ...  -->
 	<insert id="insertAuthority">
 		insert into t_member_authorities (username, authority) values (#{username}, #{authority})

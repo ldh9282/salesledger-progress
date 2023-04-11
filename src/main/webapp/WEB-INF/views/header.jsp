@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
+    
 <header id="header" class="header fixed-top d-flex align-items-center">
   <div class="d-flex align-items-center justify-content-between">
     <a href="${pageContext.request.contextPath}/" class="logo d-flex align-items-center">
@@ -17,13 +20,16 @@
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
           <img src="${pageContext.request.contextPath}/resources/OnePage/assets/img/user-profile/user-profile-a.png"
             width="30" height="30" alt="Profile" class="rounded-circle">
-          <span class="d-none d-md-block dropdown-toggle ps-2">이름</span>
+          <security:authorize access="isAuthenticated()">
+          	<security:authentication var="principal" property="principal"/>
+          	<span id="name" class="d-none d-md-block dropdown-toggle ps-2"></span>
+          </security:authorize>
         </a><!-- End Profile Iamge Icon -->
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li class="dropdown-header">
-            <h6>권한</h6>
-            <span>회사명</span>
+            <h6 id="auth"></h6>
+            <span id="company"></span>
           </li>                 
 		  <li>
           	<hr class="dropdown-divider">
@@ -43,3 +49,35 @@
   </nav><!-- End Icons Navigation -->
 
 </header>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.ajax({
+			type: 'GET',
+			url: '${pageContext.request.contextPath}/member.ajax/username/' + '${principal.username}',
+			success: function(member) {
+				$('#name').text(member.name);
+				$('#company').text(member.company);
+				member.authorities.forEach(item => {
+					
+					if (item.authority === 'ROLE_ADMIN') {
+						$('#auth').text("통합관리자");
+					}
+					
+					if (item.authority === 'ROLE_IYCNC') {
+						$('#auth').text("IYCNC 관리자");
+					}
+					
+					if (item.authority === 'ROLE_IBTS') {
+						$('#auth').text("IBTS 관리자");
+					}
+					
+					if (item.authority === 'ROLE_IYS') {
+						$('#auth').text("IYS 관리자");
+					}
+				});
+				
+			}
+		});
+	});
+</script>

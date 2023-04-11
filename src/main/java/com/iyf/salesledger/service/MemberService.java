@@ -4,4 +4,5 @@ import com.iyf.salesledger.common.security.Member;
 
 public interface MemberService {
 	Member selectOne(String username);
+	void insertMember(Member member);
 }
