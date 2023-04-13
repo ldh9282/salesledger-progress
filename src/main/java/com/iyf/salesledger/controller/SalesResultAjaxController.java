@@ -16,7 +16,7 @@ public class SalesResultAjaxController {
 	@Autowired
 	private SalesResultService salesResultService;
 	
-	@GetMapping("/salesLedger.ajax/company/{company}/batch_month/{batch_month}")
+	@GetMapping("/salesResult.ajax/company/{company}/batch_month/{batch_month}")
 	public List<Map<String, Object>> retrieveSalesResultListByCompany(@PathVariable String company, @PathVariable String batch_month) {
 		return salesResultService.listByCompany(company, batch_month);
 	}

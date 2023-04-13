@@ -18,7 +18,7 @@
 		</security:authorize>
 		
 		<li class="nav-heading">회사별</li>
-		<security:authorize access="hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_IYCNC')">
+		<security:authorize access="hasAuthority('통합 관리자') or hasAuthority('IYCNC 관리자')">
 			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#iycnc-nav" data-bs-toggle="collapse" href="#">
 					<i class="bi bi-journal-text"></i><span>IYCNC</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -48,7 +48,7 @@
 			</li><!-- End IYCNC Nav -->
 		</security:authorize>
 		
-		<security:authorize access="hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_IBTS')">
+		<security:authorize access="hasAuthority('통합 관리자') or hasAuthority('IBTS 관리자')">
 			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#ibts-nav" data-bs-toggle="collapse" href="#">
 					<i class="bi bi-journal-text"></i><span>IBTS</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -79,7 +79,7 @@
 			<!-- End IBTS Nav -->
 		</security:authorize>
 		
-		<security:authorize access="hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_IYS')">
+		<security:authorize access="hasAuthority('통합 관리자') or hasAuthority('IYS 관리자')">
 			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#iys-nav" data-bs-toggle="collapse" href="#">
 					<i class="bi bi-journal-text"></i><span>IYS</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -109,7 +109,7 @@
 			</li><!-- End IYS Nav -->
 		</security:authorize>
 		
-		<security:authorize access="hasAuthority('ROLE_ADMIN')">
+		<security:authorize access="hasAuthority('통합 관리자')">
 		
 			<li class="nav-heading">관리자</li>
 			<li class="nav-item">

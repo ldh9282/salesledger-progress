@@ -13,12 +13,14 @@
 	  	  
 	<bean id="accessDeniedHandler"
 	  	  class="com.iyf.salesledger.common.security.AccessDeniedHandler" />
+	  	  
+	<bean id="customAuthenticationFailureHandler" class="com.iyf.salesledger.common.security.CustomAuthenticationFailureHandler"/>	  	  
 	
 	<security:http>
 		<security:csrf disabled="true"/>
 	
 		<!-- 로그인 페이지, (로그인 페이지 form action과 일치해야함), 성공 후 페이지 -->
-		<security:form-login  login-page="/login"/>
+		<security:form-login  login-page="/login" authentication-failure-handler-ref="customAuthenticationFailureHandler"/>
         
 		<!-- 로그아웃 처리(로그아웃 form action과 일치해야함), 성공 후 페이지 -->
 		<security:logout/>	
@@ -27,7 +29,6 @@
 		<security:remember-me data-source-ref="dataSource"
 		                      remember-me-parameter="remember-me"
 		                      token-validity-seconds="2592000"/>
-		                      
 		<security:access-denied-handler ref="accessDeniedHandler"/>
 	
 	</security:http>

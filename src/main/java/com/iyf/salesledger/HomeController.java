@@ -37,7 +37,7 @@ public class HomeController {
 	
 	@PostMapping("/register")
 	public String register(Member member) {
-		memberService.insertMember(member);
+		memberService.insert(member);
 		return "redirect:/login";
 	}
 }

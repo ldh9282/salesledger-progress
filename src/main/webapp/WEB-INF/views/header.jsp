@@ -57,26 +57,8 @@
 			url: '${pageContext.request.contextPath}/member.ajax/username/' + '${principal.username}',
 			success: function(member) {
 				$('#name').text(member.name);
+				$('#auth').text(member.authorities[0].authority);
 				$('#company').text(member.company);
-				member.authorities.forEach(item => {
-					
-					if (item.authority === 'ROLE_ADMIN') {
-						$('#auth').text("통합관리자");
-					}
-					
-					if (item.authority === 'ROLE_IYCNC') {
-						$('#auth').text("IYCNC 관리자");
-					}
-					
-					if (item.authority === 'ROLE_IBTS') {
-						$('#auth').text("IBTS 관리자");
-					}
-					
-					if (item.authority === 'ROLE_IYS') {
-						$('#auth').text("IYS 관리자");
-					}
-				});
-				
 			}
 		});
 	});

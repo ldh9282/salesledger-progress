@@ -29,7 +29,8 @@
 
   <!-- Template Main CSS File -->
   <link href="${pageContext.request.contextPath}/resources/NiceAdmin/assets/css/style.css" rel="stylesheet">
-
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 
 <body>
@@ -120,7 +121,21 @@
   </main><!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+  <script>
+    $(document).ready(function() {
+    	showloginDisabledErrorAndRedirect();
+    	
+    	function showloginDisabledErrorAndRedirect() {
+			
+	    	const params = new URLSearchParams(window.location.search);
+	    	if (params.get('unenabled') !== null) {
+				alert("해당계정은 통합관리자에게 회원가입 승인을 요청해야합니다.");
+				window.location.href = '${pageContext.request.contextPath}/login';
+			}
+		}
+    });
+  </script>
+  
   <!-- Vendor JS Files -->
   <script src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

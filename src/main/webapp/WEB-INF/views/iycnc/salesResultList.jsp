@@ -207,10 +207,9 @@
                 }
             });
 
-
             // 그리드 데이터 ajax로 가져오기
             $.ajax({
-                url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYCNC",
+                url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYCNC/batch_month/202304",
                 method: "GET",
                 success: function (salesResult) {
                     grid.resetData(salesResult);

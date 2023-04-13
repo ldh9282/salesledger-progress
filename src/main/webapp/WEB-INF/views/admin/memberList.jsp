@@ -75,21 +75,68 @@
 							</select>
 							<input type="text" name="keyword" id="keyword" placeholder="키워드 입력">
 							<button type="button" id="btnKeywordSearch">검색</button>
-							<table class="table table-striped">
+							<table class="table">
 								<thead>
 									<tr>
+										<th scope="col">#</th>
 										<th scope="col">아이디</th>
 										<th scope="col">이름</th>
 										<th scope="col">회사명</th>
 										<th scope="col">권한</th>
-										<th scope="col">승인</th>
+										<th scope="col">가입승인</th>
 									</tr>
 								</thead>
 		
-								<tbody id="memberTbody">	
+								<tbody id="memberTbody">
+									<c:forEach var="member" varStatus="memberStatus" items="${memberList}">
+		
+										<tr>
+											<th scope="row">
+												<c:out value="${memberStatus.index+1}" />
+											</th>
+											<td class="username">
+												<c:out value="${member.username}" />
+											</td>
+											<td class="name">
+												<c:out value="${member.name}" />
+											</td>
+											<td class="company">
+												<c:out value="${member.company}" />
+											</td>
+											<td class="auth">
+												<c:choose>
+													<c:when test="${member.authorities[0].authority  == '통합 관리자'}">
+														통합 관리자
+													</c:when>
+													<c:when test="${member.authorities[0].authority  == 'IYCNC 관리자'}">
+														IYCNC 관리자
+													</c:when>
+													<c:when test="${member.authorities[0].authority  == 'IBTS 관리자'}">
+														IBTS 관리자
+													</c:when>
+													<c:when test="${member.authorities[0].authority  == 'IYS 관리자'}">
+														IYS 관리자
+													</c:when>
+													<c:otherwise>
+														권한 없음
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td class="enabled">
+												<c:choose>
+													<c:when test="${member.enabled == '0'}">
+														미승인
+													</c:when>
+													<c:when test="${member.enabled == '1'}">
+														승인완료
+													</c:when>
+												</c:choose>
+											</td>
+										</tr>
+	
+									</c:forEach>	
 								</tbody>	
 							</table>
-							<!-- End Default Table Example -->
 						</div>
 					</div>
 		
@@ -102,30 +149,30 @@
 			  <ul class="pagination" style="justify-content:center;">
 			    <c:if test="${pagingCreator.prev }">
 					<li class="page-item">
-						<a class="page-link" href="?pageNum=1&rowAmountPerPage=${param.rowAmountPerPage}&scope=${param.scope}&keyword=${param.keyword}">First</a>
+						<a class="page-link" href="?pageNum=1&rowAmountPerPage=${param.rowAmountPerPage}&scope=${param.scope}&keyword=${param.keyword}">처음</a>
 					</li>
 				</c:if>
 				<c:if test="${pagingCreator.prev }">
 					<li class="page-item">
-						<a class="page-link" href="${pageContext.request.contextPath}/member/list_admin?pageNum=${pagingCreator.startPagingNum - 1}&rowAmountPerPage=${param.rowAmountPerPage}&scope=${param.scope}&keyword=${param.keyword}">Previous</a>
+						<a class="page-link" href="?pageNum=${pagingCreator.startPagingNum - 1}&rowAmountPerPage=${param.rowAmountPerPage ? param.rowAmountPerPage : 10}&scope=${param.scope}&keyword=${param.keyword}">이전</a>
 					</li>
 				</c:if>
 				
 				<c:forEach var="pageNum" begin="${pagingCreator.startPagingNum }" end="${pagingCreator.endPagingNum }">
 					<li class="page-item">
-						<a class="page-link" href="${pageContext.request.contextPath}/member/list_admin?pageNum=${pageNum}&rowAmountPerPage=${param.rowAmountPerPage}&scope=${param.scope}&keyword=${param.keyword}">${pageNum}</a>
+						<a class="page-link" href="?pageNum=${pageNum}&rowAmountPerPage=${param.rowAmountPerPage ? param.rowAmountPerPage : 10}&scope=${param.scope}&keyword=${param.keyword}">${pageNum}</a>
 					</li>
 				</c:forEach>
 				
 				<c:if test="${pagingCreator.next }">
 					<li class="page-item">
-						<a class="page-link" href="${pageContext.request.contextPath}/member/list_admin?pageNum=${pagingCreator.endPagingNum + 1}&rowAmountPerPage=${param.rowAmountPerPage}&scope=${param.scope}&keyword=${param.keyword}">Next</a>
+						<a class="page-link" href="?pageNum=${pagingCreator.endPagingNum + 1}&rowAmountPerPage=${param.rowAmountPerPage ? param.rowAmountPerPage : 10}&scope=${param.scope}&keyword=${param.keyword}">다음</a>
 					</li>
 				</c:if>
 				
 				<c:if test="${pagingCreator.next }">
 					<li class="page-item">
-						<a class="page-link" href="${pageContext.request.contextPath}/member/list_admin?pageNum=${pagingCreator.lastPageNum}&rowAmountPerPage=${param.rowAmountPerPage}&scope=${param.scope}&keyword=${param.keyword}">End</a>
+						<a class="page-link" href="?pageNum=${pagingCreator.lastPageNum}&rowAmountPerPage=${param.rowAmountPerPage ? param.rowAmountPerPage : 10}&scope=${param.scope}&keyword=${param.keyword}">끝</a>
 					</li>
 				</c:if>
 			  </ul>
@@ -141,7 +188,68 @@
     <!-- ======= Footer ======= -->
     <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 
+	<script>
+		function retainSelectedParams() {
+			const currentUrl = window.location.search;
+			const searchParams = new URLSearchParams(currentUrl);
 
+			const rowAmountPerPage = searchParams.get("rowAmountPerPage");
+			const scope = searchParams.get("scope");
+			const keyword = searchParams.get("keyword");
+			
+			if (rowAmountPerPage) {
+				$("#rowAmountPerPage").val(rowAmountPerPage);
+			} else {
+				$("#rowAmountPerPage").val(10);
+			}
+
+			if (scope) {
+				$("#scope").val(scope);
+			} else {
+				$("#scope").val("I");
+			}
+
+			if (keyword) {
+				$("#keyword").val(keyword);
+			} else {
+				$("#keyword").val("");
+			}
+
+		}
+
+		$(document).ready(function() {
+			retainSelectedParams()
+		
+			$("#memberTbody tr").hover(function() {
+				$(this).css({ "color" : "red", "text-decoration-line" : "underline" })
+					   .click(function() {
+							const popupUrl = '${pageContext.request.contextPath}/admin/memberDetail?username=' + $(this).children(".username").text();
+							const popupName = 'empPoolDetail-popup';
+							const popupWidth = 800;
+							const popupHeight = 600;
+							const left = (screen.width - popupWidth) / 2;
+							const top = (screen.height - popupHeight) / 2;
+
+							window.open(popupUrl, popupName, 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + left + ', top=' + top);
+					
+					   })	
+			}, function() {
+				$(this).css({ "color" : "black", "text-decoration-line" : "none"  });
+			});
+
+
+
+			$("#rowAmountPerPage").change(function() {
+				window.location.href = "?pageNum=1&rowAmountPerPage=" + $(this).val() + "&scope=" +$("#scope").val() + "&keyword=" + $("#keyword").val();
+			})
+
+
+			$("#btnKeywordSearch").click(function() {
+				window.location.href = "?pageNum=1&rowAmountPerPage=" + $("#rowAmountPerPage").val() + "&scope=" +$("#scope").val() + "&keyword=" + $("#keyword").val();
+			})
+
+		});
+	</script>
     
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
