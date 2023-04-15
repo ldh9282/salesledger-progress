@@ -39,7 +39,7 @@ public class SalesResultBatchTests {
 	
 	@Test
 	public void test() {
-//		salesLResultBatchService.monthlySalesBatch("IYCNC", null);
+		salesLResultBatchService.monthlySalesBatchByCompanyAndDepartment("IYCNC", "ITO");
 		System.out.println();
 	}
 	

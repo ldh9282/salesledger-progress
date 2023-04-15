@@ -82,6 +82,12 @@
                             </div>
                             <div class="col">
                                 <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="company" checked>
+                                    <span class="form-check-label">부서</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="form-check">
                                     <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="sales_source" checked>
                                     <span class="form-check-label">매출처</span>
                                 </label>
@@ -114,6 +120,12 @@
                                 <label class="form-check">
                                     <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="total_purchase_amount" checked>
                                     <span class="form-check-label">매입가</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="total_margin_amount" checked>
+                                    <span class="form-check-label">이익</span>
                                 </label>
                             </div>
                         </div>
@@ -193,6 +205,12 @@
                         width: 'auto',
                         align: 'center',
                     },
+                    {
+                        header: '이익',
+                        name: 'total_margin_amount',
+                        width: 'auto',
+                        align: 'center',
+                    },
                 ]
             });
             // 그리드 테마
@@ -212,6 +230,9 @@
                 url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYCNC/batch_month/202304",
                 method: "GET",
                 success: function (salesResult) {
+                	salesResult.forEach(item => {
+                		item.total_margin_amount = Number(item.total_sales_amount) - Number(item.total_purchase_amount);
+                	});
                     grid.resetData(salesResult);
                 }
             });

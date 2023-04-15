@@ -37,9 +37,9 @@ public class EmpLedgerAjaxController {
 	}
 	
 	//회사에 맞는 인력원장 출력
-	@GetMapping("/empLedger.ajax/company/{company}")
-	public List<Map<String, Object>> retrieveEmpLedgerListByCompany(@PathVariable String company) {
-		return empLedgerService.listByCompany(company);
+	@GetMapping("/empLedger.ajax/company/{company}/department/{department}")
+	public List<Map<String, Object>> retrieveEmpLedgerListByCompanyAndDepartment(@PathVariable String company, @PathVariable String department) {
+		return empLedgerService.listByCompanyAndDepartment(company, department);
 	}
 	
 	// 투입예상버튼, 투입확정버튼 클릭 시 ajax

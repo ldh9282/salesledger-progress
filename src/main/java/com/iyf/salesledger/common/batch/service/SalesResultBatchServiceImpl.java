@@ -13,8 +13,8 @@ public class SalesResultBatchServiceImpl implements SalesResultBatchService {
 	private SalesResultBatchDao salesResultBatchDao; 
 	
 	@Override @Transactional
-	public void monthlySalesBatch(String company) {
-		salesResultBatchDao.delete(company);
-		salesResultBatchDao.insert(company);
+	public void monthlySalesBatchByCompanyAndDepartment(String company, String department) {
+		salesResultBatchDao.delete(company, department);
+		salesResultBatchDao.insert(company, department);
 	}
 }

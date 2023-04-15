@@ -12,9 +12,10 @@
 		<result property="project_name" column="project_name"/>
 		<result property="batch_month" column="batch_month"/>
 		<result property="company" column="company"/>
+		<result property="department" column="department"/>
 		<result property="handwrite" column="handwrite"/>
 	</resultMap>
 	<select id="listByCompany" resultMap="salesResultMap">
-		select * from t_sales_result where company = #{company} and batch_month = #{batch_month};
+		select * from t_sales_result where company = #{company} and department = #{department} and batch_month = #{batch_month};
 	</select>
 </mapper>

@@ -25,9 +25,9 @@ public class SalesLedgerAjaxController {
 	private SalesLedgerService salesLedgerService;
 	
 	
-	@GetMapping("/salesLedger.ajax/company/{company}")
-	public List<Map<String, Object>> retrieveSalesLedgerListByCompany(@PathVariable String company) {
-		return salesLedgerService.listByCompany(company);
+	@GetMapping("/salesLedger.ajax/company/{company}/department/{department}")
+	public List<Map<String, Object>> retrieveSalesLedgerListByCompanyAndDepartment(@PathVariable String company, @PathVariable String department) {
+		return salesLedgerService.listByCompanyAndDepartment(company, department);
 	}
 	
 	@GetMapping("/salesLedger.ajax/{sales_id}")

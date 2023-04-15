@@ -7,6 +7,7 @@
 		<result property="emp_pool_id" column="EMP_POOL_ID"/>
 		<result property="client_id" column="CLIENT_ID"/>
 		<result property="company" column="COMPANY"/>
+		<result property="department" column="DEPARTMENT"/>
 		<result property="assign_date" column="ASSIGN_DATE"/>
 		<result property="end_date" column="END_DATE"/>
 		<result property="sales_mm" column="SALES_MM"/>
@@ -28,6 +29,7 @@
 		<!-- emp ledger  -->
 		<result property="emp_id" column="EMP_ID"/>
 		<result property="company" column="COMPANY"/>
+		<result property="department" column="DEPARTMENT"/>
 		<result property="assign_date" column="ASSIGN_DATE" javaType="java.util.Date"/>
 		<result property="end_date" column="END_DATE" javaType="java.util.Date"/>
 		<result property="sales_mm" column="SALES_MM"/>
@@ -75,7 +77,7 @@
 			*
 		FROM t_emp_ledger
 	</select>
-	<select id="listByCompany" resultMap="t1t2t3map">
+	<select id="listByCompanyAndDepartment" resultMap="t1t2t3map">
 		SELECT 
 			*
 		FROM t_emp_ledger t1
@@ -83,7 +85,7 @@
 		ON t1.emp_pool_id = t2.emp_pool_id
 		INNER JOIN t_client t3
 		ON t1.client_id = t3.client_id
-		WHERE t1.company = 'IYCNC' and (t1.del != 'Y' or t1.del is null)
+		WHERE t1.company = #{company} and t1.department = #{department} and (t1.del != 'Y' or t1.del is null)
 		ORDER BY t1.emp_pool_id desc
 	</select>
 	<select id="selectOne" resultMap="empLedgerMap">
@@ -100,6 +102,7 @@
 			emp_pool_id,
 			client_id,
 			company,
+			department,
 			assign_date,
 			end_date,
 			sales_mm,
@@ -122,6 +125,7 @@
 			#{emp_pool_id},
 			#{client_id}, 
 			#{company}, 
+			#{department}, 
 			#{assign_date}, 
 			#{end_date}, 
 			#{sales_mm}, 
@@ -148,6 +152,7 @@
 		emp_pool_id = #{emp_pool_id}, 
 		client_id = #{client_id}, 
 		company = #{company}, 
+		department = #{department}, 
 		assign_date = #{assign_date}, 
 		end_date = #{end_date}, 
 		sales_mm = #{sales_mm},

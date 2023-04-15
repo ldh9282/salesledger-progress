@@ -72,6 +72,7 @@
 								<option value="I">아이디</option>
 								<option value="N">이름</option>
 								<option value="C">회사명</option>
+								<option value="E">가입승인</option>
 							</select>
 							<input type="text" name="keyword" id="keyword" placeholder="키워드 입력">
 							<button type="button" id="btnKeywordSearch">검색</button>
@@ -144,35 +145,34 @@
 		
 				</div>
 			</div>
-			
 			<nav aria-label="Page navigation example">
 			  <ul class="pagination" style="justify-content:center;">
 			    <c:if test="${pagingCreator.prev }">
 					<li class="page-item">
-						<a class="page-link" href="?pageNum=1&rowAmountPerPage=${param.rowAmountPerPage}&scope=${param.scope}&keyword=${param.keyword}">처음</a>
+						<a class="page-link" href="?pageNum=1&rowAmountPerPage=${param.rowAmountPerPage ne null ? param.rowAmountPerPage : 10}&scope=${param.scope}&keyword=${param.keyword}">처음</a>
 					</li>
 				</c:if>
 				<c:if test="${pagingCreator.prev }">
 					<li class="page-item">
-						<a class="page-link" href="?pageNum=${pagingCreator.startPagingNum - 1}&rowAmountPerPage=${param.rowAmountPerPage ? param.rowAmountPerPage : 10}&scope=${param.scope}&keyword=${param.keyword}">이전</a>
+						<a class="page-link" href="?pageNum=${pagingCreator.startPagingNum - 1}&rowAmountPerPage=${param.rowAmountPerPage ne null ? param.rowAmountPerPage : 10}&scope=${param.scope}&keyword=${param.keyword}">이전</a>
 					</li>
 				</c:if>
 				
 				<c:forEach var="pageNum" begin="${pagingCreator.startPagingNum }" end="${pagingCreator.endPagingNum }">
 					<li class="page-item">
-						<a class="page-link" href="?pageNum=${pageNum}&rowAmountPerPage=${param.rowAmountPerPage ? param.rowAmountPerPage : 10}&scope=${param.scope}&keyword=${param.keyword}">${pageNum}</a>
+						<a class="page-link" href="?pageNum=${pageNum}&rowAmountPerPage=${param.rowAmountPerPage ne null ? param.rowAmountPerPage : 10}&scope=${param.scope}&keyword=${param.keyword}">${pageNum}</a>
 					</li>
 				</c:forEach>
 				
 				<c:if test="${pagingCreator.next }">
 					<li class="page-item">
-						<a class="page-link" href="?pageNum=${pagingCreator.endPagingNum + 1}&rowAmountPerPage=${param.rowAmountPerPage ? param.rowAmountPerPage : 10}&scope=${param.scope}&keyword=${param.keyword}">다음</a>
+						<a class="page-link" href="?pageNum=${pagingCreator.endPagingNum + 1}&rowAmountPerPage=${param.rowAmountPerPage ne null ? param.rowAmountPerPage : 10}&scope=${param.scope}&keyword=${param.keyword}">다음</a>
 					</li>
 				</c:if>
 				
 				<c:if test="${pagingCreator.next }">
 					<li class="page-item">
-						<a class="page-link" href="?pageNum=${pagingCreator.lastPageNum}&rowAmountPerPage=${param.rowAmountPerPage ? param.rowAmountPerPage : 10}&scope=${param.scope}&keyword=${param.keyword}">끝</a>
+						<a class="page-link" href="?pageNum=${pagingCreator.lastPageNum}&rowAmountPerPage=${param.rowAmountPerPage ne null ? param.rowAmountPerPage : 10}&scope=${param.scope}&keyword=${param.keyword}">끝</a>
 					</li>
 				</c:if>
 			  </ul>
@@ -205,6 +205,26 @@
 
 			if (scope) {
 				$("#scope").val(scope);
+				if ($('#scope').val() === 'C') {
+					const enabledListEl = $('<dataList id="enabled-list">');
+					const optEl1 = $('<option value="IYCNC">');
+					const optEl2 = $('<option value="IBTS">');
+					const optEl3 = $('<option value="IYS">');
+					enabledListEl.append(optEl1);
+					enabledListEl.append(optEl2);
+					enabledListEl.append(optEl3);
+					$('#scope').after(enabledListEl);
+					$('#keyword').attr("list", "enabled-list");
+				} else if ($('#scope').val() === 'E') {
+					const enabledListEl = $('<dataList id="enabled-list">');
+					const optEl1 = $('<option value="승인완료">');
+					const optEl2 = $('<option value="미승인">');
+					enabledListEl.append(optEl1);
+					enabledListEl.append(optEl2);
+					$('#scope').after(enabledListEl);
+					$('#keyword').attr("list", "enabled-list");
+				}
+				
 			} else {
 				$("#scope").val("I");
 			}
@@ -246,6 +266,31 @@
 
 			$("#btnKeywordSearch").click(function() {
 				window.location.href = "?pageNum=1&rowAmountPerPage=" + $("#rowAmountPerPage").val() + "&scope=" +$("#scope").val() + "&keyword=" + $("#keyword").val();
+			})
+			
+			$('#scope').change(function() {
+				
+				if ($('#scope').val() === 'C') {
+					const enabledListEl = $('<dataList id="enabled-list">');
+					const optEl1 = $('<option value="IYCNC">');
+					const optEl2 = $('<option value="IBTS">');
+					const optEl3 = $('<option value="IYS">');
+					enabledListEl.append(optEl1);
+					enabledListEl.append(optEl2);
+					enabledListEl.append(optEl3);
+					$('#scope').after(enabledListEl);
+					$('#keyword').attr("list", "enabled-list");
+				} else if ($('#scope').val() === 'E') {
+					const enabledListEl = $('<dataList id="enabled-list">');
+					const optEl1 = $('<option value="승인완료">');
+					const optEl2 = $('<option value="미승인">');
+					enabledListEl.append(optEl1);
+					enabledListEl.append(optEl2);
+					$('#scope').after(enabledListEl);
+					$('#keyword').attr("list", "enabled-list");
+				} else {
+					$('#keyword').removeAttr("list");
+				}
 			})
 
 		});

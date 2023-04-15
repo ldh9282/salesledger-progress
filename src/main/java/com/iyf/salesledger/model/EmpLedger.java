@@ -12,6 +12,7 @@ public class EmpLedger {
     private Long emp_pool_id;
     private Long client_id;
     private String company;
+    private String department;
     private Date assign_date;
     private Date end_date;
     private double sales_mm;

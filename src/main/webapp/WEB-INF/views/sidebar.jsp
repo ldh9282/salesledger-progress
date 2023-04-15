@@ -119,7 +119,7 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link collapsed" href="">
+				<a class="nav-link collapsed" href="${pageContext.request.contextPath}/admin/salesResultChart">
 					<i class="bi bi-bar-chart"></i>
 					<span>통계</span>
 				</a>

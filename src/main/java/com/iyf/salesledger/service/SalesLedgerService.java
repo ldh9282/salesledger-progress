@@ -12,7 +12,7 @@ public interface SalesLedgerService {
 
 	List<SalesLedger> list();
 	
-	List<Map<String, Object>> listByCompany(String company);
+	List<Map<String, Object>> listByCompanyAndDepartment(String company, String department);
 	
 	SalesLedger selectOne(long sales_id);
 

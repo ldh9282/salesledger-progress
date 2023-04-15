@@ -11,7 +11,7 @@ public interface EmpLedgerService {
 
 	List<EmpLedger> list();
 	
-	List<Map<String, Object>> listByCompany(String company);
+	List<Map<String, Object>> listByCompanyAndDepartment(String company, String department);
 	
 	EmpLedger selectOne(long emp_id);
 	

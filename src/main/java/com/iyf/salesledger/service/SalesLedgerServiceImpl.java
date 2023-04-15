@@ -37,8 +37,8 @@ public class SalesLedgerServiceImpl implements SalesLedgerService{
 	}
 
 	@Override
-	public List<Map<String, Object>> listByCompany(String company) {
-		return salesLedgerDao.listByCompany(company);
+	public List<Map<String, Object>> listByCompanyAndDepartment(String company, String department) {
+		return salesLedgerDao.listByCompanyAndDepartment(company, department);
 	}
 
 	@Override

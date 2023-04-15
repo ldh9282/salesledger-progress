@@ -5,25 +5,27 @@
 	<delete id="delete">
 		delete from t_sales_result 
 		where batch_month = to_char(date_trunc('month', now()), 'yyyymm')
-		and company = #{company}
+		and company = #{company} and department = #{department}
 		and (handwrite is null or handwrite = 'N')
 	</delete>
 	
 	<insert id="insert">
 		insert into t_sales_result 
 		(
-			sales_result_id, company, sales_source, client, subcontract, project_name,
+			sales_result_id, company, department, sales_source, client, subcontract, project_name,
 			total_sales_amount, total_purchase_amount, batch_month, handwrite
 		)
 		(
 			select
 				nextval('t_sales_result_sales_result_id_seq') sales_result_id,
-				t2.company,
+				t2.company, t2.department
 				t4.sales_source, t4.client, t4.subcontract, t4.project_name,
 				(t2.sales_mm * t2.sales_unit) total_sales_amount,
 				(t2.purchase_mm * t2.purchase_unit) total_purchase_amount,
 				to_char(date_trunc('month', now()), 'yyyymm') batch_month,
-				'N' handwrite
+				'N' handwrite,
+				t2.department
+				
 			from t_sales_ledger t1
 			inner join t_emp_ledger t2
 			on t1.emp_id = t2.emp_id
@@ -31,7 +33,7 @@
 			on t2.emp_pool_id = t3.emp_pool_id
 			inner join t_client t4
 			on t2.client_id = t4.client_id
-			WHERE t2.company = #{company} and (t1.del != 'Y' or t1.del is null)
+			WHERE t2.company = #{company} and t2.department = #{department} and (t1.del != 'Y' or t1.del is null)
 			and t1.include = 'Y'
 			and (t2.resign_date > date_trunc('month', now()) or t2.resign_date is null)
 		)

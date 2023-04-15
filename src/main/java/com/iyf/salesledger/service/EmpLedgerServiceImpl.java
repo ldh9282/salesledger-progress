@@ -38,8 +38,8 @@ public class EmpLedgerServiceImpl implements EmpLedgerService {
 	}
 	
 	@Override
-	public List<Map<String, Object>> listByCompany(String company) {
-		return empLedgerDao.listByCompany(company);
+	public List<Map<String, Object>> listByCompanyAndDepartment(String company, String department) {
+		return empLedgerDao.listByCompanyAndDepartment(company, department);
 	}
 
 	@Override

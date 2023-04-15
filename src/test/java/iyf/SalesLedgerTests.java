@@ -66,7 +66,7 @@ public class SalesLedgerTests {
 	
 //	@Test
 	public void test5() {
-		salesLedgerDao.listByCompany("IYCNC");
+		salesLedgerDao.listByCompanyAndDepartment("IYCNC", "ITO");
 	}
 	
 	

@@ -61,7 +61,16 @@
 			<when test="scope == 'I'.toString()">where m.username LIKE '%'||#{keyword}||'%'</when>
 			<when test="scope == 'N'.toString()">where m.name LIKE '%'||#{keyword}||'%'</when>
 			<when test="scope == 'C'.toString()">where m.company LIKE '%'||#{keyword}||'%'</when>
-			<when test="scope == 'C'.toString()">where m.company LIKE '%'||#{keyword}||'%'</when>
+			<when test="scope == 'E'.toString()">
+				<choose>
+					<when test="keyword == '승인완료'.toString()">
+						where m.enabled = '1'
+					</when>
+					<when test="keyword == '미승인'.toString()">
+						where m.enabled = '0'
+					</when>
+				</choose>
+			</when>
 		</choose>
 	</select>
 	
@@ -77,7 +86,16 @@
 				<when test="scope == 'I'.toString()">where m.username LIKE '%'||#{keyword}||'%'</when>
 				<when test="scope == 'N'.toString()">where m.name LIKE '%'||#{keyword}||'%'</when>
 				<when test="scope == 'C'.toString()">where m.company LIKE '%'||#{keyword}||'%'</when>
-				<when test="scope == 'C'.toString()">where m.company LIKE '%'||#{keyword}||'%'</when>
+				<when test="scope == 'E'.toString()">
+					<choose>
+						<when test="keyword == '승인완료'.toString()">
+							where m.enabled = '1'
+						</when>
+						<when test="keyword == '미승인'.toString()">
+							where m.enabled = '0'
+						</when>
+					</choose>
+				</when>
 			</choose>
 		) as t1
 		where rn between ( (#{pageNum}-1) * #{rowAmountPerPage} ) + 1 and #{pageNum} * #{rowAmountPerPage}

@@ -32,9 +32,15 @@ public class AdminPageController {
 	
 	@PreAuthorize("hasAuthority('통합 관리자')")
 	@GetMapping("/admin/memberDetail")
-	public String showMemberDetailPate(String username, Model model) {
+	public String showMemberDetailPage(String username, Model model) {
 		Member member = memberService.selectOne(username);
 		model.addAttribute("member", member);
 		return "admin/memberDetail";
+	}
+	
+	@PreAuthorize("hasAuthority('통합 관리자')")
+	@GetMapping("/admin/salesResultChart")
+	public String showSalesResultChartPage() {
+		return "admin/salesResultChart";
 	}
 }
