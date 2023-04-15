@@ -169,6 +169,12 @@
                         width: 'auto',
                         align: 'center',
                     },
+                    {//
+                        header: '부서',
+                        name: 'company',
+                        width: 'auto',
+                        align: 'center',
+                    },
                     {
                         header: '매출처',
                         name: 'sales_source',
