@@ -59,7 +59,7 @@ public class EmpLedgerAjaxController {
 	
 	@PatchMapping("/empLedger.ajax/{emp_id}/progress_reason/{progress_reason}")
 	public void patchProgressReason(@PathVariable long emp_id, @PathVariable(required = false) String progress_reason) {
-		empLedgerService.patchProgress(emp_id, progress_reason);
+		empLedgerService.patchProgressReason(emp_id, progress_reason);
 	}
 	
 	// 상세페이지에서 수정버튼 클릭시

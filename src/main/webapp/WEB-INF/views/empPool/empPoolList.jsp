@@ -39,6 +39,8 @@
 
     <!-- toast-grid -->
     <link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
+    <!-- toast-grid-pagination -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -280,7 +282,12 @@
                         filter: 'select'
                     },
 
-                ]
+                ],
+                rowHeaders: ['rowNum'],
+                pageOptions: {
+	                useClient: true,
+	                perPage: 50
+                }
             });
             // 그리드 테마
             tui.Grid.applyTheme('striped', {
@@ -417,6 +424,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
 
 
+	<!-- toast-grid-pagination -->
+	<script src="https://uicdn.toast.com/tui.code-snippet/v1.5.0/tui-code-snippet.js"></script>
+    <script src="https://uicdn.toast.com/tui.pagination/v3.3.0/tui-pagination.js"></script>
     <!-- toast-grid -->
     <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
 

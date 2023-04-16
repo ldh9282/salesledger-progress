@@ -15,7 +15,20 @@
 		<result property="department" column="department"/>
 		<result property="handwrite" column="handwrite"/>
 	</resultMap>
-	<select id="listByCompany" resultMap="salesResultMap">
-		select * from t_sales_result where company = #{company} and department = #{department} and batch_month = #{batch_month};
+	<select id="listByCompanyAndDepartmentAndBatchMonth" resultMap="salesResultMap">
+		select * from t_sales_result where company = #{company} and department = #{department} and batch_month = #{batch_month} ORDER BY 1 DESC;
 	</select>
+	
+	<insert id="insert">
+		insert into t_sales_result
+		(
+			sales_result_id, company, department, sales_source, client, subcontract, project_name,
+			total_sales_amount, total_purchase_amount, batch_month, handwrite	
+		)
+		values
+		(
+			default, #{company}, #{department}, #{sales_source}, #{client}, #{subcontract}, #{project_name},
+			#{total_sales_amount}, #{total_purchase_amount}, #{batch_month}, #{handwrite}
+		)
+	</insert>
 </mapper>

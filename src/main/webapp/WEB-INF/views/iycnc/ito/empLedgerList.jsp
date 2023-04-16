@@ -36,6 +36,8 @@
 
     <!-- toast-grid -->
     <link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
+    <!-- toast-grid-pagination -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
     
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -235,6 +237,13 @@
 	                        </div>
 	                        <div class="col">
 	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="department"
+	                                    checked>
+	                                <span class="form-check-label">사업부서</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
 	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="assign_date" checked>
 	                                <span class="form-check-label">투입일</span>
 	                            </label>
@@ -268,13 +277,6 @@
 	                            <label class="form-check">
 	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="purchase_unit" checked>
 	                                <span class="form-check-label">매입단가</span>
-	                            </label>
-	                        </div>
-	                        <div class="col">
-	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="comments"
-	                                    checked>
-	                                <span class="form-check-label">비고</span>
 	                            </label>
 	                        </div>
 	                        <div class="col">
@@ -493,6 +495,13 @@
                         filter: 'select'
                     },
                     {
+                        header: '사업부서',
+                        name: 'department',
+                        width: 'auto',
+                        align: 'center',
+                        filter: 'select'
+                    },
+                    {
                         header: '투입일',
                         name: 'assign_date',
                         width: 'auto',
@@ -533,13 +542,6 @@
                         filter: 'number'
                     },
                     {
-                        header: '비고',
-                        name: 'comments',
-                        width: 'auto',
-                        align: 'center',
-                        filter: 'select'
-                    },
-                    {
                         header: '이력서제출일자',
                         name: 'resume_submit_date',
                         width: 'auto',
@@ -571,7 +573,12 @@
                         filter: 'select'
                     },
 
-                ]
+                ],
+                rowHeaders: ['rowNum'],
+                pageOptions: {
+	                useClient: true,
+	                perPage: 50
+                }
             });
             // 그리드 테마
             tui.Grid.applyTheme('striped', {
@@ -588,7 +595,7 @@
             
             // 그리드 데이터 ajax로 가져오기
             $.ajax({
-                url: "${pageContext.request.contextPath}/empLedger.ajax/company/IYCNC" ,
+                url: "${pageContext.request.contextPath}/empLedger.ajax/company/IYCNC/department/ITO" ,
                 method: "GET",
                 success: function (empLedgerList) {
                     // Date 년월일 Formatting
@@ -700,8 +707,8 @@
             
             // 인력투입예정페이지 버튼 클릭시 이벤트: 페이지팝업
             $('#btnShowRegisterPage').click(function() {
-                const popupUrl = '${pageContext.request.contextPath}/iycnc/empLedgerRegister.do';
-                const popupName = 'empLedgerRegister.do-popup';
+                const popupUrl = '${pageContext.request.contextPath}/iycnc/ito/empLedgerRegister';
+                const popupName = 'empLedgerRegister-popup';
                 const popupWidth = 800;
                 const popupHeight = 600;
                 const left = (screen.width - popupWidth) / 2;
@@ -713,8 +720,8 @@
             // 그리드 Row 더블 클릭시 이벤트: 상세정보페이지 팝업
             grid.on('dblclick', function(ev) {
                 const empLedger = grid.getRow(ev.rowKey)
-                const popupUrl = '${pageContext.request.contextPath}/iycnc/empLedgerDetail.do?emp_id='+ empLedger.emp_id;
-                const popupName = 'empPoolDetail.do-popup';
+                const popupUrl = '${pageContext.request.contextPath}/iycnc/ito/empLedgerDetail?emp_id='+ empLedger.emp_id;
+                const popupName = 'empPoolDetail-popup';
                 const popupWidth = 800;
                 const popupHeight = 600;
                 const left = (screen.width - popupWidth) / 2;
@@ -753,6 +760,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
 
 
+	<!-- toast-grid-pagination -->
+	<script src="https://uicdn.toast.com/tui.code-snippet/v1.5.0/tui-code-snippet.js"></script>
+    <script src="https://uicdn.toast.com/tui.pagination/v3.3.0/tui-pagination.js"></script>
     <!-- toast-grid -->
     <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
 

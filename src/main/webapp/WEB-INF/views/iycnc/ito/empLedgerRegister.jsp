@@ -73,7 +73,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="business_department">사업부서:</label>
-                                <input type="text" class="form-control" id="business_department" name="business_department">
+                                <input type="text" class="form-control" id="business_department" name="business_department" readonly="readonly" value="ITO">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="business_manager">사업관리담당자:</label>
@@ -85,6 +85,10 @@
                             <div class="form-group mb-3">
                                 <label for="company">소속:</label>
                                 <input type="text" class="form-control" id="company" name="company" value="IYCNC" readonly>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="company">소속:</label>
+                                <input type="text" class="form-control" id="department" name="department" value="ITO" readonly>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="assign_date">투입일:</label>
@@ -216,6 +220,7 @@
                         "empLedger": {
                             "emp_pool_id": $('input[name=emp_pool_id]').val(),
                             "company": $('input[name=company]').val(),
+                            "department": $('input[name=department]').val(),
                             "assign_date": new Date($('input[name=assign_date]').val()),
                             "end_date": new Date($('input[name=end_date]').val()),
                             "sales_mm": $('input[name=sales_mm]').val() ? $('input[name=sales_mm]').val() : 0,

@@ -37,9 +37,14 @@
 
     <!-- toast-grid -->
     <link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
+    <!-- toast-grid-pagination -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    
+	
 </head>
 
 <body>
@@ -82,7 +87,7 @@
                             </div>
                             <div class="col">
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="company" checked>
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="department" checked>
                                     <span class="form-check-label">부서</span>
                                 </label>
                             </div>
@@ -148,6 +153,20 @@
     <script>
 
         $(document).ready(function () {
+        	
+            
+        	const currentDate = new Date();
+
+        	// 년도와 월을 가져옵니다.
+        	const year = currentDate.getFullYear();
+        	const month = currentDate.getMonth() + 1;
+
+        	// 월이 10월 이전인 경우, 숫자 앞에 0을 추가합니다.
+        	const monthString = month < 10 ? "0" + month : month.toString();
+
+        	// yyyymm 형식의 문자열을 만듭니다.
+        	const yyyymm = year.toString() + monthString;
+        	
             // 그리드 출력
             const grid = new tui.Grid({
                 el: document.querySelector('#grid'),
@@ -170,8 +189,8 @@
                         align: 'center',
                     },
                     {//
-                        header: '부서',
-                        name: 'company',
+                        header: '사업부서',
+                        name: 'department',
                         width: 'auto',
                         align: 'center',
                     },
@@ -217,7 +236,12 @@
                         width: 'auto',
                         align: 'center',
                     },
-                ]
+                ],
+                rowHeaders: ['rowNum'],
+                pageOptions: {
+	                useClient: true,
+	                perPage: 50
+                }
             });
             // 그리드 테마
             tui.Grid.applyTheme('striped', {
@@ -233,7 +257,7 @@
 
             // 그리드 데이터 ajax로 가져오기
             $.ajax({
-                url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYCNC/batch_month/202304",
+                url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYCNC/department/ITO/batch_month/" + yyyymm,
                 method: "GET",
                 success: function (salesResult) {
                 	salesResult.forEach(item => {
@@ -280,19 +304,6 @@
                 }
             }
 
-            // 그리드 Row 더블 클릭시 이벤트: 상세정보페이지 팝업
-            grid.on('dblclick', function (ev) {
-                const salesLedger = grid.getRow(ev.rowKey)
-                const popupUrl = '${pageContext.request.contextPath}/iycnc/salesLedgerDetail.do?sales_id=' + salesLedger.sales_id;
-                const popupName = 'salesLedgerDetail.do-popup';
-                const popupWidth = 800;
-                const popupHeight = 600;
-                const left = (screen.width - popupWidth) / 2;
-                const top = (screen.height - popupHeight) / 2;
-
-                window.open(popupUrl, popupName, 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + left + ', top=' + top);
-            });
-
             
        		// 체크리스트 접기/내리기 토글 이벤트
             $("#toggle-icon").click(function () {
@@ -323,7 +334,9 @@
     <!-- Excel Export JS File-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
 
-
+    <!-- toast-grid-pagination -->
+	<script src="https://uicdn.toast.com/tui.code-snippet/v1.5.0/tui-code-snippet.js"></script>
+    <script src="https://uicdn.toast.com/tui.pagination/v3.3.0/tui-pagination.js"></script>
     <!-- toast-grid -->
     <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
 

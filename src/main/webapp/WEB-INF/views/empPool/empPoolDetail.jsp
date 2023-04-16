@@ -113,7 +113,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="careerLevel">등급:</label>
-                        <select class="form-control" id="careerLevel" name="career_level">
+                        <select class="form-control" id="career_level" name="career_level">
                             <option value="미기입">미기입</option>
                             <option value="초급">초급</option>
                             <option value="중급">중급</option>
@@ -158,7 +158,7 @@
                     $('#major').val(empPool.major);
                     $('#career_years').val(empPool.career_years);
                     $('#career_field').val(empPool.career_field);
-                    $('#careerLevel').val(empPool.career_level);
+                    $('#career_level').val(empPool.career_level);
                     $('#project_assign').val(empPool.project_assign);
                     $('#del').val(empPool.del);
                 },

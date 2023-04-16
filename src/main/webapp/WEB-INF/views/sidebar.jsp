@@ -17,74 +17,43 @@
 			</li><!-- End EmpPool Nav -->
 		</security:authorize>
 		
-		<li class="nav-heading">회사별</li>
+		<!-- Start IYCNC Nav  -->
 		<security:authorize access="hasAuthority('통합 관리자') or hasAuthority('IYCNC 관리자')">
+			<li class="nav-heading">IYCNC</li>
 			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#iycnc-nav" data-bs-toggle="collapse" href="#">
-					<i class="bi bi-journal-text"></i><span>IYCNC</span><i class="bi bi-chevron-down ms-auto"></i>
+				<a class="nav-link collapsed" data-bs-target="#iycnc-ito-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-journal-text"></i><span>ITO</span><i class="bi bi-chevron-down ms-auto"></i>
 				</a>
-				<ul id="iycnc-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+				
+				<ul id="iycnc-ito-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+				
 					<li>
-						<a href="${pageContext.request.contextPath}/iycnc/empLedgerList">
+						<a href="${pageContext.request.contextPath}/iycnc/ito/empLedgerList">
 							<i class="bi bi-circle"></i><span>인력기초원장</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iycnc/salesLedgerList">
+						<a href="${pageContext.request.contextPath}/iycnc/ito/salesLedgerList">
 							<i class="bi bi-circle"></i><span>매출원장</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iycnc/salesEstimationList">
+						<a href="${pageContext.request.contextPath}/iycnc/ito/salesEstimationList">
 							<i class="bi bi-circle"></i><span>추정</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iycnc/salesResultList">
+						<a href="${pageContext.request.contextPath}/iycnc/ito/salesResultList">
 							<i class="bi bi-circle"></i><span>실적</span>
 						</a>
 					</li>
 				</ul>
-			</li><!-- End IYCNC Nav -->
-		</security:authorize>
-		
-		<security:authorize access="hasAuthority('통합 관리자') or hasAuthority('IBTS 관리자')">
+			</li><!-- End ITO Nav -->
 			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#ibts-nav" data-bs-toggle="collapse" href="#">
-					<i class="bi bi-journal-text"></i><span>IBTS</span><i class="bi bi-chevron-down ms-auto"></i>
+				<a class="nav-link collapsed" data-bs-target="#iycnc-infra-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-journal-text"></i><span>인프라</span><i class="bi bi-chevron-down ms-auto"></i>
 				</a>
-				<ul id="ibts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-					<li>
-						<a href="${pageContext.request.contextPath}/ibts/empLedgerList">
-							<i class="bi bi-circle"></i><span>인력기초원장</span>
-						</a>
-					</li>
-					<li>
-						<a href="${pageContext.request.contextPath}/ibts/salesLedgerList">
-							<i class="bi bi-circle"></i><span>매출원장</span>
-						</a>
-					</li>
-					<li>
-						<a href="${pageContext.request.contextPath}/ibts/salesEstimationList">
-							<i class="bi bi-circle"></i><span>추정</span>
-						</a>
-					</li>
-					<li>
-						<a href="${pageContext.request.contextPath}/ibts/salesResultList">
-							<i class="bi bi-circle"></i><span>실적</span>
-						</a>
-					</li>
-				</ul>
-			</li>
-			<!-- End IBTS Nav -->
-		</security:authorize>
-		
-		<security:authorize access="hasAuthority('통합 관리자') or hasAuthority('IYS 관리자')">
-			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#iys-nav" data-bs-toggle="collapse" href="#">
-					<i class="bi bi-journal-text"></i><span>IYS</span><i class="bi bi-chevron-down ms-auto"></i>
-				</a>
-				<ul id="iys-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+				<ul id="iycnc-infra-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 					<li>
 						<a href="${pageContext.request.contextPath}/iys/empLedgerList">
 							<i class="bi bi-circle"></i><span>인력기초원장</span>
@@ -106,8 +75,134 @@
 						</a>
 					</li>
 				</ul>
-			</li><!-- End IYS Nav -->
+			</li><!-- End INFRA Nav -->
 		</security:authorize>
+		<!-- End IYCNC Nav  -->
+		
+		<!-- Start IBTS Nav  -->
+		<security:authorize access="hasAuthority('통합 관리자') or hasAuthority('IBTS 관리자')">
+			<li class="nav-heading">IBTS</li>
+			<li class="nav-item">
+				<a class="nav-link collapsed" data-bs-target="#ibts-ito-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-journal-text"></i><span>ITO</span><i class="bi bi-chevron-down ms-auto"></i>
+				</a>
+				
+				<ul id="ibts-ito-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+				
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/ito/empLedgerList">
+							<i class="bi bi-circle"></i><span>인력기초원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/ito/salesLedgerList">
+							<i class="bi bi-circle"></i><span>매출원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/ito/salesEstimationList">
+							<i class="bi bi-circle"></i><span>추정</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/ito/salesResultList">
+							<i class="bi bi-circle"></i><span>실적</span>
+						</a>
+					</li>
+				</ul>
+			</li><!-- End ITO Nav -->
+			<li class="nav-item">
+				<a class="nav-link collapsed" data-bs-target="#ibts-infra-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-journal-text"></i><span>인프라</span><i class="bi bi-chevron-down ms-auto"></i>
+				</a>
+				<ul id="ibts-infra-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li>
+						<a href="${pageContext.request.contextPath}/iys/empLedgerList">
+							<i class="bi bi-circle"></i><span>인력기초원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iys/salesLedgerList">
+							<i class="bi bi-circle"></i><span>매출원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iys/salesEstimationList">
+							<i class="bi bi-circle"></i><span>추정</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iys/salesResultList">
+							<i class="bi bi-circle"></i><span>실적</span>
+						</a>
+					</li>
+				</ul>
+			</li><!-- End INFRA Nav -->
+		</security:authorize>
+		<!-- End IBTS Nav  -->
+		
+		<!-- Start IYS Nav  -->
+		<security:authorize access="hasAuthority('통합 관리자') or hasAuthority('IYS 관리자')">
+			<li class="nav-heading">IYS</li>
+			<li class="nav-item">
+				<a class="nav-link collapsed" data-bs-target="#iys-ito-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-journal-text"></i><span>ITO</span><i class="bi bi-chevron-down ms-auto"></i>
+				</a>
+				
+				<ul id="iys-ito-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+				
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/ito/empLedgerList">
+							<i class="bi bi-circle"></i><span>인력기초원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/ito/salesLedgerList">
+							<i class="bi bi-circle"></i><span>매출원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/ito/salesEstimationList">
+							<i class="bi bi-circle"></i><span>추정</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/ito/salesResultList">
+							<i class="bi bi-circle"></i><span>실적</span>
+						</a>
+					</li>
+				</ul>
+			</li><!-- End ITO Nav -->
+			<li class="nav-item">
+				<a class="nav-link collapsed" data-bs-target="#iys-infra-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-journal-text"></i><span>인프라</span><i class="bi bi-chevron-down ms-auto"></i>
+				</a>
+				<ul id="iys-infra-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li>
+						<a href="${pageContext.request.contextPath}/iys/empLedgerList">
+							<i class="bi bi-circle"></i><span>인력기초원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iys/salesLedgerList">
+							<i class="bi bi-circle"></i><span>매출원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iys/salesEstimationList">
+							<i class="bi bi-circle"></i><span>추정</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iys/salesResultList">
+							<i class="bi bi-circle"></i><span>실적</span>
+						</a>
+					</li>
+				</ul>
+			</li><!-- End INFRA Nav -->
+		</security:authorize>
+		<!-- End IYS Nav  -->
+			
 		
 		<security:authorize access="hasAuthority('통합 관리자')">
 		

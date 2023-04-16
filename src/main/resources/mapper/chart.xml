@@ -14,7 +14,7 @@
 			sum(total_sales_amount) 총매출가,
 			sum(total_purchase_amount) 총매입가
 		from t_sales_result
-		group by company, batch_month
+		group by company, department, batch_month
 		having company = #{company} and department = #{department} and batch_month between to_char(now(), 'yyyy01') and to_char(now(), 'yyyy12')
 		order by batch_month
 	</select>

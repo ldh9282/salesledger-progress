@@ -252,6 +252,13 @@
                             <div class="col">
                                 <label class="form-check">
                                     <input class="form-check-input" data-table="emp-ledger" type="checkbox"
+                                        name="column" value="department" checked>
+                                    <span class="form-check-label">사업부서</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="form-check">
+                                    <input class="form-check-input" data-table="emp-ledger" type="checkbox"
                                         name="column" value="assign_date" checked>
                                     <span class="form-check-label">투입일</span>
                                 </label>
@@ -586,6 +593,12 @@
                         align: 'center',
                     },
                     {
+                        header: '사업부서',
+                        name: 'department',
+                        width: 'auto',
+                        align: 'center',
+                    },
+                    {
                         header: '투입일',
                         name: 'assign_date',
                         width: 'auto',
@@ -752,7 +765,7 @@
 
             // 그리드 데이터 ajax로 가져오기
             $.ajax({
-                url: "${pageContext.request.contextPath}/salesLedger.ajax/company/IYCNC",
+                url: "${pageContext.request.contextPath}/salesLedger.ajax/company/IYCNC/department/ITO",
                 method: "GET",
                 success: function (salesLedgerList) {
                     // Date 년월일 Formatting
@@ -877,8 +890,8 @@
             // 그리드 Row 더블 클릭시 이벤트: 상세정보페이지 팝업
             grid.on('dblclick', function (ev) {
                 const salesLedger = grid.getRow(ev.rowKey)
-                const popupUrl = '${pageContext.request.contextPath}/iycnc/salesLedgerDetail.do?sales_id=' + salesLedger.sales_id;
-                const popupName = 'salesLedgerDetail.do-popup';
+                const popupUrl = '${pageContext.request.contextPath}/iycnc/ito/salesLedgerDetail?sales_id=' + salesLedger.sales_id;
+                const popupName = 'salesLedgerDetail-popup';
                 const popupWidth = 800;
                 const popupHeight = 600;
                 const left = (screen.width - popupWidth) / 2;

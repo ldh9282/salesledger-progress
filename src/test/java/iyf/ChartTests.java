@@ -30,19 +30,19 @@ public class ChartTests {
 	@Setter(onMethod_ = @Autowired)
 	private SalesResultService salesResultService;
 	
-	@Test
+//	@Test
 	public void test() {
 		System.out.println(chartService.salesThisYearResultListByCompanyAndDepartment("IYCNC", "ITO"));
 	}
 	
-//	@Test
+	@Test
 	public void test2() {
 //		sales_result_id(시퀀스라 넣을 필요 없음), total_sales_amount, total_purchase_amount, 
 //		sales_source, client,
 //		subcontract, project_name,
 //		batch_month, company,
 //		handwrite(서비스에서 넣어줌)
-		for (int i = 1; i <= 100; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
@@ -55,7 +55,7 @@ public class ChartTests {
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 200; i++) {
+		for (int i = 1; i <= 2000; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
@@ -68,7 +68,7 @@ public class ChartTests {
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 100; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
@@ -81,7 +81,7 @@ public class ChartTests {
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 300; i++) {
+		for (int i = 1; i <= 3000; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
@@ -94,7 +94,7 @@ public class ChartTests {
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 200; i++) {
+		for (int i = 1; i <= 2000; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
@@ -107,7 +107,7 @@ public class ChartTests {
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 100; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
@@ -120,7 +120,7 @@ public class ChartTests {
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 400; i++) {
+		for (int i = 1; i <= 4000; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
@@ -133,7 +133,7 @@ public class ChartTests {
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 300; i++) {
+		for (int i = 1; i <= 3000; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
@@ -146,7 +146,7 @@ public class ChartTests {
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 200; i++) {
+		for (int i = 1; i <= 2000; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
@@ -159,7 +159,7 @@ public class ChartTests {
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 100; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
@@ -172,7 +172,7 @@ public class ChartTests {
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 400; i++) {
+		for (int i = 1; i <= 4000; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
@@ -185,7 +185,7 @@ public class ChartTests {
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 500; i++) {
+		for (int i = 1; i <= 5000; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);

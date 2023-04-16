@@ -18,13 +18,12 @@
 		(
 			select
 				nextval('t_sales_result_sales_result_id_seq') sales_result_id,
-				t2.company, t2.department
+				t2.company, t2.department,
 				t4.sales_source, t4.client, t4.subcontract, t4.project_name,
 				(t2.sales_mm * t2.sales_unit) total_sales_amount,
 				(t2.purchase_mm * t2.purchase_unit) total_purchase_amount,
 				to_char(date_trunc('month', now()), 'yyyymm') batch_month,
-				'N' handwrite,
-				t2.department
+				'N' handwrite
 				
 			from t_sales_ledger t1
 			inner join t_emp_ledger t2

@@ -86,7 +86,7 @@
 		INNER JOIN t_client t3
 		ON t1.client_id = t3.client_id
 		WHERE t1.company = #{company} and t1.department = #{department} and (t1.del != 'Y' or t1.del is null)
-		ORDER BY t1.emp_pool_id desc
+		ORDER BY 1 desc
 	</select>
 	<select id="selectOne" resultMap="empLedgerMap">
 		SELECT 

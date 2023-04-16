@@ -16,7 +16,7 @@ public class AdminAjaxController {
 	@Autowired
 	private ChartService chartService;
 	
-	@GetMapping("/admin/salesThisYearResultByCompanyAndDepartment.ajax/company/{company}")
+	@GetMapping("/admin/salesThisYearResultByCompanyAndDepartment.ajax/company/{company}/department/{department}")
 	public List<Map<String, Object>> retrieveSalesThisYearResultByCompany(@PathVariable String company, @PathVariable String department) {
 		return chartService.salesThisYearResultListByCompanyAndDepartment(company, department);
 	}

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
+<security:authentication var="principal" property="principal"/>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,16 +109,16 @@
 
 
                     <div class="form-group mb-3">
-                        <label for="sourcingManager">소싱담당자:</label>
-                        <input type="text" class="form-control" id="sourcingManager" name="sourcing_manager">
+                        <label for="sourcing_manager">소싱담당자:</label>
+                        <input type="text" class="form-control" id="sourcing_manager" name="sourcing_manager">
                     </div>
                     <div class="form-group mb-3">
                         <label for="name">이름:</label>
                         <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="phoneNumber">전화번호:</label>
-                        <input type="text" class="form-control" id="phoneNumber" name="phonenumber">
+                        <label for="phonenumber">전화번호:</label>
+                        <input type="text" class="form-control" id="phonenumber" name="phonenumber">
                     </div>
                     <div class="form-group mb-3">
                         <label for="birthdate">생년월일:</label>
@@ -141,24 +144,24 @@
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="schoolName">학교명:</label>
-                        <input type="text" class="form-control" id="schoolName" name="school_name">
+                        <label for="school_name">학교명:</label>
+                        <input type="text" class="form-control" id="school_name" name="school_name">
                     </div>
                     <div class="form-group mb-3">
                         <label for="major">학과:</label>
                         <input type="text" class="form-control" id="major" name="major">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="careerYears">경력:</label>
-                        <input type="text" class="form-control" id="careerYears" name="career_years">
+                        <label for="career_years">경력:</label>
+                        <input type="text" class="form-control" id="career_years" name="career_years">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="careerField">분야:</label>
-                        <input type="text" class="form-control" id="careerField" name="career_field">
+                        <label for="career_field">분야:</label>
+                        <input type="text" class="form-control" id="career_field" name="career_field">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="careerLevel">등급:</label>
-                        <select class="form-control" id="careerLevel" name="career_level">
+                        <label for="career_level">등급:</label>
+                        <select class="form-control" id="career_level" name="career_level">
                             <option value="미기입">미기입</option>
                             <option value="초급">초급</option>
                             <option value="중급">중급</option>
@@ -172,6 +175,10 @@
                     <div class="form-group mb-3">
                         <label for="company">소속:</label>
                         <input type="text" class="form-control" id="company" name="company" value="IYCNC" readonly>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="department">사업부서:</label>
+                        <input type="text" class="form-control" id="department" name="department" value="ITO" readonly>
                     </div>
                     <div class="form-group mb-3">
                         <label for="assign_date">투입일:</label>
@@ -223,7 +230,10 @@
                 <form id="salesLedgerForm">
                      <div class="form-group mb-3">
                         <label for="tech_support">기술지원여부:</label>
-                        <input type="text" class="form-control" id="tech_support" name="tech_support">
+                        <select class="form-control" id="tech_support" name="tech_support">
+                            <option value="예">예</option>
+                            <option value="아니오">아니오</option>
+                        </select>
                     </div>
                      <div class="form-group mb-3">
                         <label for="extra_expense">부대비용항목:</label>
@@ -255,7 +265,10 @@
                     </div>
                      <div class="form-group mb-3">
                         <label for="i_c_class">하도개인법인구분:</label>
-                        <input type="text" class="form-control" id="i_c_class" name="i_c_class">
+                        <select class="form-control" id="i_c_class" name="i_c_class">
+                            <option value="개인">개인</option>
+                            <option value="법인">법인</option>
+                        </select>
                     </div>
                      <div class="form-group mb-3">
                         <label for="i_c_company_name">하도업체명:</label>
@@ -271,7 +284,7 @@
                      </div>
                      <div class="form-group mb-3">
                         <label for="modifier">수정자:</label>
-                        <input type="text" class="form-control" id="modifier" name="modifier">
+                        <input type="text" class="form-control" id="modifier" name="modifier" readonly>
                      </div>
                 </form>
                 
@@ -393,18 +406,18 @@
                                     empPool.birthdate = birthdate.getFullYear() + '-' + String(Number(birthdate.getMonth() + 1)).padStart(2, '0') + '-' + String(birthdate.getDate()).padStart(2, '0');
 
                                     $('#emp_pool_id').val(empPool.emp_pool_id);
-                                    $('#sourcingManager').val(empPool.sourcing_manager);
+                                    $('#sourcing_manager').val(empPool.sourcing_manager);
                                     $('#name').val(empPool.name);
-                                    $('#phoneNumber').val(empPool.phonenumber);
+                                    $('#phonenumber').val(empPool.phonenumber);
                                     $('#birthdate').val(empPool.birthdate);
                                     $('#email').val(empPool.email);
                                     $('#address').val(empPool.address);
                                     $('#education').val(empPool.education);
-                                    $('#schoolName').val(empPool.school_name);
+                                    $('#school_name').val(empPool.school_name);
                                     $('#major').val(empPool.major);
-                                    $('#careerYears').val(empPool.career_years);
-                                    $('#careerField').val(empPool.career_field);
-                                    $('#careerLevel').val(empPool.career_level);
+                                    $('#career_years').val(empPool.career_years);
+                                    $('#career_field').val(empPool.career_field);
+                                    $('#career_level').val(empPool.career_level);
                                     $('#project_assign').val(empPool.project_assign);
                                     $('#del').val(empPool.del);
                                     
@@ -428,7 +441,7 @@
             		"salesLedger": {
             			"sales_id": $('input[name=sales_id]').val(),
             			"emp_id": $('input[name=emp_id]').val(),
-            			"tech_support": $('input[name=tech_support]').val(),
+            			"tech_support": $('select[name=tech_support]').val(),
             			"extra_expense": $('input[name=extra_expense]').val(),
             			"extra_expense_amount": $('input[name=extra_expense_amount]').val(),
             			"job_level": $('input[name=job_level]').val(),
@@ -436,7 +449,7 @@
             			"job_field": $('input[name=job_field]').val(),
             			"baby_leave_comments": $('input[name=baby_leave_comments]').val(),
             			"emp_type": $('input[name=emp_type]').val(),
-            			"i_c_class": $('input[name=i_c_class]').val(),
+            			"i_c_class": $('select[name=i_c_class]').val(),
             			"i_c_company_name": $('input[name=i_c_company_name]').val(),
             			"recent_amount_history": $('input[name=recent_amount_history]').val(),
             			"payday": $('input[name=payday]').val(),
@@ -447,6 +460,7 @@
 	                    "emp_pool_id": $('input[name=emp_pool_id]').val(),
 	                    "client_id": $('input[name=client_id]').val(),
 	                    "company": $('input[name=company]').val(),
+	                    "department": $('input[name=department]').val(),
 	                    "assign_date": new Date($('input[name=assign_date]').val()),
 	                    "end_date": new Date($('input[name=end_date]').val()),
 	                    "sales_mm": $('input[name=sales_mm]').val() ? $('input[name=sales_mm]').val() : 0,
@@ -456,6 +470,8 @@
 	                    "comments": $('input[name=comments]').val(),
 	                    "resume_submit_date": new Date($('input[name=resume_submit_date]').val()),
 	                    "resign_date": new Date($('input[name=resign_date]').val()),
+	                    "i_contract_date": new Date($('input[name=i_contract_date]').val()),
+	                    "c_contract_date": new Date($('input[name=c_contract_date]').val()),
 	                    "progress": $('input[name=progress]').val(),
 	                    "progress_reason": $('input[name=progress_reason]').val(),
 	                    "issues": $('input[name=issues]').val(),
@@ -475,11 +491,12 @@
 	                    "birthdate": new Date($('input[name=birthdate]').val()),
 	                    "email": $('input[name=email]').val(),
 	                    "address": $('input[name=address]').val(),
+	                    "education": $('select[name=education]').val(),
 	                    "school_name": $('input[name=school_name]').val(),
 	                    "major": $('input[name=major]').val(),
 	                    "career_years": $('input[name=career_years]').val(),
 	                    "career_field": $('input[name=career_field]').val(),
-	                    "career_level": $('input[name=career_level]').val(),
+	                    "career_level": $('select[name=career_level]').val(),
 	                    "project_assign": $('input[name=project_assign]').val(),
 	                    "del": $('input[name=del]').val(),
 	                }
@@ -520,6 +537,17 @@
 			});
             
             $('#btnInclude').tooltip();
+            
+            $.ajax({
+    			type: 'GET',
+    			url: '${pageContext.request.contextPath}/member.ajax/username/' + '${principal.username}',
+    			success: function(member) {
+    				$('#modifier').removeAttr('readonly');
+    				$('#modifier').val(member.name);
+    				$('#modifier').attr('readonly', "");
+    				
+    			}
+    		});
             
         });
 

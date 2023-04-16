@@ -88,7 +88,7 @@
                                     <script>
                                         $(document).ready(function () {
                                             $.ajax({
-                                                url: "${pageContext.request.contextPath}/admin/salesThisYearResultByCompany.ajax/company/IYCNC",
+                                                url: "${pageContext.request.contextPath}/admin/salesThisYearResultByCompanyAndDepartment.ajax/company/IYCNC/department/ITO",
                                                 method: "GET",
                                                 dataType: "json",
                                                 success: function (response) {
@@ -179,106 +179,106 @@
                                     <div id="columnChart2"></div>
                                     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
                                     <script>
-                                        $(document).ready(function () {
-                                            $.ajax({
-                                                url: "${pageContext.request.contextPath}/admin/sales/salesByBranchLocationList/" + "신도림점",
-                                                method: "GET",
-                                                dataType: "json",
-                                                success: function (response) {
+//                                         $(document).ready(function () {
+//                                             $.ajax({
+//                                                 url: "${pageContext.request.contextPath}/admin/sales/salesByBranchLocationList/" + "신도림점",
+//                                                 method: "GET",
+//                                                 dataType: "json",
+//                                                 success: function (response) {
 
-                                                    const tempList1 = []; // 셜록홈즈
-                                                    const tempList2 = []; // 지구탈출
-                                                    const tempList3 = []; // 황금열쇠
+//                                                     const tempList1 = []; // 셜록홈즈
+//                                                     const tempList2 = []; // 지구탈출
+//                                                     const tempList3 = []; // 황금열쇠
 
-                                                    for (let i = 0; i < 12 * 3; i++) {
-                                                        const element = response[i];
+//                                                     for (let i = 0; i < 12 * 3; i++) {
+//                                                         const element = response[i];
 
-                                                        if (element.questName === '셜록홈즈') {
-                                                            tempList1.push(element);
-                                                        } else if (element.questName === '지구탈출') {
-                                                            tempList2.push(element);
-                                                        } else if (element.questName === '황금열쇠') {
-                                                            tempList3.push(element);
-                                                        }
-                                                    }
+//                                                         if (element.questName === '셜록홈즈') {
+//                                                             tempList1.push(element);
+//                                                         } else if (element.questName === '지구탈출') {
+//                                                             tempList2.push(element);
+//                                                         } else if (element.questName === '황금열쇠') {
+//                                                             tempList3.push(element);
+//                                                         }
+//                                                     }
 
-                                                    const list1 = tempList1.reverse(); // 셜록홈즈
-                                                    const salesList1 = [];
-                                                    const monthList = [];
+//                                                     const list1 = tempList1.reverse(); // 셜록홈즈
+//                                                     const salesList1 = [];
+//                                                     const monthList = [];
 
-                                                    list1.forEach((element) => {
-                                                        salesList1.push(element.sales / 10000);
-                                                    });
-                                                    list1.forEach((element) => {
-                                                        monthList.push(element.month);
-                                                    });
+//                                                     list1.forEach((element) => {
+//                                                         salesList1.push(element.sales / 10000);
+//                                                     });
+//                                                     list1.forEach((element) => {
+//                                                         monthList.push(element.month);
+//                                                     });
 
-                                                    const list2 = tempList2.reverse(); // 지구탈출
-                                                    const salesList2 = [];
+//                                                     const list2 = tempList2.reverse(); // 지구탈출
+//                                                     const salesList2 = [];
 
-                                                    list2.forEach((element) => {
-                                                        salesList2.push(element.sales / 10000);
-                                                    });
+//                                                     list2.forEach((element) => {
+//                                                         salesList2.push(element.sales / 10000);
+//                                                     });
 
-                                                    const list3 = tempList3.reverse(); // 황금열쇠
-                                                    const salesList3 = [];
+//                                                     const list3 = tempList3.reverse(); // 황금열쇠
+//                                                     const salesList3 = [];
 
-                                                    list3.forEach((element) => {
-                                                        salesList3.push(element.sales / 10000);
-                                                    });
+//                                                     list3.forEach((element) => {
+//                                                         salesList3.push(element.sales / 10000);
+//                                                     });
 
-                                                    new ApexCharts(document.querySelector("#columnChart2"), {
-                                                        series: [{
-                                                            name: list1[0].questName,
-                                                            data: salesList1
-                                                        }, {
-                                                            name: list2[0].questName,
-                                                            data: salesList2
-                                                        }, {
-                                                            name: list3[0].questName,
-                                                            data: salesList3
-                                                        }],
-                                                        chart: {
-                                                            type: 'bar',
-                                                            height: 350
-                                                        },
-                                                        plotOptions: {
-                                                            bar: {
-                                                                horizontal: false,
-                                                                columnWidth: '55%',
-                                                                endingShape: 'rounded'
-                                                            },
-                                                        },
-                                                        dataLabels: {
-                                                            enabled: false
-                                                        },
-                                                        stroke: {
-                                                            show: true,
-                                                            width: 2,
-                                                            colors: ['transparent']
-                                                        },
-                                                        xaxis: {
-                                                            categories: monthList,
-                                                        },
-                                                        yaxis: {
-                                                            title: {
-                                                                text: '(만원)'
-                                                            }
-                                                        },
-                                                        fill: {
-                                                            opacity: 1
-                                                        },
-                                                        tooltip: {
-                                                            y: {
-                                                                formatter: function (val) {
-                                                                    return val + "만원"
-                                                                }
-                                                            }
-                                                        }
-                                                    }).render();
-                                                }
-                                            })
-                                        });
+//                                                     new ApexCharts(document.querySelector("#columnChart2"), {
+//                                                         series: [{
+//                                                             name: list1[0].questName,
+//                                                             data: salesList1
+//                                                         }, {
+//                                                             name: list2[0].questName,
+//                                                             data: salesList2
+//                                                         }, {
+//                                                             name: list3[0].questName,
+//                                                             data: salesList3
+//                                                         }],
+//                                                         chart: {
+//                                                             type: 'bar',
+//                                                             height: 350
+//                                                         },
+//                                                         plotOptions: {
+//                                                             bar: {
+//                                                                 horizontal: false,
+//                                                                 columnWidth: '55%',
+//                                                                 endingShape: 'rounded'
+//                                                             },
+//                                                         },
+//                                                         dataLabels: {
+//                                                             enabled: false
+//                                                         },
+//                                                         stroke: {
+//                                                             show: true,
+//                                                             width: 2,
+//                                                             colors: ['transparent']
+//                                                         },
+//                                                         xaxis: {
+//                                                             categories: monthList,
+//                                                         },
+//                                                         yaxis: {
+//                                                             title: {
+//                                                                 text: '(만원)'
+//                                                             }
+//                                                         },
+//                                                         fill: {
+//                                                             opacity: 1
+//                                                         },
+//                                                         tooltip: {
+//                                                             y: {
+//                                                                 formatter: function (val) {
+//                                                                     return val + "만원"
+//                                                                 }
+//                                                             }
+//                                                         }
+//                                                     }).render();
+//                                                 }
+//                                             })
+//                                         });
 
                                     </script>
                                     <!-- End Column Chart -->
@@ -290,106 +290,106 @@
                                     <div id="columnChart3"></div>
                                     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
                                     <script>
-                                        $(document).ready(function () {
-                                            $.ajax({
-                                                url: "${pageContext.request.contextPath}/admin/sales/salesByBranchLocationList/" + "신촌점",
-                                                method: "GET",
-                                                dataType: "json",
-                                                success: function (response) {
+//                                         $(document).ready(function () {
+//                                             $.ajax({
+//                                                 url: "${pageContext.request.contextPath}/admin/sales/salesByBranchLocationList/" + "신촌점",
+//                                                 method: "GET",
+//                                                 dataType: "json",
+//                                                 success: function (response) {
 
-                                                    const tempList1 = []; // 셜록홈즈
-                                                    const tempList2 = []; // 지구탈출
-                                                    const tempList3 = []; // 황금열쇠
+//                                                     const tempList1 = []; // 셜록홈즈
+//                                                     const tempList2 = []; // 지구탈출
+//                                                     const tempList3 = []; // 황금열쇠
 
-                                                    for (let i = 0; i < 12 * 3; i++) {
-                                                        const element = response[i];
+//                                                     for (let i = 0; i < 12 * 3; i++) {
+//                                                         const element = response[i];
 
-                                                        if (element.questName === '셜록홈즈') {
-                                                            tempList1.push(element);
-                                                        } else if (element.questName === '지구탈출') {
-                                                            tempList2.push(element);
-                                                        } else if (element.questName === '황금열쇠') {
-                                                            tempList3.push(element);
-                                                        }
-                                                    }
+//                                                         if (element.questName === '셜록홈즈') {
+//                                                             tempList1.push(element);
+//                                                         } else if (element.questName === '지구탈출') {
+//                                                             tempList2.push(element);
+//                                                         } else if (element.questName === '황금열쇠') {
+//                                                             tempList3.push(element);
+//                                                         }
+//                                                     }
 
-                                                    const list1 = tempList1.reverse(); // 셜록홈즈
-                                                    const salesList1 = [];
-                                                    const monthList = [];
+//                                                     const list1 = tempList1.reverse(); // 셜록홈즈
+//                                                     const salesList1 = [];
+//                                                     const monthList = [];
 
-                                                    list1.forEach((element) => {
-                                                        salesList1.push(element.sales / 10000);
-                                                    });
-                                                    list1.forEach((element) => {
-                                                        monthList.push(element.month);
-                                                    });
+//                                                     list1.forEach((element) => {
+//                                                         salesList1.push(element.sales / 10000);
+//                                                     });
+//                                                     list1.forEach((element) => {
+//                                                         monthList.push(element.month);
+//                                                     });
 
-                                                    const list2 = tempList2.reverse(); // 지구탈출
-                                                    const salesList2 = [];
+//                                                     const list2 = tempList2.reverse(); // 지구탈출
+//                                                     const salesList2 = [];
 
-                                                    list2.forEach((element) => {
-                                                        salesList2.push(element.sales / 10000);
-                                                    });
+//                                                     list2.forEach((element) => {
+//                                                         salesList2.push(element.sales / 10000);
+//                                                     });
 
-                                                    const list3 = tempList3.reverse(); // 황금열쇠
-                                                    const salesList3 = [];
+//                                                     const list3 = tempList3.reverse(); // 황금열쇠
+//                                                     const salesList3 = [];
 
-                                                    list3.forEach((element) => {
-                                                        salesList3.push(element.sales / 10000);
-                                                    });
+//                                                     list3.forEach((element) => {
+//                                                         salesList3.push(element.sales / 10000);
+//                                                     });
 
-                                                    new ApexCharts(document.querySelector("#columnChart3"), {
-                                                        series: [{
-                                                            name: list1[0].questName,
-                                                            data: salesList1
-                                                        }, {
-                                                            name: list2[0].questName,
-                                                            data: salesList2
-                                                        }, {
-                                                            name: list3[0].questName,
-                                                            data: salesList3
-                                                        }],
-                                                        chart: {
-                                                            type: 'bar',
-                                                            height: 350
-                                                        },
-                                                        plotOptions: {
-                                                            bar: {
-                                                                horizontal: false,
-                                                                columnWidth: '55%',
-                                                                endingShape: 'rounded'
-                                                            },
-                                                        },
-                                                        dataLabels: {
-                                                            enabled: false
-                                                        },
-                                                        stroke: {
-                                                            show: true,
-                                                            width: 2,
-                                                            colors: ['transparent']
-                                                        },
-                                                        xaxis: {
-                                                            categories: monthList,
-                                                        },
-                                                        yaxis: {
-                                                            title: {
-                                                                text: '(만원)'
-                                                            }
-                                                        },
-                                                        fill: {
-                                                            opacity: 1
-                                                        },
-                                                        tooltip: {
-                                                            y: {
-                                                                formatter: function (val) {
-                                                                    return val + "만원"
-                                                                }
-                                                            }
-                                                        }
-                                                    }).render();
-                                                }
-                                            })
-                                        });
+//                                                     new ApexCharts(document.querySelector("#columnChart3"), {
+//                                                         series: [{
+//                                                             name: list1[0].questName,
+//                                                             data: salesList1
+//                                                         }, {
+//                                                             name: list2[0].questName,
+//                                                             data: salesList2
+//                                                         }, {
+//                                                             name: list3[0].questName,
+//                                                             data: salesList3
+//                                                         }],
+//                                                         chart: {
+//                                                             type: 'bar',
+//                                                             height: 350
+//                                                         },
+//                                                         plotOptions: {
+//                                                             bar: {
+//                                                                 horizontal: false,
+//                                                                 columnWidth: '55%',
+//                                                                 endingShape: 'rounded'
+//                                                             },
+//                                                         },
+//                                                         dataLabels: {
+//                                                             enabled: false
+//                                                         },
+//                                                         stroke: {
+//                                                             show: true,
+//                                                             width: 2,
+//                                                             colors: ['transparent']
+//                                                         },
+//                                                         xaxis: {
+//                                                             categories: monthList,
+//                                                         },
+//                                                         yaxis: {
+//                                                             title: {
+//                                                                 text: '(만원)'
+//                                                             }
+//                                                         },
+//                                                         fill: {
+//                                                             opacity: 1
+//                                                         },
+//                                                         tooltip: {
+//                                                             y: {
+//                                                                 formatter: function (val) {
+//                                                                     return val + "만원"
+//                                                                 }
+//                                                             }
+//                                                         }
+//                                                     }).render();
+//                                                 }
+//                                             })
+//                                         });
 
                                     </script>
                                     <!-- End Column Chart -->
