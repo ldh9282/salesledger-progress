@@ -133,6 +133,12 @@
                                     <span class="form-check-label">이익</span>
                                 </label>
                             </div>
+                            <div class="col">
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="handwrite" checked>
+                                    <span class="form-check-label">수기작성여부</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <!-- End 그리드에서 보여줄 필드 체크리스트-->
@@ -236,6 +242,12 @@
                         width: 'auto',
                         align: 'center',
                     },
+                    {
+                        header: '수기작성여부',
+                        name: 'handwrite',
+                        width: 'auto',
+                        align: 'center',
+                    },
                 ],
                 rowHeaders: ['rowNum'],
                 pageOptions: {
@@ -320,6 +332,15 @@
 
                 }
             });
+       		
+            $('th[data-column-name=total_sales_amount]').attr('title', '매출가는 매출원장의 매출MM 과 매출단가를 계산한 결과입니다.');
+            $('th[data-column-name=total_sales_amount]').tooltip();
+            
+            $('th[data-column-name=total_purchase_amount]').attr('title', '매입가는 매출원장의 매입MM 과 매입단가를 계산한 결과입니다.');
+            $('th[data-column-name=total_purchase_amount]').tooltip();
+            
+            $('th[data-column-name=handwrite]').attr('title', '수기데이터는 매출원장에 없는 데이터를 추가한 것으로 배치에 의해 추가/삭제 되지 않습니다.');
+            $('th[data-column-name=handwrite]').tooltip();
 
 
         });

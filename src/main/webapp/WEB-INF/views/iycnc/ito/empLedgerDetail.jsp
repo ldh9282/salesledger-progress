@@ -228,7 +228,7 @@
 		                <button type="button" class="btn btn-danger " id="btnResign" title="해당 인력이 프로젝트에서 철수할 때 이용하세요. 철수일이 포함된 달까지 매출실적에 반영됩니다.">철수</button>
 					</div>
 					<div class="text-end">
-		                <button type="button" class="btn btn-danger" id="btnForceDelete" title="투입확정시 자동으로 추가된 매출데이터도 강제로 삭제됩니다. 실수로 투입확정하였을 때만 이용하세요">강제삭제</button>
+		                <button type="button" class="btn btn-danger" id="btnForceDelete" title="강제삭제시 매출원장데이터도 강제로 삭제됩니다. 실수로 투입을 확정하였거나 이미 지급이 끝난 철수자일 때 이용하세요.">강제삭제</button>
 					</div>
 				</div>
             </div>
@@ -590,7 +590,7 @@
             $('#btnForceDelete').click(function () {
             	const emp_id = $('#emp_id').val();
                 const del = 'Y';
-                if (confirm("강제삭제 시 연관된 매출원장의 데이터도 삭제됩니다. 실수로 투입확정을 누르셔서 강제삭제하겠습니까?")) {
+                if (confirm("강제삭제 시 인력기초원장 뿐만 아니라 연관된 매출원장의 데이터도 함께 삭제됩니다. 정말로 강제삭제하겠습니까?")) {
                 	$.ajax({
     					type: 'PATCH',
     					url: '${pageContext.request.contextPath}/empLedger.ajax/' + emp_id + '/ForceDel/' + del,
