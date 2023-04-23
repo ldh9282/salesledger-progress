@@ -144,6 +144,16 @@
                     <!-- End 그리드에서 보여줄 필드 체크리스트-->
                 </div>
 
+          
+                <div class="form-group mt-3 mb-3">
+                    <button type="button" id="btnShowRegisterPage" class="btn btn-primary">수기데이터 추가</button>
+                    <div class="float-end">
+                        <input type="text" name="keyword" id="keyword" placeholder="해당년월">
+                        <button type="button" id="btnKeywordSearch">검색</button>
+                    </div>
+                </div>
+
+
 
 
                 <div id="grid" style="width: 70vw;"></div>
@@ -267,7 +277,7 @@
                 }
             });
 
-            // 그리드 데이터 ajax로 가져오기
+            // 그리드 데이터 ajax로 가져오기 (현재날짜의 해당년월)
             $.ajax({
                 url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYCNC/department/ITO/batch_month/" + yyyymm,
                 method: "GET",
@@ -331,6 +341,40 @@
 
 
                 }
+            });
+       		
+       		$('#btnKeywordSearch').click(function() {
+                // 정규식 패턴: 네 자리 연도 + 두 자리 월
+       		    const regex = /^(19|20)\d\d(0[1-9]|1[0-2])$/;
+
+                if (regex.test($('#keyword').val())) {
+                    // 그리드 데이터 ajax로 가져오기 (키워드에 의한 해당년월)
+                    $.ajax({
+                        url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYCNC/department/ITO/batch_month/" + $('#keyword').val(),
+                        method: "GET",
+                        success: function (salesResult) {
+                            salesResult.forEach(item => {
+                                item.total_margin_amount = Number(item.total_sales_amount) - Number(item.total_purchase_amount);
+                            });
+                            grid.resetData(salesResult);
+                        }
+                    });
+                } else {
+                    alert('올바른 해당년월 키워드를 입력한 뒤 다시 검색해주세요');
+                }
+                
+			});
+
+            // 수기데이터 등록페이지 버튼 클릭 이벤트: 수기데이터 등록페이지 팝업
+            $('#btnShowRegisterPage').click(function () {
+                const popupUrl = '${pageContext.request.contextPath}/iycnc/ito/salesResultRegister';
+                const popupName = 'empPoolRegister-popup';
+                const popupWidth = 800;
+                const popupHeight = 600;
+                const left = (screen.width - popupWidth) / 2;
+                const top = (screen.height - popupHeight) / 2;
+
+                window.open(popupUrl, popupName, 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + left + ', top=' + top);
             });
        		
             $('th[data-column-name=total_sales_amount]').attr('title', '매출가는 매출원장의 매출MM 과 매출단가를 계산한 결과입니다.');
