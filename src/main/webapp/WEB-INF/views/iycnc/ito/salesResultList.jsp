@@ -197,66 +197,77 @@
                         name: 'batch_month',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '회사',
                         name: 'company',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {//
                         header: '사업부서',
                         name: 'department',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '매출처',
                         name: 'sales_source',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '거래처',
                         name: 'client',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '도급내역',
                         name: 'subcontract',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '프로젝트',
                         name: 'project_name',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                     {
                         header: '매출가',
                         name: 'total_sales_amount',
                         width: 'auto',
                         align: 'center',
+                        filter: 'number'
                     },
                     {
                         header: '매입가',
                         name: 'total_purchase_amount',
                         width: 'auto',
                         align: 'center',
+                        filter: 'number'
                     },
                     {
                         header: '이익',
                         name: 'total_margin_amount',
                         width: 'auto',
                         align: 'center',
+                        filter: 'number'
                     },
                     {
                         header: '수기작성여부',
                         name: 'handwrite',
                         width: 'auto',
                         align: 'center',
+                        filter: 'select'
                     },
                 ],
                 rowHeaders: ['rowNum'],

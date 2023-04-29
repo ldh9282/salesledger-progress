@@ -42,157 +42,157 @@ public class ChartTests {
 //		subcontract, project_name,
 //		batch_month, company,
 //		handwrite(서비스에서 넣어줌)
-		for (int i = 1; i <= 1000; i++) {
+		for (int i = 1; i <= 100; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
-			salesResult.setSales_source("매출처" + i);
-			salesResult.setClient("거래처" + i);
-			salesResult.setSubcontract("도급내역" + i);
-			salesResult.setProject_name("프로젝트명" + i);
+			salesResult.setSales_source("수기데이터매출처" + i);
+			salesResult.setClient("수기데이터거래처" + i);
+			salesResult.setSubcontract("수기데이터도급내역" + i);
+			salesResult.setProject_name("수기데이터프로젝트명" + i);
 			salesResult.setBatch_month("202301");
 			salesResult.setCompany("IYCNC");
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 2000; i++) {
+		for (int i = 1; i <= 200; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
-			salesResult.setSales_source("매출처" + i);
-			salesResult.setClient("거래처" + i);
-			salesResult.setSubcontract("도급내역" + i);
-			salesResult.setProject_name("프로젝트명" + i);
+			salesResult.setSales_source("수기데이터매출처" + i);
+			salesResult.setClient("수기데이터거래처" + i);
+			salesResult.setSubcontract("수기데이터도급내역" + i);
+			salesResult.setProject_name("수기데이터프로젝트명" + i);
 			salesResult.setBatch_month("202302");
 			salesResult.setCompany("IYCNC");
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 1000; i++) {
+		for (int i = 1; i <= 100; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
-			salesResult.setSales_source("매출처" + i);
-			salesResult.setClient("거래처" + i);
-			salesResult.setSubcontract("도급내역" + i);
-			salesResult.setProject_name("프로젝트명" + i);
+			salesResult.setSales_source("수기데이터매출처" + i);
+			salesResult.setClient("수기데이터거래처" + i);
+			salesResult.setSubcontract("수기데이터도급내역" + i);
+			salesResult.setProject_name("수기데이터프로젝트명" + i);
 			salesResult.setBatch_month("202303");
 			salesResult.setCompany("IYCNC");
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 3000; i++) {
+		for (int i = 1; i <= 300; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
-			salesResult.setSales_source("매출처" + i);
-			salesResult.setClient("거래처" + i);
-			salesResult.setSubcontract("도급내역" + i);
-			salesResult.setProject_name("프로젝트명" + i);
+			salesResult.setSales_source("수기데이터매출처" + i);
+			salesResult.setClient("수기데이터거래처" + i);
+			salesResult.setSubcontract("수기데이터도급내역" + i);
+			salesResult.setProject_name("수기데이터프로젝트명" + i);
 			salesResult.setBatch_month("202304");
 			salesResult.setCompany("IYCNC");
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 2000; i++) {
+		for (int i = 1; i <= 200; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
-			salesResult.setSales_source("매출처" + i);
-			salesResult.setClient("거래처" + i);
-			salesResult.setSubcontract("도급내역" + i);
-			salesResult.setProject_name("프로젝트명" + i);
+			salesResult.setSales_source("수기데이터매출처" + i);
+			salesResult.setClient("수기데이터거래처" + i);
+			salesResult.setSubcontract("수기데이터도급내역" + i);
+			salesResult.setProject_name("수기데이터프로젝트명" + i);
 			salesResult.setBatch_month("202305");
 			salesResult.setCompany("IYCNC");
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 1000; i++) {
+		for (int i = 1; i <= 100; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
-			salesResult.setSales_source("매출처" + i);
-			salesResult.setClient("거래처" + i);
-			salesResult.setSubcontract("도급내역" + i);
-			salesResult.setProject_name("프로젝트명" + i);
+			salesResult.setSales_source("수기데이터매출처" + i);
+			salesResult.setClient("수기데이터거래처" + i);
+			salesResult.setSubcontract("수기데이터도급내역" + i);
+			salesResult.setProject_name("수기데이터프로젝트명" + i);
 			salesResult.setBatch_month("202306");
 			salesResult.setCompany("IYCNC");
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 4000; i++) {
+		for (int i = 1; i <= 400; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
-			salesResult.setSales_source("매출처" + i);
-			salesResult.setClient("거래처" + i);
-			salesResult.setSubcontract("도급내역" + i);
+			salesResult.setSales_source("수기데이터매출처" + i);
+			salesResult.setClient("수기데이터거래처" + i);
+			salesResult.setSubcontract("수기데이터도급내역" + i);
 			salesResult.setProject_name("프로젝트명" + i);
 			salesResult.setBatch_month("202307");
 			salesResult.setCompany("IYCNC");
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 3000; i++) {
+		for (int i = 1; i <= 300; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
-			salesResult.setSales_source("매출처" + i);
-			salesResult.setClient("거래처" + i);
-			salesResult.setSubcontract("도급내역" + i);
-			salesResult.setProject_name("프로젝트명" + i);
+			salesResult.setSales_source("수기데이터매출처" + i);
+			salesResult.setClient("수기데이터거래처" + i);
+			salesResult.setSubcontract("수기데이터도급내역" + i);
+			salesResult.setProject_name("수기데이터프로젝트명" + i);
 			salesResult.setBatch_month("202308");
 			salesResult.setCompany("IYCNC");
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 2000; i++) {
+		for (int i = 1; i <= 200; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
-			salesResult.setSales_source("매출처" + i);
-			salesResult.setClient("거래처" + i);
-			salesResult.setSubcontract("도급내역" + i);
-			salesResult.setProject_name("프로젝트명" + i);
+			salesResult.setSales_source("수기데이터매출처" + i);
+			salesResult.setClient("수기데이터거래처" + i);
+			salesResult.setSubcontract("수기데이터도급내역" + i);
+			salesResult.setProject_name("수기데이터프로젝트명" + i);
 			salesResult.setBatch_month("202309");
 			salesResult.setCompany("IYCNC");
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 1000; i++) {
+		for (int i = 1; i <= 100; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
-			salesResult.setSales_source("매출처" + i);
-			salesResult.setClient("거래처" + i);
-			salesResult.setSubcontract("도급내역" + i);
-			salesResult.setProject_name("프로젝트명" + i);
+			salesResult.setSales_source("수기데이터매출처" + i);
+			salesResult.setClient("수기데이터거래처" + i);
+			salesResult.setSubcontract("수기데이터도급내역" + i);
+			salesResult.setProject_name("수기데이터프로젝트명" + i);
 			salesResult.setBatch_month("202310");
 			salesResult.setCompany("IYCNC");
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 4000; i++) {
+		for (int i = 1; i <= 400; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
-			salesResult.setSales_source("매출처" + i);
-			salesResult.setClient("거래처" + i);
-			salesResult.setSubcontract("도급내역" + i);
-			salesResult.setProject_name("프로젝트명" + i);
+			salesResult.setSales_source("수기데이터매출처" + i);
+			salesResult.setClient("수기데이터거래처" + i);
+			salesResult.setSubcontract("수기데이터도급내역" + i);
+			salesResult.setProject_name("수기데이터프로젝트명" + i);
 			salesResult.setBatch_month("202311");
 			salesResult.setCompany("IYCNC");
 			salesResult.setDepartment("ITO");
 			salesResultService.insertByHandwrite(salesResult);
 		}
-		for (int i = 1; i <= 5000; i++) {
+		for (int i = 1; i <= 500; i++) {
 			SalesResult salesResult = new SalesResult();
 			salesResult.setTotal_sales_amount(10000);
 			salesResult.setTotal_purchase_amount(8000);
-			salesResult.setSales_source("매출처" + i);
-			salesResult.setClient("거래처" + i);
-			salesResult.setSubcontract("도급내역" + i);
-			salesResult.setProject_name("프로젝트명" + i);
+			salesResult.setSales_source("수기데이터매출처" + i);
+			salesResult.setClient("수기데이터거래처" + i);
+			salesResult.setSubcontract("수기데이터도급내역" + i);
+			salesResult.setProject_name("수기데이터프로젝트명" + i);
 			salesResult.setBatch_month("202312");
 			salesResult.setCompany("IYCNC");
 			salesResult.setDepartment("ITO");

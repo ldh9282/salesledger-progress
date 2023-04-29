@@ -18,7 +18,7 @@ public class IYCNCSalesResultBatchConfig {
 	private SalesResultBatchService salesResultBatchService;
 	
 //	@Scheduled(cron = "0 0 20 * * *")
-	@Scheduled(cron = "15 * * * * *")
+	@Scheduled(cron = "0 * * * * *")
 	public void monthlySalesBatchByIYCNCAndITO() {
 		System.out.println(LocalDateTime.now() + ": IYCNC ITO 매출실적 배치 작업");
 		salesResultBatchService.monthlySalesBatchByCompanyAndDepartment("IYCNC", "ITO");
