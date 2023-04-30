@@ -58,8 +58,8 @@
     <!-- End Sidebar-->
 
     <main id="main" class="main">
-        <section>
-            <div class="container">
+<!--         <section> -->
+<!--             <div class="container"> -->
                 <i class="ri-arrow-down-s-fill" id="toggle-icon"><span>접기/내리기</span></i>
                 <div class="toggle-content mt-3" id="toggle-item">
                     <!-- ======= 그리드에서 보여줄 필드 체크리스트 ======= -->
@@ -145,7 +145,7 @@
                 </div>
 
           
-                <div class="form-group mt-3 mb-3">
+                <div id="batchmonth-search" class="form-group mt-3 mb-3" style="width: 70vw;">
                     <button type="button" id="btnShowRegisterPage" class="btn btn-primary">수기데이터 추가</button>
                     <div class="float-end">
                         <input type="text" name="keyword" id="keyword" placeholder="해당년월">
@@ -157,8 +157,8 @@
 
 
                 <div id="grid" style="width: 70vw;"></div>
-            </div>
-        </section>
+<!--             </div> -->
+<!--         </section> -->
 
     </main><!-- End #main -->
 
@@ -386,6 +386,21 @@
                 const top = (screen.height - popupHeight) / 2;
 
                 window.open(popupUrl, popupName, 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + left + ', top=' + top);
+            });
+       		
+       		// 사이드바 접을 때 그리드 리사이징
+            $('i.toggle-sidebar-btn').click(function() {
+            	if ($('body').attr('class') === 'toggle-sidebar') {
+            		$('#batchmonth-search').attr('style', 'width: 90vw;');
+            		$('#grid').attr('style', 'width: 90vw;');
+            		grid.refreshLayout();
+            	} else {
+            		$('#batchmonth-search').attr('style', 'width: 70vw;');
+            		$('#grid').attr('style', 'width: 70vw;')
+            		grid.refreshLayout();
+            	}
+            	
+
             });
        		
             $('th[data-column-name=total_sales_amount]').attr('title', '매출가는 매출원장의 매출MM 과 매출단가를 계산한 결과입니다.');

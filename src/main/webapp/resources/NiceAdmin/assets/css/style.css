@@ -381,12 +381,12 @@ h6 {
 }
 
 .logo img {
-  max-height: 26px;
+  max-height: 22px;
   margin-right: 6px;
 }
 
 .logo span {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 700;
   color: #012970;
   font-family: "Nunito", sans-serif;
@@ -618,7 +618,7 @@ h6 {
   top: 60px;
   left: 0;
   bottom: 0;
-  width: 300px;
+  width: 250px;
   z-index: 996;
   transition: all 0.3s;
   padding: 20px;
@@ -688,7 +688,7 @@ h6 {
 }
 
 .sidebar-nav .nav-heading {
-  font-size: 11px;
+  font-size: 15px;
   text-transform: uppercase;
   color: #899bbd;
   font-weight: 600;
