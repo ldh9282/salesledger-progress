@@ -578,7 +578,61 @@
                 pageOptions: {
 	                useClient: true,
 	                perPage: 50
-                }
+                },
+                contextMenu: ({ rowKey, columnName }) => (
+                        [
+                            [
+                                {
+                                    name: 'export',
+                                    label: 'Export',
+                                    subMenu: [
+                                        // 기본 설정 옵션을 이용한 내보내기
+                                        {
+                                            name: 'default',
+                                            label: '기본',
+                                            subMenu: [
+                                                {
+                                                    name: 'csvExport',
+                                                    label: 'CSV export',
+                                                    action: () => {
+                                                        grid.export('csv', { fileName: '테스트제목' });
+                                                    }
+                                                },
+                                                {
+                                                    name: 'excelExport',
+                                                    label: 'Excel export',
+                                                    action: () => {
+                                                        grid.export('xlsx', { fileName: '테스트제목' });
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                        // 지정한 다른 옵션을 이용한 내보내기 추가
+                                        {
+                                            name: 'withoutHeader',
+                                            label: '헤더 미포함',
+                                            subMenu: [
+                                                {
+                                                    name: 'csvExport',
+                                                    label: 'CSV export',
+                                                    action: () => {
+                                                        grid.export('csv', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                    }
+                                                },
+                                                {
+                                                    name: 'excelExport',
+                                                    label: 'Excel export',
+                                                    action: () => {
+                                                        grid.export('xlsx', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                    ],
+                                }
+                            ],
+                        ]
+                    ),
             });
             // 그리드 테마
             tui.Grid.applyTheme('striped', {

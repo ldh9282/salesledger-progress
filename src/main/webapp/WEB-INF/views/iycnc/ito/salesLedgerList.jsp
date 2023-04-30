@@ -37,6 +37,8 @@
 
     <!-- toast-grid -->
     <link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
+    <!-- toast-grid-pagination -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -748,7 +750,66 @@
                         width: 'auto',
                         align: 'center',
                     },
-                ]
+                ],
+                rowHeaders: ['rowNum'],
+                pageOptions: {
+	                useClient: true,
+	                perPage: 50
+                },
+                contextMenu: ({ rowKey, columnName }) => (
+                        [
+                            [
+                                {
+                                    name: 'export',
+                                    label: 'Export',
+                                    subMenu: [
+                                        // 기본 설정 옵션을 이용한 내보내기
+                                        {
+                                            name: 'default',
+                                            label: '기본',
+                                            subMenu: [
+                                                {
+                                                    name: 'csvExport',
+                                                    label: 'CSV export',
+                                                    action: () => {
+                                                        grid.export('csv', { fileName: '테스트제목' });
+                                                    }
+                                                },
+                                                {
+                                                    name: 'excelExport',
+                                                    label: 'Excel export',
+                                                    action: () => {
+                                                        grid.export('xlsx', { fileName: '테스트제목' });
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                        // 지정한 다른 옵션을 이용한 내보내기 추가
+                                        {
+                                            name: 'withoutHeader',
+                                            label: '헤더 미포함',
+                                            subMenu: [
+                                                {
+                                                    name: 'csvExport',
+                                                    label: 'CSV export',
+                                                    action: () => {
+                                                        grid.export('csv', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                    }
+                                                },
+                                                {
+                                                    name: 'excelExport',
+                                                    label: 'Excel export',
+                                                    action: () => {
+                                                        grid.export('xlsx', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                    ],
+                                }
+                            ],
+                        ]
+                    ),
             });
             // 그리드 테마
             tui.Grid.applyTheme('striped', {
@@ -943,6 +1004,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
 
 
+	<!-- toast-grid-pagination -->
+	<script src="https://uicdn.toast.com/tui.code-snippet/v1.5.0/tui-code-snippet.js"></script>
+    <script src="https://uicdn.toast.com/tui.pagination/v3.3.0/tui-pagination.js"></script>
     <!-- toast-grid -->
     <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
 
