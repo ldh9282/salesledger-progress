@@ -10,7 +10,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>로그인: IYF 인력기초원장/매출원장</title>
+  <title>로그인: IYF 영업관리시스템</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -46,7 +46,7 @@
               <div class="d-flex justify-content-center py-4">
                 <a href="${pageContext.request.contextPath}/" class="logo d-flex align-items-center w-auto">
                   <img src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">IYF</span>
+                  <span class="d-none d-lg-block">IYF 영업관리시스템</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -87,7 +87,7 @@
                     <div class="col-12">
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="remember-me" value="true" id="remember-me">
-                        <label class="form-check-label" for="remember-me">Remember me</label>
+                        <label class="form-check-label" for="remember-me">아이디 저장</label>
                       </div>
                     </div>
                     <div class="col-12">
@@ -108,7 +108,7 @@
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                <a href="${pageContext.request.contextPath}/">Go home</a>
+                <a href="${pageContext.request.contextPath}/">홈페이지로 가기</a>
               </div>
 
             </div>

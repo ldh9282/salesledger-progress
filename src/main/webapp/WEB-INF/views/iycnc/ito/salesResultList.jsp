@@ -58,8 +58,8 @@
     <!-- End Sidebar-->
 
     <main id="main" class="main">
-        <section>
-            <div class="container">
+<!--         <section> -->
+<!--             <div class="container"> -->
                 <i class="ri-arrow-down-s-fill" id="toggle-icon"><span>접기/내리기</span></i>
                 <div class="toggle-content mt-3" id="toggle-item">
                     <!-- ======= 그리드에서 보여줄 필드 체크리스트 ======= -->
@@ -147,8 +147,8 @@
 
 
                 <div id="grid" style="width: 70vw;"></div>
-            </div>
-        </section>
+<!--             </div> -->
+<!--         </section> -->
 
     </main><!-- End #main -->
 
@@ -331,6 +331,18 @@
 
 
                 }
+            });
+       		
+       		// 사이드바 접을 때 그리드 리사이징
+            $('i.toggle-sidebar-btn').click(function() {
+            	if ($('body').attr('class') === 'toggle-sidebar') {
+            		$('#grid').attr('style', 'width: 90vw;');
+            		grid.refreshLayout();
+            	} else {
+            		$('#grid').attr('style', 'width: 70vw;')
+            		grid.refreshLayout();
+            	}
+            	
             });
        		
             $('th[data-column-name=total_sales_amount]').attr('title', '매출가는 매출원장의 매출MM 과 매출단가를 계산한 결과입니다.');
