@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>인력풀: IYF 인력기초원장/매출원장</title>
+    <title>인력 상세 페이지: IYF 영업관리시스템</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 

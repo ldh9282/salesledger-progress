@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>매출실적 수기데이터 등록 페이지: IYF 인력기초원장/매출원장</title>
+    <title>IYCNC ITO 매출실적 수기데이터 등록 페이지: IYF 영업관리시스템</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -50,7 +50,7 @@
 
         <section>
             <div class="container">
-                <h1>매출실적 수기데이터 등록 페이지</h1>
+                <h3>IYCNC ITO 매출실적 수기데이터 등록 페이지</h3>
                 <hr>
                 <form id="salesResultForm">
                     <div class="form-group mb-3">
@@ -118,7 +118,7 @@
                 const month = $('#batch_month').val().substring(4);
 
                 if (!confirm(year + '년 ' + month + '월 매출 실적에 해당 데이터를 수기로 추가하시겠습니까?')) {
-                    return
+                    return;
                 } else {
                     $.ajax({
                         type: "POST",

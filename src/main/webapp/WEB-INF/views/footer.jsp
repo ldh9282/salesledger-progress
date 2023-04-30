@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<footer id="footer" class="mt-5">
-  <section>
-    <div class="container">
+<footer id="footer" class="mt-5" style="width: 80vw;">
+<!--   <section> -->
+<!--     <div class="container"> -->
       <div class="text-center my-3">
         <span>&copy; <span id="currentYear"></span>. IYF All rights reserved</span>
       </div>
@@ -15,8 +15,8 @@
 	  <div class="d-flex justify-content-end mt-3">
 	  	<a href="#" class="btn btn-outline-secondary">맨 위로 가기</a>
 	  </div>
-    </div>
-  </section>
+<!--     </div> -->
+<!--   </section> -->
 </footer>
 <script>
   const currentYear = new Date().getFullYear();

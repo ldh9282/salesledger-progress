@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>IYCNC 인력기초원장: IYF 인력기초원장/매출원장</title>
+    <title>IYCNC ITO 개발자 프로파일 진행 현황 [인력기초원장]: IYF 영업관리시스템</title>
     
      <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -56,6 +56,9 @@
     <main id="main" class="main">
 <!--         <section> -->
 <!--             <div class="container"> -->
+				<div id="title" class="d-flex justify-content-center" style="width: 80vw;">
+			  		<span style="font-size: 20px; font-weight: 550; color: #012970c7; font-family: 'Nunito', sans-serif;">IYCNC ITO 개발자 프로파일 진행 현황 [인력기초원장]</span>
+				</div>
 				<i class="ri-arrow-down-s-fill" id="toggle-icon"><span>접기/내리기</span></i>
                 <div class="toggle-content mt-3" id="toggle-item">
             	    <!-- ======= 그리드에서 보여줄 필드 체크리스트 ======= -->
@@ -256,6 +259,13 @@
 	                        </div>
 	                        <div class="col">
 	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="resign_date"
+	                                    checked>
+	                                <span class="form-check-label">철수날짜</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
 	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="sales_mm" checked>
 	                                <span class="form-check-label">매출MM</span>
 	                            </label>
@@ -288,13 +298,6 @@
 	                        </div>
 	                        <div class="col">
 	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="resign_date"
-	                                    checked>
-	                                <span class="form-check-label">철수날짜</span>
-	                            </label>
-	                        </div>
-	                        <div class="col">
-	                            <label class="form-check">
 	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="i_contract_date"
 	                                    checked>
 	                                <span class="form-check-label">개인계약일</span>
@@ -320,12 +323,12 @@
                 </div>
 
 
-                <div class="d-flex mt-3 mb-3">
+                <div class="d-flex mt-5">
                     <button type="button" class="btn btn-primary ms-2" id="btnShowRegisterPage">인력투입예정페이지</button>
                 </div>
 
 
-                <div id="grid" style="width: 70vw;"></div>
+                <div id="grid" class="mt-5" style="width: 80vw;"></div>
 <!--             </div> -->
 <!--         </section> -->
 
@@ -333,7 +336,7 @@
 
     <!-- ======= Footer ======= -->
     <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
-
+	<!-- END Footer -->
 
     <script>
 
@@ -514,6 +517,12 @@
                         align: 'center',
                     },
                     {
+                        header: '철수날짜',
+                        name: 'resign_date',
+                        width: 'auto',
+                        align: 'center',
+                    },
+                    {
                         header: '매출MM',
                         name: 'sales_mm',
                         width: 'auto',
@@ -544,12 +553,6 @@
                     {
                         header: '이력서제출일자',
                         name: 'resume_submit_date',
-                        width: 'auto',
-                        align: 'center',
-                    },
-                    {
-                        header: '철수날짜',
-                        name: 'resign_date',
                         width: 'auto',
                         align: 'center',
                     },
@@ -641,7 +644,7 @@
                         background: '#eef'
                     },
                     evenRow: {
-                        background: '#fee'
+                        background: '#f4f4f4'
                     }
                 }
             });
@@ -803,14 +806,24 @@
        		// 사이드바 접을 때 그리드 리사이징
             $('i.toggle-sidebar-btn').click(function() {
             	if ($('body').attr('class') === 'toggle-sidebar') {
-            		$('#grid').attr('style', 'width: 90vw;');
+            		$('#title').attr('style', 'width: 93vw;');
+            		$('#grid').attr('style', 'width: 93vw;');
+            		$('#footer').attr('style', 'width: 93vw;');
             		grid.refreshLayout();
             	} else {
-            		$('#grid').attr('style', 'width: 70vw;')
+            		$('#title').attr('style', 'width: 80vw;');
+            		$('#grid').attr('style', 'width: 80vw;')
+            		$('#footer').attr('style', 'width: 80vw;');
             		grid.refreshLayout();
             	}
             	
             });
+       		
+       		// 사이드바에서 선택한 현재 페이지 고정
+            $('a[data-bs-target="#iycnc-ito-nav"]').attr('aria-expanded', true);
+            $('a[data-bs-target="#iycnc-ito-nav"]').attr('class', 'nav-link');
+       		$('ul#iycnc-ito-nav').attr('class', 'nav-content collapse show');
+       		$('ul#iycnc-ito-nav li:eq(0) a').attr('class', 'active');
 
 
         });

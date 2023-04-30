@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>인력풀: IYF 인력기초원장/매출원장</title>
+    <title>컨택한 인재DB 진행 현황 [인력풀]: IYF 영업관리시스템</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -59,6 +59,9 @@
     <main id="main" class="main">
 <!--         <section> -->
 <!--             <div class="container"> -->
+				<div id="title" class="d-flex justify-content-center" style="width: 80vw;">
+			  		<span style="font-size: 20px; font-weight: 550; color: #012970c7; font-family: 'Nunito', sans-serif;">컨택한 인재DB 진행 현황 [인력풀]</span>
+				</div>
                 <i class="ri-arrow-down-s-fill" id="toggle-icon"><span>접기/내리기</span></i>
                 <div class="toggle-content mt-3" id="toggle-item">
                 	<!-- ======= 그리드에서 보여줄 필드 체크리스트 ======= -->
@@ -166,18 +169,18 @@
 
 
 
-                <div class="d-flex mt-3 mb-3">
+                <div class="d-flex mt-5">
                     <button type="button" class="btn btn-primary ms-2" id="btnShowRegisterPage">인력등록페이지</button>
                 </div>
 
-                <div id="grid" style="width: 70vw;"></div>
+                <div id="grid" class="mt-5" style="width: 80vw;"></div>
 <!--             </div> -->
 <!--         </section> -->
 
     </main><!-- End #main -->
     <!-- ======= Footer ======= -->
     <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
-
+	<!-- END Footer -->
 
     <script>
 	
@@ -188,7 +191,7 @@
                 scrollX: true,
                 scrollY: true,
                 columnOptions: {
-                    minWidth: 130
+                    minWidth: 120
                 },
                 columns: [
                     {
@@ -351,7 +354,7 @@
                         background: '#eef'
                     },
                     evenRow: {
-                        background: '#fee'
+                        background: '#f4f4f4'
                     }
                 }
             });
@@ -472,10 +475,14 @@
          	// 사이드바 접을 때 그리드 리사이징
             $('i.toggle-sidebar-btn').click(function() {
             	if ($('body').attr('class') === 'toggle-sidebar') {
-            		$('#grid').attr('style', 'width: 90vw;');
+            		$('#title').attr('style', 'width: 93vw;');
+            		$('#grid').attr('style', 'width: 93vw;');
+            		$('#footer').attr('style', 'width: 93vw;');
             		grid.refreshLayout();
             	} else {
-            		$('#grid').attr('style', 'width: 70vw;')
+            		$('#title').attr('style', 'width: 80vw;');
+            		$('#grid').attr('style', 'width: 80vw;')
+            		$('#footer').attr('style', 'width: 80vw;');
             		grid.refreshLayout();
             	}
             	

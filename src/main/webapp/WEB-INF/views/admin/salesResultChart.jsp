@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>IYCNC 인력기초원장: IYF 인력기초원장/매출원장</title>
+    <title>통계: IYF 영업관리시스템</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -58,7 +58,7 @@
         <section>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
+                    <div class="card" style="width: 80vw;">
                         <div class="card-body">
                             <h5 class="card-title">ITO 연간 매출실적</h5>
 
@@ -409,6 +409,25 @@
 
     <!-- ======= Footer ======= -->
     <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+    <!-- END Footer -->
+    
+    <script>
+    	$(document).ready(function() {
+    		
+       		// 사이드바 접을 때 그리드 리사이징
+            $('i.toggle-sidebar-btn').click(function() {
+            	if ($('body').attr('class') === 'toggle-sidebar') {
+            		$('.card').attr('style', 'width: 93vw;');
+            		$('#footer').attr('style', 'width: 93vw;');
+            	} else {
+            		$('.card').attr('style', 'width: 80vw;')
+            		$('#footer').attr('style', 'width: 80vw;');
+            	}
+            	
+
+            });
+    	});
+    </script>
 
 
     <!-- jquery -->

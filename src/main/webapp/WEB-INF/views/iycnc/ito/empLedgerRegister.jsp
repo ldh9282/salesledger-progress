@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>IYCNC 인력 투입예정: IYF 인력기초원장/매출원장</title>
+    <title>IYCNC ITO 인력 투입예정 페이지: IYF 영업관리시스템</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -52,7 +52,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-7">
-                        <h1>인력 투입예정 페이지</h1>
+                        <h3>IYCNC ITO 인력 투입예정 페이지</h3>
                         <hr>
                         <form id="clientForm">
                             <div class="form-group mb-3">
@@ -99,6 +99,10 @@
                                 <input type="date" class="form-control" id="end_date" name="end_date">
                             </div>
                             <div class="form-group mb-3">
+                                <label for="resign_date">철수날짜:</label>
+                                <input type="date" class="form-control" id="resign_date" name="resign_date">
+                            </div>
+                            <div class="form-group mb-3">
                                 <label for="sales_mm">매출MM:</label>
                                 <input type="text" class="form-control" id="sales_mm" name="sales_mm">
                             </div>
@@ -117,10 +121,6 @@
                             <div class="form-group mb-3">
                                 <label for="resume_submit_date">이력서제출일자:</label>
                                 <input type="date" class="form-control" id="resume_submit_date" name="resume_submit_date">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="resign_date">철수날짜:</label>
-                                <input type="date" class="form-control" id="resign_date" name="resign_date">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="i_contract_date">개인계약일:</label>

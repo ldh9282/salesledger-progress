@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>IYCNC 매출실적: IYF 인력기초원장/매출원장</title>
+    <title>IYCNC ITO 용역 매출 현황 [매출실적]: IYF 영업관리시스템</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -60,6 +60,9 @@
     <main id="main" class="main">
 <!--         <section> -->
 <!--             <div class="container"> -->
+				<div id="title" class="d-flex justify-content-center" style="width: 80vw;">
+			  		<span style="font-size: 20px; font-weight: 550; color: #012970c7; font-family: 'Nunito', sans-serif;">IYCNC ITO <span id="year"></span>년 <span id="month"></span>월 용역 매출 현황 [매출실적]</span>
+				</div>
                 <i class="ri-arrow-down-s-fill" id="toggle-icon"><span>접기/내리기</span></i>
                 <div class="toggle-content mt-3" id="toggle-item">
                     <!-- ======= 그리드에서 보여줄 필드 체크리스트 ======= -->
@@ -145,7 +148,7 @@
                 </div>
 
           
-                <div id="batchmonth-search" class="form-group mt-3 mb-3" style="width: 70vw;">
+                <div id="batchmonth-search" class="form-group mt-5" style="width: 80vw;">
                     <button type="button" id="btnShowRegisterPage" class="btn btn-primary">수기데이터 추가</button>
                     <div class="float-end">
                         <input type="text" name="keyword" id="keyword" placeholder="해당년월">
@@ -156,7 +159,7 @@
 
 
 
-                <div id="grid" style="width: 70vw;"></div>
+                <div id="grid" class="mt-5" style="width: 80vw;"></div>
 <!--             </div> -->
 <!--         </section> -->
 
@@ -164,7 +167,7 @@
 
     <!-- ======= Footer ======= -->
     <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
-
+	<!-- END Footer -->
 
     <script>
 
@@ -189,7 +192,7 @@
                 scrollX: true,
                 scrollY: true,
                 columnOptions: {
-                    minWidth: 110,
+                    minWidth: 130,
                 },
                 columns: [
                     {
@@ -337,7 +340,7 @@
                         background: '#eef'
                     },
                     evenRow: {
-                        background: '#fee'
+                        background: '#f4f4f4'
                     }
                 }
             });
@@ -422,8 +425,14 @@
                                 item.total_margin_amount = Number(item.total_sales_amount) - Number(item.total_purchase_amount);
                             });
                             grid.resetData(salesResult);
+                            
+                         	// 페이지 타이틀 세팅: yyyy 및 mm (키워드 기준)
+                            $('#year').text($('#keyword').val().substring(0,4));
+                       		$('#month').text($('#keyword').val().substring(4,6));
                         }
                     });
+                    
+                    
                 } else {
                     alert('올바른 해당년월 키워드를 입력한 뒤 다시 검색해주세요');
                 }
@@ -445,17 +454,32 @@
        		// 사이드바 접을 때 그리드 리사이징
             $('i.toggle-sidebar-btn').click(function() {
             	if ($('body').attr('class') === 'toggle-sidebar') {
-            		$('#batchmonth-search').attr('style', 'width: 90vw;');
-            		$('#grid').attr('style', 'width: 90vw;');
+            		$('#title').attr('style', 'width: 93vw;');
+            		$('#batchmonth-search').attr('style', 'width: 93vw;');
+            		$('#grid').attr('style', 'width: 93vw;');
+            		$('#footer').attr('style', 'width: 93vw;');
             		grid.refreshLayout();
             	} else {
-            		$('#batchmonth-search').attr('style', 'width: 70vw;');
-            		$('#grid').attr('style', 'width: 70vw;')
+            		$('#title').attr('style', 'width: 80vw;');
+            		$('#batchmonth-search').attr('style', 'width: 80vw;');
+            		$('#grid').attr('style', 'width: 80vw;')
+            		$('#footer').attr('style', 'width: 80vw;');
             		grid.refreshLayout();
             	}
             	
 
             });
+       		
+       		// 사이드바에서 선택한 현재 페이지 고정
+            $('a[data-bs-target="#iycnc-ito-nav"]').attr('aria-expanded', true);
+            $('a[data-bs-target="#iycnc-ito-nav"]').attr('class', 'nav-link');
+       		$('ul#iycnc-ito-nav').attr('class', 'nav-content collapse show');
+       		$('ul#iycnc-ito-nav li:eq(3) a').attr('class', 'active');
+       		
+       		// 페이지 타이틀 세팅: yyyy 및 mm (현재날짜 기준)
+       		$('#year').text(year);
+       		$('#month').text(monthString);
+       		
        		
             $('th[data-column-name=total_sales_amount]').attr('title', '매출가는 매출원장의 매출MM 과 매출단가를 계산한 결과입니다.');
             $('th[data-column-name=total_sales_amount]').tooltip();

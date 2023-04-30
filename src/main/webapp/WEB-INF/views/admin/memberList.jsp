@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>IYCNC 인력기초원장: IYF 인력기초원장/매출원장</title>
+    <title>회원관리: IYF 영업관리시스템</title>
     
      <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -52,9 +52,9 @@
     <jsp:include page="/WEB-INF/views/sidebar.jsp"></jsp:include>
     <!-- End Sidebar-->
     
-    <main id="main" class="main">
+    <main id="main" class="main" style="width: 80vw;">
     
-    	<section>
+<!--     	<section> -->
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="card">
@@ -181,13 +181,14 @@
 			
 	
 	
-		</section>
+<!-- 		</section> -->
 
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
-
+	<!-- END Footer -->
+	
 	<script>
 		function retainSelectedParams() {
 			const currentUrl = window.location.search;
@@ -292,6 +293,18 @@
 					$('#keyword').removeAttr("list");
 				}
 			})
+			
+       		// 사이드바 접을 때 그리드 리사이징
+            $('i.toggle-sidebar-btn').click(function() {
+            	if ($('body').attr('class') === 'toggle-sidebar') {
+            		$('#main').attr('style', 'width: 93vw;');
+            		$('#footer').attr('style', 'width: 93vw;');
+            	} else {
+            		$('#main').attr('style', 'width: 80vw;');
+            		$('#footer').attr('style', 'width: 80vw;');
+            	}
+            	
+            });
 
 		});
 	</script>

@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>회원가입: IYF 인력기초원장/매출원장</title>
+  <title>회원가입: IYF 영업관리시스템</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -41,7 +41,7 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="${pageContext.request.contextPath}/" class="logo d-flex align-items-center w-auto">
-                  <span class="d-none d-lg-block">IYF</span>
+                  <span class="d-none d-lg-block">IYF 영업관리시스템</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -108,7 +108,7 @@
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                <a href="${pageContext.request.contextPath}/">Go home</a>
+                <a href="${pageContext.request.contextPath}/">홈페이지로 가기</a>
               </div>
 
             </div>

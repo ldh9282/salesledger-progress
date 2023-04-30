@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>IYCNC 인력기초원장 상세페이지: IYF 인력기초원장/매출원장</title>
+    <title>IYCNC ITO 인력기초원장 상세페이지: IYF 영업관리시스템</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -54,7 +54,7 @@
                 <input type="hidden" id="client_id" name="client_id">
                 <input type="hidden" id="del" name="del">
                 
-                <h1>IYCNC 인력기초원장 상세 페이지</h1>
+                <h1>IYCNC ITO 인력기초원장 상세 페이지</h1>
                 <form id="progressForm">
                     <div class="form-group mb-3">
                         <label for="progress">진행:</label>
