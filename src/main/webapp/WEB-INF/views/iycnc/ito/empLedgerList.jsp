@@ -75,13 +75,6 @@
 	                    <div class="row row-cols-4 mb-3">
 	                        <div class="col">
 	                            <label class="form-check">
-	                                <input class="form-check-input" type="checkbox" name="check-client"
-	                                    checked>
-	                                <span class="form-check-label">거래처정보</span>
-	                            </label>
-	                        </div>
-	                        <div class="col">
-	                            <label class="form-check">
 	                                <input class="form-check-input" type="checkbox" name="check-emp-pool"
 	                                    checked>
 	                                <span class="form-check-label">인력풀정보</span>
@@ -113,44 +106,44 @@
 	                        </div>
 	                        <div class="col">
 	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="client" type="checkbox" name="column" value="sales_source"
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="company"
 	                                    checked>
-	                                <span class="form-check-label">매출처</span>
+	                                <span class="form-check-label">소속</span>
 	                            </label>
 	                        </div>
 	                        <div class="col">
 	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="client" type="checkbox" name="column" value="client"
-	                                    checked>
-	                                <span class="form-check-label">거래처</span>
-	                            </label>
-	                        </div>
-	                        <div class="col">
-	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="client" type="checkbox" name="column" value="subcontract"
-	                                    checked>
-	                                <span class="form-check-label">도급내역</span>
-	                            </label>
-	                        </div>
-	                        <div class="col">
-	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="client" type="checkbox" name="column" value="project_name"
-	                                    checked>
-	                                <span class="form-check-label">프로젝트명</span>
-	                            </label>
-	                        </div>
-	                        <div class="col">
-	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="client" type="checkbox" name="column" value="business_department"
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="department"
 	                                    checked>
 	                                <span class="form-check-label">사업부서</span>
 	                            </label>
 	                        </div>
 	                        <div class="col">
 	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="client" type="checkbox" name="column" value="business_manager"
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="site"
 	                                    checked>
-	                                <span class="form-check-label">사업관리담당자</span>
+	                                <span class="form-check-label">사이트명</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="client"
+	                                    checked>
+	                                <span class="form-check-label">진행업체</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="project_name"
+	                                    checked>
+	                                <span class="form-check-label">프로젝트명</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="brief"
+	                                    checked>
+	                                <span class="form-check-label">적요란</span>
 	                            </label>
 	                        </div>
 	                        <div class="col">
@@ -162,13 +155,13 @@
 	                        </div>
 	                        <div class="col">
 	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="name" checked>
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="name" checked>
 	                                <span class="form-check-label">이름</span>
 	                            </label>
 	                        </div>
 	                        <div class="col">
 	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="phonenumber"
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="phonenumber"
 	                                    checked>
 	                                <span class="form-check-label">전화번호</span>
 	                            </label>
@@ -229,20 +222,6 @@
 	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="career_level"
 	                                    checked>
 	                                <span class="form-check-label">등급</span>
-	                            </label>
-	                        </div>
-	                        <div class="col">
-	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="company"
-	                                    checked>
-	                                <span class="form-check-label">소속</span>
-	                            </label>
-	                        </div>
-	                        <div class="col">
-	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="department"
-	                                    checked>
-	                                <span class="form-check-label">사업부서</span>
 	                            </label>
 	                        </div>
 	                        <div class="col">
@@ -365,22 +344,29 @@
                         filter: 'select'
                     },
                     {
-                        header: '매출처',
-                        name: 'sales_source',
+                        header: '소속',
+                        name: 'company',
                         width: 'auto',
                         align: 'center',
                         filter: 'select'
                     },
                     {
-                        header: '거래처',
+                        header: '사업부서',
+                        name: 'department',
+                        width: 'auto',
+                        align: 'center',
+                        filter: 'select'
+                    },
+                    {
+                        header: '사이트',
+                        name: 'site',
+                        width: 'auto',
+                        align: 'center',
+                        filter: 'select'
+                    },
+                    {
+                        header: '진행업체',
                         name: 'client',
-                        width: 'auto',
-                        align: 'center',
-                        filter: 'select'
-                    },
-                    {
-                        header: '도급내역',
-                        name: 'subcontract',
                         width: 'auto',
                         align: 'center',
                         filter: 'select'
@@ -393,15 +379,8 @@
                         filter: 'select'
                     },
                     {
-                        header: '사업부서',
-                        name: 'business_department',
-                        width: 'auto',
-                        align: 'center',
-                        filter: 'select'
-                    },
-                    {
-                        header: '사업관리담당자',
-                        name: 'business_manager',
+                        header: '적요란',
+                        name: 'brief',
                         width: 'auto',
                         align: 'center',
                         filter: 'select'
@@ -486,20 +465,6 @@
                     {
                         header: '등급',
                         name: 'career_level',
-                        width: 'auto',
-                        align: 'center',
-                        filter: 'select'
-                    },
-                    {
-                        header: '소속',
-                        name: 'company',
-                        width: 'auto',
-                        align: 'center',
-                        filter: 'select'
-                    },
-                    {
-                        header: '사업부서',
-                        name: 'department',
                         width: 'auto',
                         align: 'center',
                         filter: 'select'
@@ -693,28 +658,16 @@
             // 모든 정보 체크해제시 이벤트: 컬럼 show 및 hide
             $('input[name=all-check]').click(function(){
                 if (this.checked){
-                    $('input[name=check-client]').prop('checked', true);
                     $('input[name=check-emp-pool]').prop('checked', true);
                     $('input[name=check-emp-ledger]').prop('checked', true);
                     $('input[name=column]').prop('checked', true);
                 } else{
-                    $('input[name=check-client]').prop('checked', false);
                     $('input[name=check-emp-pool]').prop('checked', false);
                     $('input[name=check-emp-ledger]').prop('checked', false);
                     $('input[name=column]').prop('checked', false);
                 }
                 updateColumns();
             });
-
-            // 거래처 테이블 정보 체크해제시 이벤트: 컬럼 show 및 hide
-            $('input[name=check-client]').click(function() {
-                if (this.checked){
-                    $('input[data-table=client]').prop('checked', true);
-                } else{
-                    $('input[data-table=client').prop('checked', false);
-                }
-                updateColumns('client');
-            })
 
             // 인력풀 테이블 정보 체크해제시 이벤트: 컬럼 show 및 hide
             $('input[name=check-emp-pool]').click(function() {
@@ -778,7 +731,7 @@
             grid.on('dblclick', function(ev) {
                 const empLedger = grid.getRow(ev.rowKey)
                 const popupUrl = '${pageContext.request.contextPath}/iycnc/ito/empLedgerDetail?emp_id='+ empLedger.emp_id;
-                const popupName = 'empPoolDetail-popup';
+                const popupName = 'empLedgerDetail-popup';
                 const popupWidth = 800;
                 const popupHeight = 600;
                 const left = (screen.width - popupWidth) / 2;

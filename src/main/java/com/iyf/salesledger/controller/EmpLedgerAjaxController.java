@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-import com.iyf.salesledger.model.Client;
 import com.iyf.salesledger.model.EmpLedger;
 import com.iyf.salesledger.model.EmpPool;
 import com.iyf.salesledger.service.EmpLedgerService;
@@ -47,9 +44,8 @@ public class EmpLedgerAjaxController {
 	public void expectedInsert(@RequestBody Map<String, Object> requestBodyMap) {
 		Gson gson = new Gson();
 		EmpLedger empLedger = gson.fromJson(gson.toJson(requestBodyMap.get("empLedger")), EmpLedger.class);
-		Client client = gson.fromJson(gson.toJson(requestBodyMap.get("client")), Client.class);
 		
-		empLedgerService.insert(empLedger, client);
+		empLedgerService.insertByProgress(empLedger);
 	}
 	
 	@PatchMapping("/empLedger.ajax/{emp_id}/progress/{progress}")
@@ -67,10 +63,9 @@ public class EmpLedgerAjaxController {
 	public void update(@RequestBody Map<String, Object> requestBodyMap) {
 		Gson gson = new Gson();
 		EmpLedger empLedger = gson.fromJson(gson.toJson(requestBodyMap.get("empLedger")), EmpLedger.class);
-		Client client = gson.fromJson(gson.toJson(requestBodyMap.get("client")), Client.class);
 		EmpPool empPool= gson.fromJson(gson.toJson(requestBodyMap.get("empPool")), EmpPool.class);
 		
-		empLedgerService.update(empLedger, client, empPool);
+		empLedgerService.update(empLedger, empPool);
 	}
 	
 	@PatchMapping("/empLedger.ajax/{emp_id}/del/{del}")

@@ -54,41 +54,30 @@
                     <div class="col-md-7">
                         <h3>IYCNC ITO 인력 투입예정 페이지</h3>
                         <hr>
-                        <form id="clientForm">
-                            <div class="form-group mb-3">
-                                <label for="sales_source">매출처:</label>
-                                <input type="text" class="form-control" id="sales_source" name="sales_source">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="client">거래처:</label>
-                                <input type="text" class="form-control" id="client" name="client">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="subcontract">도급내역:</label>
-                                <input type="text" class="form-control" id="subcontract" name="subcontract">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="project_name">프로젝트명:</label>
-                                <input type="text" class="form-control" id="project_name" name="project_name">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="business_department">사업부서:</label>
-                                <input type="text" class="form-control" id="business_department" name="business_department" readonly="readonly" value="ITO">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="business_manager">사업관리담당자:</label>
-                                <input type="text" class="form-control" id="business_manager" name="business_manager">
-                            </div>
-                        </form>
-                        <hr>
                         <form id="empLedgerForm">
                             <div class="form-group mb-3">
                                 <label for="company">소속:</label>
                                 <input type="text" class="form-control" id="company" name="company" value="IYCNC" readonly>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="company">소속:</label>
+                                <label for="company">부서:</label>
                                 <input type="text" class="form-control" id="department" name="department" value="ITO" readonly>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="site">사이트명:</label>
+                                <input type="text" class="form-control" id="site" name="site">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="client">진행업체:</label>
+                                <input type="text" class="form-control" id="client" name="client">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="project_name">프로젝트명:</label>
+                                <input type="text" class="form-control" id="project_name" name="project_name">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="brief">적요란:</label>
+                                <input type="text" class="form-control" id="brief" name="brief">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="assign_date">투입일:</label>
@@ -232,14 +221,10 @@
                             "resign_date": new Date($('input[name=resign_date]').val()),
                             "i_contract_date": new Date($('input[name=i_contract_date]').val()),
                             "c_contract_date": new Date($('input[name=c_contract_date]').val()),
-                        },
-                        "client": {
-                            "sales_source": $('input[name=sales_source]').val(),
+                            "site": $('input[name=site]').val(),
                             "client": $('input[name=client]').val(),
-                            "subcontract": $('input[name=subcontract]').val(),
                             "project_name": $('input[name=project_name]').val(),
-                            "business_department": $('input[name=business_department]').val(),
-                            "business_manager": $('input[name=business_manager]').val()
+                            "brief": $('input[name=brief]').val(),
                         }
                     }),
                     success: function() {

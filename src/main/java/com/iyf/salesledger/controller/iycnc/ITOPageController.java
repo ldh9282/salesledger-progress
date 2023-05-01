@@ -55,5 +55,12 @@ public class ITOPageController {
 	public String showSalesResultRegisterPage() {
 		return "iycnc/ito/salesResultRegister";
 	}
+	
+	// IYCNC ITO salesResultDetail.jsp 매출실적 수기데이터 상세페이지 (팝업페이지; 수기 데이터만 상세페이지에서 수정 및 삭제할 수 있음)
+	@PreAuthorize("hasAuthority('통합 관리자') or hasAuthority('IYCNC 관리자')")
+	@GetMapping("/iycnc/ito/salesResultDetail")
+	public String showSalesResultDetailPage() {
+		return "iycnc/ito/salesResultDetail";
+	}
 
 }

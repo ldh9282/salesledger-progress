@@ -22,13 +22,39 @@
 	<insert id="insert">
 		insert into t_sales_result
 		(
-			sales_result_id, company, department, sales_source, client, subcontract, project_name,
+			sales_result_id, company, department, site, client, brief, project_name,
 			total_sales_amount, total_purchase_amount, batch_month, handwrite	
 		)
 		values
 		(
-			default, #{company}, #{department}, #{sales_source}, #{client}, #{subcontract}, #{project_name},
+			default, #{company}, #{department}, #{site}, #{client}, #{brief}, #{project_name},
 			#{total_sales_amount}, #{total_purchase_amount}, #{batch_month}, #{handwrite}
 		)
 	</insert>
+	
+	<select id="selectOne" resultMap="salesResultMap">
+		select * from t_sales_result where sales_result_id = #{sales_result_id}
+	</select>
+	
+	<delete id="delete">
+		delete from t_sales_result where sales_result_id = #{sales_result_id}
+	</delete>
+	
+	<update id="update">
+		update
+		    t_sales_result
+		set
+		    total_sales_amount = #{total_sales_amount},
+		    total_purchase_amount = #{total_purchase_amount},
+		    site = #{site},
+		    client = #{client},
+		    brief = #{brief},
+		    project_name = #{project_name},
+		    batch_month = #{batch_month},
+		    company = #{company},
+		    handwrite = #{handwrite},
+		    department = #{department}
+		where
+		    sales_result_id = #{sales_result_id}
+	</update>
 </mapper>

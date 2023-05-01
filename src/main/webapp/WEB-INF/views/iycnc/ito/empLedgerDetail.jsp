@@ -51,11 +51,10 @@
                 <input type="hidden" id="emp_id" name="emp_id">
                 <input type="hidden" id="emp_pool_id" name="emp_pool_id">
                 <input type="hidden" id="project_assign" name="project_assign">
-                <input type="hidden" id="client_id" name="client_id">
                 <input type="hidden" id="del" name="del">
                 
                 <h1>IYCNC ITO 인력기초원장 상세 페이지</h1>
-                <form id="progressForm">
+                <form id="empLedgerForm">
                     <div class="form-group mb-3">
                         <label for="progress">진행:</label>
                         <input type="text" class="form-control" id="progress" name="progress" readonly>
@@ -65,39 +64,31 @@
                         <label for="progress_reason">진행사유:</label>
                         <input type="text" class="form-control" id="progress_reason" name="progress_reason">
                     </div>
-                </form>
-
-
-                <form id="clientForm">
                     <div class="form-group mb-3">
-                        <label for="sales_source">매출처:</label>
-                        <input type="text" class="form-control" id="sales_source" name="sales_source">
+                        <label for="company">소속:</label>
+                        <input type="text" class="form-control" id="company" name="company" value="IYCNC" readonly>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="client">거래처:</label>
+                        <label for="department">사업부서:</label>
+                        <input type="text" class="form-control" id="department" name="department" value="ITO" readonly>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="site">사이트명:</label>
+                        <input type="text" class="form-control" id="site" name="site">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="client">진행업체:</label>
                         <input type="text" class="form-control" id="client" name="client">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="subcontract">도급내역:</label>
-                        <input type="text" class="form-control" id="subcontract" name="subcontract">
                     </div>
                     <div class="form-group mb-3">
                         <label for="project_name">프로젝트명:</label>
                         <input type="text" class="form-control" id="project_name" name="project_name">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="business_department">사업부서:</label>
-                        <input type="text" class="form-control" id="business_department" name="business_department" readonly>
+                        <label for="brief">적요란</label>
+                        <input type="text" class="form-control" id="brief" name="brief">
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="business_manager">사업관리담당자:</label>
-                        <input type="text" class="form-control" id="business_manager" name="business_manager">
-                    </div>
-                </form>
-                <hr>
-                <form id="employeePoolForm">
-
-
+                	<hr>
                     <div class="form-group mb-3">
                         <label for="sourcingManager">소싱담당자:</label>
                         <input type="text" class="form-control" id="sourcing_manager" name="sourcing_manager">
@@ -159,17 +150,7 @@
                             <option value="특급">특급</option>
                         </select>
                     </div>
-                </form>
-                <hr>
-                <form id="empLedgerForm">
-                    <div class="form-group mb-3">
-                        <label for="company">소속:</label>
-                        <input type="text" class="form-control" id="company" name="company" value="IYCNC" readonly>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="department">사업부서:</label>
-                        <input type="text" class="form-control" id="department" name="department" value="ITO" readonly>
-                    </div>
+               		<hr>
                     <div class="form-group mb-3">
                         <label for="assign_date">투입일:</label>
                         <input type="date" class="form-control" id="assign_date" name="assign_date">
@@ -177,6 +158,10 @@
                     <div class="form-group mb-3">
                         <label for="end_date">종료일:</label>
                         <input type="date" class="form-control" id="end_date" name="end_date">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="resign_date">철수날짜:</label>
+                        <input type="date" class="form-control" id="resign_date" name="resign_date">
                     </div>
                     <div class="form-group mb-3">
                         <label for="sales_mm">매출MM:</label>
@@ -197,10 +182,6 @@
                     <div class="form-group mb-3">
                         <label for="resume_submit_date">이력서제출일자:</label>
                         <input type="date" class="form-control" id="resume_submit_date" name="resume_submit_date">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="resign_date">철수날짜:</label>
-                        <input type="date" class="form-control" id="resign_date" name="resign_date">
                     </div>
                     <div class="form-group mb-3">
                         <label for="i_contract_date">개인계약일:</label>
@@ -291,7 +272,6 @@
 
                     $('#emp_id').val(empLedger.emp_id);
                     $('#emp_pool_id').val(empLedger.emp_pool_id);
-                    $('#client_id').val(empLedger.client_id);
                     $('#assign_date').val(empLedger.assign_date);
                     $('#end_date').val(empLedger.end_date);
                     $('#sales_mm').val(empLedger.sales_mm);
@@ -308,26 +288,7 @@
                     $('#issues').val(empLedger.issues);
                     $('#include').val(empLedger.include);
 
-                    // ajax 2: client 상세정보 조회
-                    $.ajax({
-                        url: '${pageContext.request.contextPath}/client.ajax/' + empLedger.client_id,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(client) {
-                            
-                             $('#client_id').val(client.client_id);
-                             $('#sales_source').val(client.sales_source);
-                             $('#client').val(client.client);
-                             $('#subcontract').val(client.subcontract);
-                             $('#project_name').val(client.project_name);
-                             $('#business_department').val(client.business_department);
-                             $('#business_manager').val(client.business_manager);
-                             
-                            
-                        }
-                    });
-
-                    // ajax 3: empPool 상세정보 조회
+                    // ajax 2: empPool 상세정보 조회
                     $.ajax({
                         url: '${pageContext.request.contextPath}/empPool.ajax/' + empLedger.emp_pool_id,
                         type: 'GET',
@@ -389,15 +350,11 @@
                             "progress": $('input[name=progress]').val(),
                             "progress_reason": $('input[name=progress_reason]').val(),
                             "issues": $('input[name=issues]').val(),
-                            "include": $('input[name=include]').val()
-                        },
-                        "client": {
-                            "sales_source": $('input[name=sales_source]').val(),
+                            "include": $('input[name=include]').val(),
+                            "site": $('input[name=site]').val(),
                             "client": $('input[name=client]').val(),
-                            "subcontract": $('input[name=subcontract]').val(),
                             "project_name": $('input[name=project_name]').val(),
-                            "business_department": $('input[name=business_department]').val(),
-                            "business_manager": $('input[name=business_manager]').val()
+                            "brief": $('input[name=brief]').val(),
                         },
                         "empPool": {
                             "sourcing_manager": $('input[name=sourcing_manager]').val(),
@@ -522,15 +479,11 @@
                         "progress": $('input[name=progress]').val(),
                         "progress_reason": $('input[name=progress_reason]').val(),
                         "issues": $('input[name=issues]').val(),
-                        "include": $('input[name=include]').val()
-                    },
-                    "client": {
-                        "sales_source": $('input[name=sales_source]').val(),
+                        "include": $('input[name=include]').val(),
+                        "site": $('input[name=site]').val(),
                         "client": $('input[name=client]').val(),
-                        "subcontract": $('input[name=subcontract]').val(),
                         "project_name": $('input[name=project_name]').val(),
-                        "business_department": $('input[name=business_department]').val(),
-                        "business_manager": $('input[name=business_manager]').val()
+                        "brief": $('input[name=brief]').val(),
                     },
                     "empPool": {
                         "sourcing_manager": $('input[name=sourcing_manager]').val(),
@@ -647,14 +600,10 @@
                        "progress_reason": $('input[name=progress_reason]').val(),
                        "issues": $('input[name=issues]').val(),
                        "include": $('input[name=include]').val(),
-                   },
-                   "client": {
-                       "sales_source": $('input[name=sales_source]').val(),
+                       "site": $('input[name=site]').val(),
                        "client": $('input[name=client]').val(),
-                       "subcontract": $('input[name=subcontract]').val(),
                        "project_name": $('input[name=project_name]').val(),
-                       "business_department": $('input[name=business_department]').val(),
-                       "business_manager": $('input[name=business_manager]').val()
+                       "brief": $('input[name=brief]').val(),
                    },
                    "empPool": {
                        "sourcing_manager": $('input[name=sourcing_manager]').val(),

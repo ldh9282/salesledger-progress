@@ -191,11 +191,11 @@
                 scrollX: true,
                 scrollY: true,
                 columnOptions: {
-                    minWidth: 120
+                    minWidth: 130
                 },
                 columns: [
                     {
-                        header: '진행프로젝트 수',
+                        header: '진행 개수',
                         name: 'project_assign',
                         width: 'auto',
                         align: 'center',

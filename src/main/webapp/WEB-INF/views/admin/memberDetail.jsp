@@ -68,20 +68,20 @@
                 <div class="form-group mb-3">
                     <span>
                         <label for="auth">권한:</label>
-                        <input type="text" id="auth" name="auth" value="${member.authorities[0].authority}" list="authList">
-                        <datalist id="authList">
-                            <option value="통합 관리자"></option>
-                            <option value="IYCNC 관리자"></option>
-                            <option value="IBTS 관리자"></option>
-                            <option value="IYS 관리자"></option>
-                            <option value="권한 없음"></option>
-                        </datalist>
+                        <select id="auth" name="auth">
+                        	
+                            <option value="통합 관리자" <c:if test="${member.authorities[0].authority == '통합관리자'}">selected</c:if>>통합 관리자</option>
+                            <option value="IYCNC 관리자" <c:if test="${member.authorities[0].authority == 'IYCNC 관리자'}">selected</c:if>>IYCNC 관리자</option>
+                            <option value="IBTS 관리자" <c:if test="${member.authorities[0].authority == 'IBTS 관리자'}">selected</c:if>>IBTS 관리자</option>
+                            <option value="IYS 관리자" <c:if test="${member.authorities[0].authority == 'IYS 관리자'}">selected</c:if>>IYS 관리자</option>
+                            <option value="권한 없음" <c:if test="${member.authorities[0].authority == '권한 없음'}">selected</c:if>>권한 없음</option>
+                        </select>
                     </span>
 
                     <span class="float-end">
                         <label for="enabled">가입승인:</label>
                         <select name="enabled" id="enabled">
-                            <c:choose>
+                        <c:choose>
                             <c:when test="${member.enabled == '0'}">
                                 <option value="0" selected>미승인</option>
                                 <option value="1">승인완료</option>
