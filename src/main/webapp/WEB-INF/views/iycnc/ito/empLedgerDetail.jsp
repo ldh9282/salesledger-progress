@@ -52,6 +52,7 @@
                 <input type="hidden" id="emp_pool_id" name="emp_pool_id">
                 <input type="hidden" id="project_assign" name="project_assign">
                 <input type="hidden" id="del" name="del">
+                <input type="hidden" id="hope_purchase_unit" name="hope_purchase_unit">
                 
                 <h1>IYCNC ITO 인력기초원장 상세 페이지</h1>
                 <form id="empLedgerForm">
@@ -173,11 +174,11 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="sales_unit">매출단가(원):</label>
-                        <input type="text" class="form-control" id="sales_unit" name="sales_unit" data-type="money" step="1000000">
+                        <input type="text" class="form-control" id="sales_unit" name="sales_unit" data-type="money">
                     </div>
                     <div class="form-group mb-3">
                         <label for="purchase_unit">매입단가(원):</label>
-                        <input type="text" class="form-control" id="purchase_unit" name="purchase_unit" data-type="money" step="1000000">
+                        <input type="text" class="form-control" id="purchase_unit" name="purchase_unit" data-type="money">
                     </div>
                     <div class="form-group mb-3">
                         <label for="resume_submit_date">이력서제출일자:</label>
@@ -276,8 +277,8 @@
                     $('#end_date').val(empLedger.end_date);
                     $('#sales_mm').val(empLedger.sales_mm);
                     $('#purchase_mm').val(empLedger.purchase_mm);
-                    $('#sales_unit').val(empLedger.sales_unit);
-                    $('#purchase_unit').val(empLedger.purchase_unit);
+                    $('#sales_unit').val(empLedger.sales_unit.toLocaleString('ko-KR'));
+                    $('#purchase_unit').val(empLedger.purchase_unit.toLocaleString('ko-KR'));
                     $('#comments').val(empLedger.comments);
                     $('#resume_submit_date').val(empLedger.resume_submit_date);
                     $('#resign_date').val(empLedger.resign_date);
@@ -313,6 +314,7 @@
                             $('#career_level').val(empPool.career_level);
                             $('#project_assign').val(empPool.project_assign);
                             $('#del').val(empPool.del);
+                            $('#hope_purchase_unit').val(empPool.hope_purchase_unit);
                             
                         }
                     })
@@ -371,6 +373,7 @@
                             "career_level": $('select[name=career_level]').val(),
                             "project_assign": $('input[name=project_assign]').val(),
                             "del": $('input[name=del]').val(),
+                            "hope_purchase_unit": $('input[name=hope_purchase_unit]').val(),
                         }
                     }
                  	
@@ -500,6 +503,7 @@
                         "career_level": $('select[name=career_level]').val(),
                         "project_assign": $('input[name=project_assign]').val(),
                         "del": $('input[name=del]').val(),
+                        "hope_purchase_unit": $('input[name=hope_purchase_unit]').val(),
                     }
                 }
                 $.ajax({
@@ -620,6 +624,7 @@
                        "career_level": $('select[name=career_level]').val(),
                        "project_assign": $('input[name=project_assign]').val(),
                        "del": $('input[name=del]').val(),
+                       "hope_purchase_unit": $('input[name=hope_purchase_unit]').val(),
                    }
                }
             	
@@ -664,6 +669,19 @@
 
                 
 			});
+            
+        	// 금액에 문자 입력 방지 및 세자리 단위 콤마로 디스플레이
+            $('input[data-type="money"]').keyup(function(e) {
+                let value = e.target.value;
+                value = Number(value.replaceAll(',', ''))
+                if (isNaN(value)) {
+                    e.target.value = 0;
+                    return;
+                }
+                let formattedValue = value.toLocaleString('ko-KR');
+                e.target.value = formattedValue;
+                
+            });
             
             $('#btnDelete').tooltip();
             $('#btnConfirm').tooltip();

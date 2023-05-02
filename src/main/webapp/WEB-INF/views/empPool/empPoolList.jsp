@@ -161,6 +161,13 @@
 	                                <span class="form-check-label">등급</span>
 	                            </label>
 	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="hope_purchase_unit"
+	                                    checked>
+	                                <span class="form-check-label">희망단가</span>
+	                            </label>
+	                        </div>
 	                    </div>
 	                </div>
 	                <!-- End 그리드에서 보여줄 필드 체크리스트-->
@@ -220,7 +227,10 @@
                         name: 'phonenumber',
                         width: 'auto',
                         align: 'center',
-                        filter: 'select'
+                        filter: 'select',
+                        formatter({value}) {
+                        	return value.substr(0,3) + '-' + value.substr(3, 4) + '-' + value.substr(7,4);
+                        }
                     },
                     {
                         header: '생년월일',
@@ -284,6 +294,16 @@
                         width: 'auto',
                         align: 'center',
                         filter: 'select'
+                    },
+                    {
+                        header: '희망단가',
+                        name: 'hope_purchase_unit',
+                        width: 'auto',
+                        align: 'center',
+                        filter: 'number',
+                        formatter({value}) {
+                        	return value.toLocaleString('ko-KR');
+                        }
                     },
 
                 ],

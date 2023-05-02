@@ -492,6 +492,9 @@
                         name: 'phonenumber',
                         width: 'auto',
                         align: 'center',
+                        formatter({value}) {
+                        	return value.substr(0,3) + '-' + value.substr(3, 4) + '-' + value.substr(7,4);
+                        }
                     },
                     {
                         header: '생년월일',
@@ -576,12 +579,18 @@
                         name: 'sales_unit',
                         width: 'auto',
                         align: 'right',
+                        formatter({value}) {
+                        	return value.toLocaleString('ko-KR');
+                        }
                     },
                     {
                         header: '매입단가',
                         name: 'purchase_unit',
                         width: 'auto',
                         align: 'right',
+                        formatter({value}) {
+                        	return value.toLocaleString('ko-KR');
+                        }
                     },
                     {
                         header: '비고',

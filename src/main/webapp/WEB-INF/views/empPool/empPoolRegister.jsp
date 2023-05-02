@@ -78,7 +78,7 @@
                     <input type="text" class="form-control" id="address" name="address">
                 </div>
                 <div class="form-group mb-3">
-                    <label for="careerLevel">학력:</label>
+                    <label for="education">학력:</label>
                     <select class="form-control" id="education" name="education">
                         <option value="미기입">미기입</option>
                         <option value="고졸">고졸</option>
@@ -89,7 +89,7 @@
                     </select>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="schoolName">학교명:</label>
+                    <label for="school_name">학교명:</label>
                     <input type="text" class="form-control" id="school_name" name="school_name">
                 </div>
                 <div class="form-group mb-3">
@@ -97,15 +97,15 @@
                     <input type="text" class="form-control" id="major" name="major">
                 </div>
                 <div class="form-group mb-3">
-                    <label for="careerYears">경력:</label>
+                    <label for="career_years">경력:</label>
                     <input type="text" class="form-control" id="career_years" name="career_years">
                 </div>
                 <div class="form-group mb-3">
-                    <label for="careerField">분야:</label>
+                    <label for="career_field">분야:</label>
                     <input type="text" class="form-control" id="career_field" name="career_field">
                 </div>
                 <div class="form-group mb-3">
-                    <label for="careerLevel">등급:</label>
+                    <label for="career_level">등급:</label>
                     <select class="form-control" id="career_level" name="career_level">
                         <option value="미기입">미기입</option>
                         <option value="초급">초급</option>
@@ -113,6 +113,10 @@
                         <option value="고급">고급</option>
                         <option value="특급">특급</option>
                     </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="hope_purchase_unit">희망단가:</label>
+                    <input type="text" class="form-control" id="hope_purchase_unit" name="hope_purchase_unit" data-type="money">
                 </div>
                 <button type="submit" class="btn btn-primary" id="btnRegister">인력 등록</button>
             </div>
@@ -138,6 +142,7 @@
                     career_years: $('#career_years').val(),
                     career_field: $('#career_field').val(),
                     career_level: $('#career_level').val(),
+                    hope_purchase_unit: $('input[name=hope_purchase_unit]').val().replaceAll(',', '') ? $('input[name=hope_purchase_unit]').val().replaceAll(',', '') : 0,
                 };
 
                 $.ajax({
@@ -165,6 +170,20 @@
                         }
                     }
                 });
+                
+                
+            });
+            
+       		// 금액에 문자 입력 방지 및 세자리 단위 콤마로 디스플레이
+            $('input[data-type="money"]').keyup(function(e) {
+                let value = e.target.value;
+                value = Number(value.replaceAll(',', ''))
+                if (isNaN(value)) {
+                    e.target.value = 0;
+                    return;
+                }
+                let formattedValue = value.toLocaleString('ko-KR');
+                e.target.value = formattedValue;
                 
             });
         });

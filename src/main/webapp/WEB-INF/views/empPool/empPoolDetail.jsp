@@ -121,6 +121,10 @@
                             <option value="특급">특급</option>
                         </select>
                     </div>
+                    <div class="form-group mb-3">
+                        <label for="hope_purchase_unit">희망단가:</label>
+                        <input type="text" class="form-control" id="hope_purchase_unit" name="hope_purchase_unit" data-type="money">
+                    </div>
                     <button type="button" class="btn btn-primary" id="btnUpdate">수정</button>
                     <button type="button" class="btn btn-danger float-end" id="btnDelete" title="진행중인 프로젝트 수가 0인 인력만 삭제할 수 있습니다">삭제</button>
                 </form>
@@ -161,6 +165,7 @@
                     $('#career_level').val(empPool.career_level);
                     $('#project_assign').val(empPool.project_assign);
                     $('#del').val(empPool.del);
+                    $('#hope_purchase_unit').val(empPool.hope_purchase_unit.toLocaleString('ko-KR'));
                 },
                 error: function (xhr, status, error) {
 
@@ -185,6 +190,7 @@
                     project_assign: $('#project_assign').val(),
                     birthdate: new Date($('#birthdate').val()),
                     del: $('#del').val(),
+                    hope_purchase_unit: $('input[name=hope_purchase_unit]').val().replaceAll(',', '') ? $('input[name=hope_purchase_unit]').val().replaceAll(',', '') : 0,
                 }
                 $.ajax({
                     type: 'PUT',
@@ -228,6 +234,19 @@
                     alert('진행중인 프로젝트가 없는 인력만 삭제할 수 있습니다.');
                 }
             })
+            
+            // 금액에 문자 입력 방지 및 세자리 단위 콤마로 디스플레이
+            $('input[data-type="money"]').keyup(function(e) {
+                let value = e.target.value;
+                value = Number(value.replaceAll(',', ''))
+                if (isNaN(value)) {
+                    e.target.value = 0;
+                    return;
+                }
+                let formattedValue = value.toLocaleString('ko-KR');
+                e.target.value = formattedValue;
+                
+            });
             
             $('#btnDelete').tooltip();
 

@@ -17,6 +17,7 @@
 		<result property="career_field" column="CAREER_FIELD"/>
 		<result property="career_level" column="CAREER_LEVEL"/>
 		<result property="project_assign" column="PROJECT_ASSIGN"/>
+		<result property="hope_purchase_unit" column="HOPE_PURCHASE_UNIT"/>
 	</resultMap>
 	
 	<select id="selectOne" resultMap="empPoolMap">
@@ -35,7 +36,8 @@
 		    career_field, 
 		    career_level, 
 		    project_assign,
-		    del 
+		    del,
+		    hope_purchase_unit 
 		FROM t_emp_pool
 		WHERE emp_pool_id = #{emp_pool_id}
 	</select>
@@ -55,7 +57,8 @@
 		    career_field, 
 		    career_level, 
 		    project_assign,
-		    del 
+		    del,
+		    hope_purchase_unit 
 		FROM t_emp_pool
 		WHERE name = #{name} and phonenumber = #{phonenumber} and del != 'Y'
 	</select>
@@ -82,7 +85,8 @@
 			career_field = #{career_field},
 			career_level = #{career_level},
 			project_assign = #{project_assign},
-			del = #{del}
+			del = #{del},
+			hope_purchase_unit = #{hope_purchase_unit}
 		WHERE emp_pool_id = #{emp_pool_id}
 	</update>
 	
@@ -108,7 +112,8 @@
 			career_field,
 			career_level,
 			project_assign,
-			del
+			del,
+			hope_purchase_unit
 		)
 			VALUES 
 		(
@@ -126,7 +131,8 @@
 			#{career_field},
 			#{career_level},
 			0,
-			'N'
+			'N',
+			#{hope_purchase_unit}
 		)
 	</insert>
 	

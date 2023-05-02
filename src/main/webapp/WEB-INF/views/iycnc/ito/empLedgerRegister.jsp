@@ -101,11 +101,11 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="sales_unit">매출단가(원):</label>
-                                <input type="text" class="form-control" id="sales_unit" name="sales_unit" data-type="money" step="1000000">
+                                <input type="text" class="form-control" id="sales_unit" name="sales_unit" data-type="money">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="purchase_unit">매입단가(원):</label>
-                                <input type="text" class="form-control" id="purchase_unit" name="purchase_unit" data-type="money" step="1000000">
+                                <input type="text" class="form-control" id="purchase_unit" name="purchase_unit" data-type="money">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="resume_submit_date">이력서제출일자:</label>
@@ -188,6 +188,10 @@
                                 <label for="career_level">등급:</label>
                                 <input type="text" class="form-control" id="career_level" name="career_level" readonly>
                             </div>
+			                <div class="form-group mb-3">
+			                    <label for="hope_purchase_unit">희망단가:</label>
+			                    <input type="text" class="form-control" id="hope_purchase_unit" name="hope_purchase_unit" data-type="money" readonly>
+			                </div>
                         </form>
                     </div>
                 </div>
@@ -265,6 +269,7 @@
                                 $('input[name=career_years]').val('');
                                 $('input[name=career_field]').val('');
                                 $('input[name=career_level]').val('');
+                                $('input[name=hope_purchase_unit]').val('');
                                 // 인력 투입예정 버튼 비활성화
                                 $('#btnExpectedInsert').attr('disabled', true);
                                 return;
@@ -292,6 +297,7 @@
                             $('input[name=career_years]').val(empPool.career_years);
                             $('input[name=career_field]').val(empPool.career_field);
                             $('input[name=career_level]').val(empPool.career_level);
+                            $('input[name=hope_purchase_unit]').val(empPool.hope_purchase_unit.toLocaleString('ko-KR'));
                             // 인력 투입예정 버튼 활성화
                             $('#btnExpectedInsert').attr('disabled', false);;
                         },

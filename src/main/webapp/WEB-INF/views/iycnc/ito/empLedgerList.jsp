@@ -404,7 +404,10 @@
                         name: 'phonenumber',
                         width: 'auto',
                         align: 'center',
-                        filter: 'select'
+                        filter: 'select',
+                        formatter({value}) {
+                        	return value.substr(0,3) + '-' + value.substr(3, 4) + '-' + value.substr(7,4);
+                        }
                     },
                     {
                         header: '생년월일',
@@ -506,14 +509,20 @@
                         name: 'sales_unit',
                         width: 'auto',
                         align: 'right',
-                        filter: 'number'
+                        filter: 'number',
+                        formatter({value}) {
+                        	return value.toLocaleString('ko-KR');
+                        }
                     },
                     {
                         header: '매입단가',
                         name: 'purchase_unit',
                         width: 'auto',
                         align: 'right',
-                        filter: 'number'
+                        filter: 'number',
+                        formatter({value}) {
+                        	return value.toLocaleString('ko-KR');
+                        }
                     },
                     {
                         header: '이력서제출일자',

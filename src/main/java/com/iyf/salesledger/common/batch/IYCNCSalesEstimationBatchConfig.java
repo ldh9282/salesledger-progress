@@ -8,22 +8,23 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.iyf.salesledger.common.batch.service.SalesResultBatchService;
+import com.iyf.salesledger.common.batch.service.SalesEstimationBatchService;
 
 @Configuration
 @EnableScheduling
-public class IYCNCSalesResultBatchConfig {
+public class IYCNCSalesEstimationBatchConfig {
 
 	@Autowired
-	private SalesResultBatchService salesResultBatchService;
+	private SalesEstimationBatchService salesEstimationBatchService;
 	
 //	@Scheduled(cron = "0 0 20 * * *")
 	@Scheduled(cron = "0 * * * * *")
 	public void monthlySalesBatchByIYCNCAndITO() {
 		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime nextMonth = now.plusMonths(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
-        String yyyymm = now.format(formatter);
-		System.out.println(yyyymm + ": IYCNC ITO 매출실적 배치 작업");
-		salesResultBatchService.monthlySalesBatchByCompanyAndDepartment("IYCNC", "ITO");
+        String yyyymm = nextMonth.format(formatter);
+		System.out.println(yyyymm + ": IYCNC ITO 매출추정 배치 작업");
+		salesEstimationBatchService.monthlySalesBatchByCompanyAndDepartment("IYCNC", "ITO");
 	}
 }
