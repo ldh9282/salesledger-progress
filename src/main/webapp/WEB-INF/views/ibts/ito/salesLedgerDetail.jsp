@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>IYCNC ITO 매출원장 상세 페이지: IYF 영업관리시스템</title>
+    <title>IBTS ITO 매출원장 상세 페이지: IYF 영업관리시스템</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -57,7 +57,7 @@
                 <input type="hidden" id="project_assign" name="project_assign">
                 <input type="hidden" id="del" name="del">
                 
-                <h1>IYCNC ITO 매출원장 상세 페이지</h1>
+                <h1>IBTS ITO 매출원장 상세 페이지</h1>
                 <form id="salesLedgerForm">
                 	<div class="form-group mb-3">
                         <label for="include">금월실적반영:</label>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="company">소속:</label>
-                        <input type="text" class="form-control" id="company" name="company" value="IYCNC" readonly>
+                        <input type="text" class="form-control" id="company" name="company" value="IBTS" readonly>
                     </div>
                     <div class="form-group mb-3">
                         <label for="department">사업부서:</label>

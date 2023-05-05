@@ -12,28 +12,28 @@ import com.iyf.salesledger.common.batch.service.SalesResultBatchService;
 
 @Configuration
 @EnableScheduling
-public class IYCNCSalesResultBatchConfig {
+public class IBTSSalesResultBatchConfig {
 
 	@Autowired
 	private SalesResultBatchService salesResultBatchService;
 	
 //	@Scheduled(cron = "0 0 20 * * *")
 	@Scheduled(cron = "0 * * * * *")
-	public void monthlySalesBatchByIYCNCAndITO() {
+	public void monthlySalesBatchByIBTSAndITO() {
 		LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
         String yyyymm = now.format(formatter);
-		System.out.println(yyyymm + ": IYCNC ITO 매출실적 배치 작업");
-		salesResultBatchService.monthlySalesBatchByCompanyAndDepartment("IYCNC", "ITO");
+		System.out.println(yyyymm + ": IBTS ITO 매출실적 배치 작업");
+		salesResultBatchService.monthlySalesBatchByCompanyAndDepartment("IBTS", "ITO");
 	}
 	
 //	@Scheduled(cron = "0 0 20 * * *")
 	@Scheduled(cron = "0 * * * * *")
-	public void monthlySalesBatchByIYCNCAndIDC() {
+	public void monthlySalesBatchByIBTSAndIDC() {
 		LocalDateTime now = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
 		String yyyymm = now.format(formatter);
-		System.out.println(yyyymm + ": IYCNC IDC 매출실적 배치 작업");
-		salesResultBatchService.monthlySalesBatchByCompanyAndDepartment("IYCNC", "IDC");
+		System.out.println(yyyymm + ": IBTS IDC 매출실적 배치 작업");
+		salesResultBatchService.monthlySalesBatchByCompanyAndDepartment("IBTS", "IDC");
 	}
 }

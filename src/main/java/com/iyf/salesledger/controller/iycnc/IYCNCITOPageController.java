@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ITOPageController {
+public class IYCNCITOPageController {
 
 	// IYCNC ITO empLedgerList.jsp 인력기초원장 목록페이지 (메인페이지)
 	@PreAuthorize("hasAuthority('통합 관리자') or hasAuthority('IYCNC 관리자')")

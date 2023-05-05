@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>IYCNC ITO 인력기초원장 상세페이지: IYF 영업관리시스템</title>
+    <title>IYS IDC 인력기초원장 상세페이지: IYF 영업관리시스템</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -54,7 +54,7 @@
                 <input type="hidden" id="del" name="del">
                 <input type="hidden" id="hope_purchase_unit" name="hope_purchase_unit">
                 
-                <h1>IYCNC ITO 인력기초원장 상세 페이지</h1>
+                <h1>IYS IDC 인력기초원장 상세 페이지</h1>
                 <form id="empLedgerForm">
                     <div class="form-group mb-3">
                         <label for="progress">진행:</label>
@@ -67,11 +67,11 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="company">소속:</label>
-                        <input type="text" class="form-control" id="company" name="company" value="IYCNC" readonly>
+                        <input type="text" class="form-control" id="company" name="company" value="IYS" readonly>
                     </div>
                     <div class="form-group mb-3">
                         <label for="department">사업부서:</label>
-                        <input type="text" class="form-control" id="department" name="department" value="ITO" readonly>
+                        <input type="text" class="form-control" id="department" name="department" value="IDC" readonly>
                     </div>
                     <div class="form-group mb-3">
                         <label for="site">사이트명:</label>

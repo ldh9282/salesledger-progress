@@ -50,6 +50,35 @@
 				</ul>
 			</li><!-- End ITO Nav -->
 			<li class="nav-item">
+				<a class="nav-link collapsed" data-bs-target="#iycnc-idc-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-journal-text"></i><span>IDC</span><i class="bi bi-chevron-down ms-auto"></i>
+				</a>
+				
+				<ul id="iycnc-idc-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+				
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/idc/empLedgerList">
+							<i class="bi bi-circle"></i><span>인력기초원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/idc/salesLedgerList">
+							<i class="bi bi-circle"></i><span>매출원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/idc/salesEstimationList">
+							<i class="bi bi-circle"></i><span>추정</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/idc/salesResultList">
+							<i class="bi bi-circle"></i><span>실적</span>
+						</a>
+					</li>
+				</ul>
+			</li><!-- End IDC Nav -->
+			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#iycnc-infra-nav" data-bs-toggle="collapse" href="#">
 					<i class="bi bi-journal-text"></i><span>인프라</span><i class="bi bi-chevron-down ms-auto"></i>
 				</a>
@@ -90,54 +119,56 @@
 				<ul id="ibts-ito-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 				
 					<li>
-						<a href="${pageContext.request.contextPath}/iycnc/ito/empLedgerList">
+						<a href="${pageContext.request.contextPath}/ibts/ito/empLedgerList">
 							<i class="bi bi-circle"></i><span>인력기초원장</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iycnc/ito/salesLedgerList">
+						<a href="${pageContext.request.contextPath}/ibts/ito/salesLedgerList">
 							<i class="bi bi-circle"></i><span>매출원장</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iycnc/ito/salesEstimationList">
+						<a href="${pageContext.request.contextPath}/ibts/ito/salesEstimationList">
 							<i class="bi bi-circle"></i><span>추정</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iycnc/ito/salesResultList">
+						<a href="${pageContext.request.contextPath}/ibts/ito/salesResultList">
 							<i class="bi bi-circle"></i><span>실적</span>
 						</a>
 					</li>
 				</ul>
 			</li><!-- End ITO Nav -->
 			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#ibts-infra-nav" data-bs-toggle="collapse" href="#">
-					<i class="bi bi-journal-text"></i><span>인프라</span><i class="bi bi-chevron-down ms-auto"></i>
+				<a class="nav-link collapsed" data-bs-target="#ibts-idc-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-journal-text"></i><span>IDC</span><i class="bi bi-chevron-down ms-auto"></i>
 				</a>
-				<ul id="ibts-infra-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+				
+				<ul id="ibts-idc-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+				
 					<li>
-						<a href="${pageContext.request.contextPath}/iys/empLedgerList">
+						<a href="${pageContext.request.contextPath}/ibts/idc/empLedgerList">
 							<i class="bi bi-circle"></i><span>인력기초원장</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iys/salesLedgerList">
+						<a href="${pageContext.request.contextPath}/ibts/idc/salesLedgerList">
 							<i class="bi bi-circle"></i><span>매출원장</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iys/salesEstimationList">
+						<a href="${pageContext.request.contextPath}/ibts/idc/salesEstimationList">
 							<i class="bi bi-circle"></i><span>추정</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iys/salesResultList">
+						<a href="${pageContext.request.contextPath}/ibts/idc/salesResultList">
 							<i class="bi bi-circle"></i><span>실적</span>
 						</a>
 					</li>
 				</ul>
-			</li><!-- End INFRA Nav -->
+			</li><!-- End IDC Nav -->
 		</security:authorize>
 		<!-- End IBTS Nav  -->
 		
@@ -152,54 +183,57 @@
 				<ul id="iys-ito-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 				
 					<li>
-						<a href="${pageContext.request.contextPath}/iycnc/ito/empLedgerList">
+						<a href="${pageContext.request.contextPath}/iys/ito/empLedgerList">
 							<i class="bi bi-circle"></i><span>인력기초원장</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iycnc/ito/salesLedgerList">
+						<a href="${pageContext.request.contextPath}/iys/ito/salesLedgerList">
 							<i class="bi bi-circle"></i><span>매출원장</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iycnc/ito/salesEstimationList">
+						<a href="${pageContext.request.contextPath}/iys/ito/salesEstimationList">
 							<i class="bi bi-circle"></i><span>추정</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iycnc/ito/salesResultList">
+						<a href="${pageContext.request.contextPath}/iys/ito/salesResultList">
 							<i class="bi bi-circle"></i><span>실적</span>
 						</a>
 					</li>
 				</ul>
 			</li><!-- End ITO Nav -->
 			<li class="nav-item">
-				<a class="nav-link collapsed" data-bs-target="#iys-infra-nav" data-bs-toggle="collapse" href="#">
-					<i class="bi bi-journal-text"></i><span>인프라</span><i class="bi bi-chevron-down ms-auto"></i>
+				<a class="nav-link collapsed" data-bs-target="#iys-idc-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-journal-text"></i><span>IDC</span><i class="bi bi-chevron-down ms-auto"></i>
 				</a>
-				<ul id="iys-infra-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+				
+				<ul id="iys-idc-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+				
 					<li>
-						<a href="${pageContext.request.contextPath}/iys/empLedgerList">
+						<a href="${pageContext.request.contextPath}/iys/idc/empLedgerList">
 							<i class="bi bi-circle"></i><span>인력기초원장</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iys/salesLedgerList">
+						<a href="${pageContext.request.contextPath}/iys/idc/salesLedgerList">
 							<i class="bi bi-circle"></i><span>매출원장</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iys/salesEstimationList">
+						<a href="${pageContext.request.contextPath}/iys/idc/salesEstimationList">
 							<i class="bi bi-circle"></i><span>추정</span>
 						</a>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iys/salesResultList">
+						<a href="${pageContext.request.contextPath}/iys/idc/salesResultList">
 							<i class="bi bi-circle"></i><span>실적</span>
 						</a>
 					</li>
 				</ul>
-			</li><!-- End INFRA Nav -->
+			</li><!-- End IDC Nav -->
+			<!-- End IYS Nav -->
 		</security:authorize>
 		<!-- End IYS Nav  -->
 			

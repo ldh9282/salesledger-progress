@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>IYCNC ITO 용역원가 [매출원장]: IYF 영업관리시스템</title>
+    <title>IBTS IDC 용역원가 [매출원장]: IYF 영업관리시스템</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -58,7 +58,7 @@
 <!--         <section> -->
 <!--             <div class="container"> -->
 				<div id="title" class="d-flex justify-content-center" style="width: 80vw;">
-			  		<span style="font-size: 20px; font-weight: 550; color: #012970c7; font-family: 'Nunito', sans-serif;">IYCNC ITO 용역원가 [매출원장]</span>
+			  		<span style="font-size: 20px; font-weight: 550; color: #012970c7; font-family: 'Nunito', sans-serif;">IBTS IDC 용역원가 [매출원장]</span>
 				</div>
                 <i class="ri-arrow-down-s-fill" id="toggle-icon"><span>접기/내리기</span></i>
                 <div class="toggle-content mt-3" id="toggle-item">
@@ -746,7 +746,7 @@
 
             // 그리드 데이터 ajax로 가져오기
             $.ajax({
-                url: "${pageContext.request.contextPath}/salesLedger.ajax/company/IYCNC/department/ITO",
+                url: "${pageContext.request.contextPath}/salesLedger.ajax/company/IBTS/department/IDC",
                 method: "GET",
                 success: function (salesLedgerList) {
                     // Date 년월일 Formatting
@@ -859,7 +859,7 @@
             // 그리드 Row 더블 클릭시 이벤트: 상세정보페이지 팝업
             grid.on('dblclick', function (ev) {
                 const salesLedger = grid.getRow(ev.rowKey)
-                const popupUrl = '${pageContext.request.contextPath}/iycnc/ito/salesLedgerDetail?sales_id=' + salesLedger.sales_id;
+                const popupUrl = '${pageContext.request.contextPath}/ibts/idc/salesLedgerDetail?sales_id=' + salesLedger.sales_id;
                 const popupName = 'salesLedgerDetail-popup';
                 const popupWidth = 800;
                 const popupHeight = 600;
@@ -903,10 +903,10 @@
             });
        		
        		// 사이드바에서 선택한 현재 페이지 고정
-            $('a[data-bs-target="#iycnc-ito-nav"]').attr('aria-expanded', true);
-            $('a[data-bs-target="#iycnc-ito-nav"]').attr('class', 'nav-link');
-       		$('ul#iycnc-ito-nav').attr('class', 'nav-content collapse show');
-       		$('ul#iycnc-ito-nav li:eq(1) a').attr('class', 'active');
+            $('a[data-bs-target="#ibts-idc-nav"]').attr('aria-expanded', true);
+            $('a[data-bs-target="#ibts-idc-nav"]').attr('class', 'nav-link');
+       		$('ul#ibts-idc-nav').attr('class', 'nav-content collapse show');
+       		$('ul#ibts-idc-nav li:eq(1) a').attr('class', 'active');
 
 
         });

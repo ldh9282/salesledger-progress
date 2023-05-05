@@ -8,32 +8,34 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.iyf.salesledger.common.batch.service.SalesResultBatchService;
+import com.iyf.salesledger.common.batch.service.SalesEstimationBatchService;
 
 @Configuration
 @EnableScheduling
-public class IYCNCSalesResultBatchConfig {
+public class IBTSSalesEstimationBatchConfig {
 
 	@Autowired
-	private SalesResultBatchService salesResultBatchService;
+	private SalesEstimationBatchService salesEstimationBatchService;
 	
 //	@Scheduled(cron = "0 0 20 * * *")
 	@Scheduled(cron = "0 * * * * *")
-	public void monthlySalesBatchByIYCNCAndITO() {
+	public void monthlySalesBatchByIBTSAndITO() {
 		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime nextMonth = now.plusMonths(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
-        String yyyymm = now.format(formatter);
-		System.out.println(yyyymm + ": IYCNC ITO 매출실적 배치 작업");
-		salesResultBatchService.monthlySalesBatchByCompanyAndDepartment("IYCNC", "ITO");
+        String yyyymm = nextMonth.format(formatter);
+		System.out.println(yyyymm + ": IBTS ITO 매출추정 배치 작업");
+		salesEstimationBatchService.monthlySalesBatchByCompanyAndDepartment("IBTS", "ITO");
 	}
 	
 //	@Scheduled(cron = "0 0 20 * * *")
 	@Scheduled(cron = "0 * * * * *")
-	public void monthlySalesBatchByIYCNCAndIDC() {
+	public void monthlySalesBatchByIBTSAndIDC() {
 		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime nextMonth = now.plusMonths(1);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
-		String yyyymm = now.format(formatter);
-		System.out.println(yyyymm + ": IYCNC IDC 매출실적 배치 작업");
-		salesResultBatchService.monthlySalesBatchByCompanyAndDepartment("IYCNC", "IDC");
+		String yyyymm = nextMonth.format(formatter);
+		System.out.println(yyyymm + ": IBTS IDC 매출추정 배치 작업");
+		salesEstimationBatchService.monthlySalesBatchByCompanyAndDepartment("IBTS", "IDC");
 	}
 }

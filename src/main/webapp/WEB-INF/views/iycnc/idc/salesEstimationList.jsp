@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>IYCNC ITO 용역 매출 현황 [매출추정]: IYF 영업관리시스템</title>
+    <title>IYCNC IDC 용역 매출 현황 [매출추정]: IYF 영업관리시스템</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -61,7 +61,7 @@
 <!--         <section> -->
 <!--             <div class="container"> -->
 				<div id="title" class="d-flex justify-content-center" style="width: 80vw;">
-			  		<span style="font-size: 20px; font-weight: 550; color: #012970c7; font-family: 'Nunito', sans-serif;">IYCNC ITO <span id="year"></span>년 <span id="month"></span>월 용역 매출 현황 [매출추정]</span>
+			  		<span style="font-size: 20px; font-weight: 550; color: #012970c7; font-family: 'Nunito', sans-serif;">IYCNC IDC <span id="year"></span>년 <span id="month"></span>월 용역 매출 현황 [매출추정]</span>
 				</div>
                 <i class="ri-arrow-down-s-fill" id="toggle-icon"><span>접기/내리기</span></i>
                 <div class="toggle-content mt-3" id="toggle-item">
@@ -356,7 +356,7 @@
             });
             
             $.ajax({
-                url: "${pageContext.request.contextPath}/salesEstimation.ajax/company/IYCNC/department/ITO/batch_month/" + yyyymm,
+                url: "${pageContext.request.contextPath}/salesEstimation.ajax/company/IYCNC/department/IDC/batch_month/" + yyyymm,
                 method: "GET",
                 success: function (salesEstimation) {
                 	salesEstimation.forEach(item => {
@@ -434,7 +434,7 @@
                 if (regex.test($('#keyword').val())) {
                     // 그리드 데이터 ajax로 가져오기 (키워드에 의한 해당년월)
                     $.ajax({
-                        url: "${pageContext.request.contextPath}/salesEstimation.ajax/company/IYCNC/department/ITO/batch_month/" + $('#keyword').val(),
+                        url: "${pageContext.request.contextPath}/salesEstimation.ajax/company/IYCNC/department/IDC/batch_month/" + $('#keyword').val(),
                         method: "GET",
                         success: function (salesEstimation) {
                             salesEstimation.forEach(item => {
@@ -476,10 +476,10 @@
             });
        		
        		// 사이드바에서 선택한 현재 페이지 고정
-            $('a[data-bs-target="#iycnc-ito-nav"]').attr('aria-expanded', true);
-            $('a[data-bs-target="#iycnc-ito-nav"]').attr('class', 'nav-link');
-       		$('ul#iycnc-ito-nav').attr('class', 'nav-content collapse show');
-       		$('ul#iycnc-ito-nav li:eq(2) a').attr('class', 'active');
+            $('a[data-bs-target="#iycnc-idc-nav"]').attr('aria-expanded', true);
+            $('a[data-bs-target="#iycnc-idc-nav"]').attr('class', 'nav-link');
+       		$('ul#iycnc-idc-nav').attr('class', 'nav-content collapse show');
+       		$('ul#iycnc-idc-nav li:eq(2) a').attr('class', 'active');
        		
        		
             $('th[data-column-name=total_sales_amount]').attr('title', '매출가는 매출원장의 매출MM 과 매출단가를 계산한 결과입니다.');

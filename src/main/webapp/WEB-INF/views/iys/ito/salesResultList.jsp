@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>IYCNC ITO 용역 매출 현황 [매출추정]: IYF 영업관리시스템</title>
+    <title>IYS ITO 용역 매출 현황 [매출실적]: IYF 영업관리시스템</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -61,7 +61,7 @@
 <!--         <section> -->
 <!--             <div class="container"> -->
 				<div id="title" class="d-flex justify-content-center" style="width: 80vw;">
-			  		<span style="font-size: 20px; font-weight: 550; color: #012970c7; font-family: 'Nunito', sans-serif;">IYCNC ITO <span id="year"></span>년 <span id="month"></span>월 용역 매출 현황 [매출추정]</span>
+			  		<span style="font-size: 20px; font-weight: 550; color: #012970c7; font-family: 'Nunito', sans-serif;">IYS ITO <span id="year"></span>년 <span id="month"></span>월 용역 매출 현황 [매출실적]</span>
 				</div>
                 <i class="ri-arrow-down-s-fill" id="toggle-icon"><span>접기/내리기</span></i>
                 <div class="toggle-content mt-3" id="toggle-item">
@@ -149,9 +149,8 @@
 
           
                 <div id="batchmonth-search" class="form-group mt-5" style="width: 80vw;">
-<!--                     <button type="button" id="btnShowRegisterPage" class="btn btn-primary">수기데이터 추가</button> -->
-<!--                     <div class="float-end"> -->
-                    <div class="float-end mb-5">
+                    <button type="button" id="btnShowRegisterPage" class="btn btn-primary">수기데이터 추가</button>
+                    <div class="float-end">
                         <input type="text" name="keyword" id="keyword" placeholder="해당년월">
                         <button type="button" id="btnKeywordSearch">검색</button>
                     </div>
@@ -179,7 +178,7 @@
 
         	// 년도와 월을 가져옵니다.
         	const year = currentDate.getFullYear();
-        	const month = currentDate.getMonth() + 2;
+        	const month = currentDate.getMonth() + 1;
 
         	// 월이 10월 이전인 경우, 숫자 앞에 0을 추가합니다.
         	const monthString = month < 10 ? "0" + month : month.toString();
@@ -354,24 +353,47 @@
                     }
                 }
             });
+            const params = new URLSearchParams(location.search);
+			if (!params.get('batch_month')) {
+				// 그리드 데이터 ajax로 가져오기 (현재날짜의 해당년월)
+	            $.ajax({
+	                url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYS/department/ITO/batch_month/" + yyyymm,
+	                method: "GET",
+	                success: function (salesResult) {
+	                	salesResult.forEach(item => {
+	                		item.total_margin_amount = Number(item.total_sales_amount) - Number(item.total_purchase_amount);
+	                	});
+	                    grid.resetData(salesResult);
+	                    
+	               		// 페이지 타이틀 세팅: yyyy 및 mm (현재날짜 기준)
+	               		$('#year').text(year);
+	               		$('#month').text(monthString);
+	               		
+	                 	// 해당년월 키워드 세팅:
+                   		$('#keyword').val(yyyymm);
+	                }
+	            });
+			} else {
+				// 그리드 데이터 ajax로 가져오기 (수기데이터 등록팝업페이지에서 추가할 때 해당년월)
+				$.ajax({
+                    url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYS/department/ITO/batch_month/" + params.get('batch_month'),
+                    method: "GET",
+                    success: function (salesResult) {
+                        salesResult.forEach(item => {
+                            item.total_margin_amount = Number(item.total_sales_amount) - Number(item.total_purchase_amount);
+                        });
+                        grid.resetData(salesResult);
+                        
+                     	// 페이지 타이틀 세팅: yyyy 및 mm (키워드 기준)
+                        $('#year').text(params.get('batch_month').substring(0,4));
+                   		$('#month').text(params.get('batch_month').substring(4,6));
+                   		
+                   		// 해당년월 키워드 세팅:
+                   		$('#keyword').val(params.get('batch_month'));
+                    }
+                });
+			}
             
-            $.ajax({
-                url: "${pageContext.request.contextPath}/salesEstimation.ajax/company/IYCNC/department/ITO/batch_month/" + yyyymm,
-                method: "GET",
-                success: function (salesEstimation) {
-                	salesEstimation.forEach(item => {
-                		item.total_margin_amount = Number(item.total_sales_amount) - Number(item.total_purchase_amount);
-                	});
-                    grid.resetData(salesEstimation);
-                    
-               		// 페이지 타이틀 세팅: yyyy 및 mm (현재날짜 기준)
-               		$('#year').text(year);
-               		$('#month').text(monthString);
-               		
-                 	// 해당년월 키워드 세팅:
-                  		$('#keyword').val(yyyymm);
-                }
-            });
             
             // 모든 정보 체크해제시 이벤트: 컬럼 show 및 hide
             $('input[name=all-check]').click(function () {
@@ -434,13 +456,13 @@
                 if (regex.test($('#keyword').val())) {
                     // 그리드 데이터 ajax로 가져오기 (키워드에 의한 해당년월)
                     $.ajax({
-                        url: "${pageContext.request.contextPath}/salesEstimation.ajax/company/IYCNC/department/ITO/batch_month/" + $('#keyword').val(),
+                        url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYS/department/ITO/batch_month/" + $('#keyword').val(),
                         method: "GET",
-                        success: function (salesEstimation) {
-                            salesEstimation.forEach(item => {
+                        success: function (salesResult) {
+                            salesResult.forEach(item => {
                                 item.total_margin_amount = Number(item.total_sales_amount) - Number(item.total_purchase_amount);
                             });
-                            grid.resetData(salesEstimation);
+                            grid.resetData(salesResult);
                             
                          	// 페이지 타이틀 세팅: yyyy 및 mm (키워드 기준)
                             $('#year').text($('#keyword').val().substring(0,4));
@@ -455,6 +477,34 @@
                 
 			});
 
+            // 수기데이터 등록페이지 버튼 클릭 이벤트: 수기데이터 등록페이지 팝업
+            $('#btnShowRegisterPage').click(function () {
+                const popupUrl = '${pageContext.request.contextPath}/iys/ito/salesResultRegister';
+                const popupName = 'empPoolRegister-popup';
+                const popupWidth = 800;
+                const popupHeight = 600;
+                const left = (screen.width - popupWidth) / 2;
+                const top = (screen.height - popupHeight) / 2;
+
+                window.open(popupUrl, popupName, 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + left + ', top=' + top);
+            });
+       		
+            // 그리드 Row 더블 클릭시 이벤트: 상세정보페이지 팝업
+            grid.on('dblclick', function(ev) {
+                const salesResult = grid.getRow(ev.rowKey);
+                if (salesResult.handwrite === 'N') {
+                	alert('수기로 입력한 데이터만 수정 가능합니다')
+                	return;
+                }
+                const popupUrl = '${pageContext.request.contextPath}/iys/ito/salesResultDetail?sales_result_id='+ salesResult.sales_result_id;
+                const popupName = 'salesResultDetail-popup';
+                const popupWidth = 800;
+                const popupHeight = 600;
+                const left = (screen.width - popupWidth) / 2;
+                const top = (screen.height - popupHeight) / 2;
+                
+                window.open(popupUrl, popupName, 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + left + ', top=' + top);
+            });
        		
        		// 사이드바 접을 때 그리드 리사이징
             $('i.toggle-sidebar-btn').click(function() {
@@ -476,10 +526,10 @@
             });
        		
        		// 사이드바에서 선택한 현재 페이지 고정
-            $('a[data-bs-target="#iycnc-ito-nav"]').attr('aria-expanded', true);
-            $('a[data-bs-target="#iycnc-ito-nav"]').attr('class', 'nav-link');
-       		$('ul#iycnc-ito-nav').attr('class', 'nav-content collapse show');
-       		$('ul#iycnc-ito-nav li:eq(2) a').attr('class', 'active');
+            $('a[data-bs-target="#iys-ito-nav"]').attr('aria-expanded', true);
+            $('a[data-bs-target="#iys-ito-nav"]').attr('class', 'nav-link');
+       		$('ul#iys-ito-nav').attr('class', 'nav-content collapse show');
+       		$('ul#iys-ito-nav li:eq(3) a').attr('class', 'active');
        		
        		
             $('th[data-column-name=total_sales_amount]').attr('title', '매출가는 매출원장의 매출MM 과 매출단가를 계산한 결과입니다.');
