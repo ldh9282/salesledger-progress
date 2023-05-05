@@ -492,9 +492,6 @@
                         name: 'phonenumber',
                         width: 'auto',
                         align: 'center',
-                        formatter({value}) {
-                        	return value.substr(0,3) + '-' + value.substr(3, 4) + '-' + value.substr(7,4);
-                        }
                     },
                     {
                         header: '생년월일',
@@ -692,14 +689,14 @@
                                                     name: 'csvExport',
                                                     label: 'CSV export',
                                                     action: () => {
-                                                        grid.export('csv', { fileName: '테스트제목' });
+                                                        grid.export('csv', { fileName: $('#title').text().trim() });
                                                     }
                                                 },
                                                 {
                                                     name: 'excelExport',
                                                     label: 'Excel export',
                                                     action: () => {
-                                                        grid.export('xlsx', { fileName: '테스트제목' });
+                                                        grid.export('xlsx', { fileName: $('#title').text().trim() });
                                                     }
                                                 },
                                             ]
@@ -713,14 +710,14 @@
                                                     name: 'csvExport',
                                                     label: 'CSV export',
                                                     action: () => {
-                                                        grid.export('csv', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                        grid.export('csv', { includeHeader: false, fileName: $('#title').text().trim() + '(헤더 미포함)' });
                                                     }
                                                 },
                                                 {
                                                     name: 'excelExport',
                                                     label: 'Excel export',
                                                     action: () => {
-                                                        grid.export('xlsx', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                        grid.export('xlsx', { includeHeader: false, fileName: $('#title').text().trim() + '(헤더 미포함)' });
                                                     }
                                                 },
                                             ]
@@ -778,6 +775,11 @@
                         if (salesLedger.c_contract_date) {
                             const c_contract_date = new Date(salesLedger.c_contract_date);
                             salesLedger.c_contract_date = c_contract_date.getFullYear() + '-' + String(Number(c_contract_date.getMonth() + 1)).padStart(2, '0') + '-' + String(c_contract_date.getDate()).padStart(2, '0');
+                        }
+                        
+                     	// 휴대폰번호 Formatting
+                        if (salesLedger.phonenumber) {
+                        	salesLedger.phonenumber = salesLedger.phonenumber.substr(0,3) + '-' + salesLedger.phonenumber.substr(3, 4) + '-' + salesLedger.phonenumber.substr(7,4);
                         }
                     });
                     grid.resetData(salesLedgerList);

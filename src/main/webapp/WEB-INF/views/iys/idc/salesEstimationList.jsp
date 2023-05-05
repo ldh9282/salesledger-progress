@@ -304,14 +304,14 @@
                                                 name: 'csvExport',
                                                 label: 'CSV export',
                                                 action: () => {
-                                                    grid.export('csv', { fileName: '테스트제목' });
+                                                    grid.export('csv', { fileName: $('#title').text().trim() });
                                                 }
                                             },
                                             {
                                                 name: 'excelExport',
                                                 label: 'Excel export',
                                                 action: () => {
-                                                    grid.export('xlsx', { fileName: '테스트제목' });
+                                                    grid.export('xlsx', { fileName: $('#title').text().trim() });
                                                 }
                                             },
                                         ]
@@ -325,14 +325,14 @@
                                                 name: 'csvExport',
                                                 label: 'CSV export',
                                                 action: () => {
-                                                    grid.export('csv', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                    grid.export('csv', { includeHeader: false, fileName: $('#title').text().trim() + '(헤더 미포함)' });
                                                 }
                                             },
                                             {
                                                 name: 'excelExport',
                                                 label: 'Excel export',
                                                 action: () => {
-                                                    grid.export('xlsx', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                    grid.export('xlsx', { includeHeader: false, fileName: $('#title').text().trim() + '(헤더 미포함)' });
                                                 }
                                             },
                                         ]

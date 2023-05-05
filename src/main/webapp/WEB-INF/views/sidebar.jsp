@@ -79,6 +79,35 @@
 				</ul>
 			</li><!-- End IDC Nav -->
 			<li class="nav-item">
+				<a class="nav-link collapsed" data-bs-target="#iycnc-conversion-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-journal-text"></i><span>컨버전스</span><i class="bi bi-chevron-down ms-auto"></i>
+				</a>
+				
+				<ul id="iycnc-conversion-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+				
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/conversion/empLedgerList">
+							<i class="bi bi-circle"></i><span>인력기초원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/conversion/salesLedgerList">
+							<i class="bi bi-circle"></i><span>매출원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/conversion/salesEstimationList">
+							<i class="bi bi-circle"></i><span>추정</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iycnc/conversion/salesResultList">
+							<i class="bi bi-circle"></i><span>실적</span>
+						</a>
+					</li>
+				</ul>
+			</li><!-- End CONVERSION Nav -->
+			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#iycnc-infra-nav" data-bs-toggle="collapse" href="#">
 					<i class="bi bi-journal-text"></i><span>인프라</span><i class="bi bi-chevron-down ms-auto"></i>
 				</a>
@@ -169,6 +198,35 @@
 					</li>
 				</ul>
 			</li><!-- End IDC Nav -->
+			<li class="nav-item">
+				<a class="nav-link collapsed" data-bs-target="#ibts-conversion-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-journal-text"></i><span>컨버전스</span><i class="bi bi-chevron-down ms-auto"></i>
+				</a>
+				
+				<ul id="ibts-conversion-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+				
+					<li>
+						<a href="${pageContext.request.contextPath}/ibts/conversion/empLedgerList">
+							<i class="bi bi-circle"></i><span>인력기초원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/ibts/conversion/salesLedgerList">
+							<i class="bi bi-circle"></i><span>매출원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/ibts/conversion/salesEstimationList">
+							<i class="bi bi-circle"></i><span>추정</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/ibts/conversion/salesResultList">
+							<i class="bi bi-circle"></i><span>실적</span>
+						</a>
+					</li>
+				</ul>
+			</li><!-- End CONVERSION Nav -->
 		</security:authorize>
 		<!-- End IBTS Nav  -->
 		
@@ -233,6 +291,35 @@
 					</li>
 				</ul>
 			</li><!-- End IDC Nav -->
+			<li class="nav-item">
+				<a class="nav-link collapsed" data-bs-target="#iys-conversion-nav" data-bs-toggle="collapse" href="#">
+					<i class="bi bi-journal-text"></i><span>컨버전스</span><i class="bi bi-chevron-down ms-auto"></i>
+				</a>
+				
+				<ul id="iys-conversion-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+				
+					<li>
+						<a href="${pageContext.request.contextPath}/iys/conversion/empLedgerList">
+							<i class="bi bi-circle"></i><span>인력기초원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iys/conversion/salesLedgerList">
+							<i class="bi bi-circle"></i><span>매출원장</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iys/conversion/salesEstimationList">
+							<i class="bi bi-circle"></i><span>추정</span>
+						</a>
+					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/iys/conversion/salesResultList">
+							<i class="bi bi-circle"></i><span>실적</span>
+						</a>
+					</li>
+				</ul>
+			</li><!-- End CONVERSION Nav -->
 			<!-- End IYS Nav -->
 		</security:authorize>
 		<!-- End IYS Nav  -->

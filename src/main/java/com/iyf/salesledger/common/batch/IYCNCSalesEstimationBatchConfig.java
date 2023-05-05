@@ -38,4 +38,15 @@ public class IYCNCSalesEstimationBatchConfig {
 		System.out.println(yyyymm + ": IYCNC IDC 매출추정 배치 작업");
 		salesEstimationBatchService.monthlySalesBatchByCompanyAndDepartment("IYCNC", "IDC");
 	}
+	
+//	@Scheduled(cron = "0 0 20 * * *")
+	@Scheduled(cron = "0 * * * * *")
+	public void monthlySalesBatchByIYCNCAndCONVERSION() {
+		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime nextMonth = now.plusMonths(1);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
+		String yyyymm = nextMonth.format(formatter);
+		System.out.println(yyyymm + ": IYCNC CONVERSION 매출추정 배치 작업");
+		salesEstimationBatchService.monthlySalesBatchByCompanyAndDepartment("IYCNC", "CONVERSION");
+	}
 }

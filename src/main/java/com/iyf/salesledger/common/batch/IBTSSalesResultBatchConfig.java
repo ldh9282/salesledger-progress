@@ -36,4 +36,14 @@ public class IBTSSalesResultBatchConfig {
 		System.out.println(yyyymm + ": IBTS IDC 매출실적 배치 작업");
 		salesResultBatchService.monthlySalesBatchByCompanyAndDepartment("IBTS", "IDC");
 	}
+	
+//	@Scheduled(cron = "0 0 20 * * *")
+	@Scheduled(cron = "0 * * * * *")
+	public void monthlySalesBatchByIBTSAndCONVERSION() {
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
+		String yyyymm = now.format(formatter);
+		System.out.println(yyyymm + ": IBTS CONVERSION 매출실적 배치 작업");
+		salesResultBatchService.monthlySalesBatchByCompanyAndDepartment("IBTS", "CONVERSION");
+	}
 }

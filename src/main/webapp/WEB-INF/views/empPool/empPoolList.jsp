@@ -228,9 +228,7 @@
                         width: 'auto',
                         align: 'center',
                         filter: 'select',
-                        formatter({value}) {
-                        	return value.substr(0,3) + '-' + value.substr(3, 4) + '-' + value.substr(7,4);
-                        }
+                        
                     },
                     {
                         header: '생년월일',
@@ -328,14 +326,14 @@
                                                     name: 'csvExport',
                                                     label: 'CSV export',
                                                     action: () => {
-                                                        grid.export('csv', { fileName: '테스트제목' });
+                                                        grid.export('csv', { fileName: $('#title').text().trim() });
                                                     }
                                                 },
                                                 {
                                                     name: 'excelExport',
                                                     label: 'Excel export',
                                                     action: () => {
-                                                        grid.export('xlsx', { fileName: '테스트제목' });
+                                                        grid.export('xlsx', { fileName:$('#title').text().trim() });
                                                     }
                                                 },
                                             ]
@@ -349,14 +347,14 @@
                                                     name: 'csvExport',
                                                     label: 'CSV export',
                                                     action: () => {
-                                                        grid.export('csv', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                        grid.export('csv', { includeHeader: false, fileName:  $('#title').text().trim() + '(헤더 미포함)' });
                                                     }
                                                 },
                                                 {
                                                     name: 'excelExport',
                                                     label: 'Excel export',
                                                     action: () => {
-                                                        grid.export('xlsx', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                        grid.export('xlsx', { includeHeader: false, fileName: $('#title').text().trim() + '(헤더 미포함)' });
                                                     }
                                                 },
                                             ]
@@ -390,20 +388,18 @@
                         return empPool.del !== 'Y';
                     });
 
-                    // 생년월일 Formatting
                     empPoolList.forEach(empPool => {
+	                    // 생년월일 Formatting
                         if (empPool.birthdate) {
                             const birthdate = new Date(empPool.birthdate);
                             empPool.birthdate = birthdate.getFullYear() + '-' + String(Number(birthdate.getMonth() + 1)).padStart(2, '0') + '-' + String(birthdate.getDate()).padStart(2, '0');
                         }
-                    });
-                    // 생년월일 Formatting
-                    empPoolList.forEach(empPool => {
-                        if (empPool.birthdate) {
-                            const birthdate = new Date(empPool.birthdate);
-                            empPool.birthdate = birthdate.getFullYear() + '-' + String(Number(birthdate.getMonth() + 1)).padStart(2, '0') + '-' + String(birthdate.getDate()).padStart(2, '0');
+	                    // 휴대폰번호 Formatting
+                        if (empPool.phonenumber) {
+                            empPool.phonenumber = empPool.phonenumber.substr(0,3) + '-' + empPool.phonenumber.substr(3, 4) + '-' + empPool.phonenumber.substr(7,4);
                         }
                     });
+                    
                     grid.resetData(empPoolList);
 
 

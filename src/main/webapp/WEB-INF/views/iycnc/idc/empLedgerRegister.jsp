@@ -60,7 +60,7 @@
                                 <input type="text" class="form-control" id="company" name="company" value="IYCNC" readonly>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="company">부서:</label>
+                                <label for="department">사업부서:</label>
                                 <input type="text" class="form-control" id="department" name="department" value="IDC" readonly>
                             </div>
                             <div class="form-group mb-3">
