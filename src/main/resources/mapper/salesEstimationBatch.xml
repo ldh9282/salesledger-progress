@@ -32,8 +32,8 @@
 			on t2.emp_pool_id = t3.emp_pool_id
 			WHERE t2.company = #{company} and t2.department = #{department} and (t1.del != 'Y' or t1.del is null)
 			and t1.include = 'Y'
-			and (t2.assign_date <![CDATA[ < ]]> date_trunc('month', CURRENT_DATE) + interval '1 month - 1 day'  or t2.assign_date is null)
-			and (t2.resign_date > date_trunc('month', now() + interval '1 month') or t2.resign_date is null)
+			and (t2.assign_date <![CDATA[ <= ]]> date_trunc('month', now()) + interval '2 month - 1 day'  or t2.assign_date is null)
+			and (t2.resign_date >= date_trunc('month', now() + interval '1 month') or t2.resign_date is null)
 			group by t2.company, t2.department, t2.site, t2.client, t2.brief, t2.project_name
 		)
 	</insert>
