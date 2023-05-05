@@ -8,6 +8,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+  <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/icon/favicon.ico">
   <title>메인홈페이지: IYF 영업관리시스템</title>
 
   <!-- Google Fonts -->
@@ -68,94 +69,17 @@
 
     $(document).ready(function () {
 
-      grid();
-      
+   		// 사이드바 접을 때 그리드 리사이징
+        $('i.toggle-sidebar-btn').click(function() {
+        	if ($('body').attr('class') === 'toggle-sidebar') {
+        		$('#footer').attr('style', 'width: 93vw;');
+        	} else {
+        		$('#footer').attr('style', 'width: 80vw;');
+        	}
+        	
+        });
     });
 
-    function grid() {
-      const columns = [
-        {
-          header: '인력풀번호',
-          name: 'emp_pool_id'
-        },
-        {
-          header: '소싱담당자',
-          name: 'sourcing_manager'
-        },
-        {
-          header: '이름',
-          name: 'name'
-        },
-        {
-          header: '전화번호',
-          name: 'phonenumber'
-        },
-        {
-          header: '생년월일',
-          name: 'birthdate'
-        },
-        {
-          header: '이메일',
-          name: 'email'
-        },
-        {
-          header: '주소',
-          name: 'address'
-        },
-        {
-          header: '학력',
-          name: 'education'
-        },
-        {
-          header: '학교명',
-          name: 'school_name'
-        },
-        {
-          header: '학과',
-          name: 'major'
-        },
-        {
-          header: '경력',
-          name: 'career_years'
-        },
-        {
-          header: '분야',
-          name: 'career_field'
-        },
-        {
-          header: '등급',
-          name: 'career_level'
-        },
-        {
-          header: '현재투입여부',
-          name: 'project_assign'
-        },
-      ]
-      $.ajax({
-        url: "empPoolList.ajax",
-        method: "GET",
-        success: function (empPoolList) {
-
-          const grid = new tui.Grid({
-            el: document.querySelector('#grid'),
-            scrollX: true,
-            scrollY: true,
-            data: empPoolList,
-            columns: columns
-          });
-
-          $('input[name=column]').change(function(e) {
-            if (e.target.checked) {
-                grid.showColumn(e.target.value)
-            } else {
-                grid.hideColumn(e.target.value)
-            }
-          })
-
-        }
-      });
-      
-    }
 
 
   </script>

@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/icon/favicon.ico">
     <title>IYS IDC 개발자 프로파일 진행 현황 [인력기초원장]: IYF 영업관리시스템</title>
     
      <!-- Google Fonts -->
@@ -551,7 +552,7 @@
                 rowHeaders: ['rowNum'],
                 pageOptions: {
 	                useClient: true,
-	                perPage: 50
+	                perPage: 10
                 },
                 contextMenu: ({ rowKey, columnName }) => (
                         [

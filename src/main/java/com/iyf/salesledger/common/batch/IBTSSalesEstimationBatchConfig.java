@@ -24,7 +24,8 @@ public class IBTSSalesEstimationBatchConfig {
 		LocalDateTime nextMonth = now.plusMonths(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
         String yyyymm = nextMonth.format(formatter);
-		System.out.println(yyyymm + ": IBTS ITO 매출추정 배치 작업");
+        
+		System.out.println(yyyymm + ": IBTS ITO 매출추정 배치 작업" + " [실행시간: " + now.format(DateTimeFormatter.ofPattern("yy/MM/dd HH:mm")) + "]");
 		salesEstimationBatchService.monthlySalesBatchByCompanyAndDepartment("IBTS", "ITO");
 	}
 	
@@ -35,7 +36,7 @@ public class IBTSSalesEstimationBatchConfig {
 		LocalDateTime nextMonth = now.plusMonths(1);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
 		String yyyymm = nextMonth.format(formatter);
-		System.out.println(yyyymm + ": IBTS IDC 매출추정 배치 작업");
+		System.out.println(yyyymm + ": IBTS IDC 매출추정 배치 작업" + " [실행시간: " + now.format(DateTimeFormatter.ofPattern("yy/MM/dd HH:mm")) + "]");
 		salesEstimationBatchService.monthlySalesBatchByCompanyAndDepartment("IBTS", "IDC");
 	}
 	
@@ -46,7 +47,7 @@ public class IBTSSalesEstimationBatchConfig {
 		LocalDateTime nextMonth = now.plusMonths(1);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
 		String yyyymm = nextMonth.format(formatter);
-		System.out.println(yyyymm + ": IBTS CONVERSION 매출추정 배치 작업");
+		System.out.println(yyyymm + ": IBTS CONVERSION 매출추정 배치 작업" + " [실행시간: " + now.format(DateTimeFormatter.ofPattern("yy/MM/dd HH:mm")) + "]");
 		salesEstimationBatchService.monthlySalesBatchByCompanyAndDepartment("IBTS", "CONVERSION");
 	}
 }

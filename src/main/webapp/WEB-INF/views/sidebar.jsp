@@ -17,8 +17,8 @@
 			</li><!-- End EmpPool Nav -->
 		</security:authorize>
 		
-		<!-- Start IYCNC Nav  -->
 		<security:authorize access="hasAuthority('통합 관리자') or hasAuthority('IYCNC 관리자')">
+			<!-- Start IYCNC Nav  -->
 			<li class="nav-heading">IYCNC</li>
 			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#iycnc-ito-nav" data-bs-toggle="collapse" href="#">
@@ -134,11 +134,11 @@
 					</li>
 				</ul>
 			</li><!-- End INFRA Nav -->
+			<!-- End IYCNC Nav  -->
 		</security:authorize>
-		<!-- End IYCNC Nav  -->
 		
-		<!-- Start IBTS Nav  -->
 		<security:authorize access="hasAuthority('통합 관리자') or hasAuthority('IBTS 관리자')">
+			<!-- Start IBTS Nav  -->
 			<li class="nav-heading">IBTS</li>
 			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#ibts-ito-nav" data-bs-toggle="collapse" href="#">
@@ -227,11 +227,11 @@
 					</li>
 				</ul>
 			</li><!-- End CONVERSION Nav -->
-		</security:authorize>
 		<!-- End IBTS Nav  -->
+		</security:authorize>
 		
-		<!-- Start IYS Nav  -->
 		<security:authorize access="hasAuthority('통합 관리자') or hasAuthority('IYS 관리자')">
+			<!-- Start IYS Nav  -->
 			<li class="nav-heading">IYS</li>
 			<li class="nav-item">
 				<a class="nav-link collapsed" data-bs-target="#iys-ito-nav" data-bs-toggle="collapse" href="#">
@@ -322,11 +322,10 @@
 			</li><!-- End CONVERSION Nav -->
 			<!-- End IYS Nav -->
 		</security:authorize>
-		<!-- End IYS Nav  -->
 			
 		
 		<security:authorize access="hasAuthority('통합 관리자')">
-		
+			<!-- Start 통합관리자 Nav -->
 			<li class="nav-heading">관리자</li>
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="${pageContext.request.contextPath}/admin/memberList">

@@ -24,7 +24,7 @@ public class IYCNCSalesEstimationBatchConfig {
 		LocalDateTime nextMonth = now.plusMonths(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
         String yyyymm = nextMonth.format(formatter);
-		System.out.println(yyyymm + ": IYCNC ITO 매출추정 배치 작업");
+		System.out.println(yyyymm + ": IYCNC ITO 매출추정 배치 작업" + " [실행시간: " + now.format(DateTimeFormatter.ofPattern("yy/MM/dd HH:mm")) + "]");
 		salesEstimationBatchService.monthlySalesBatchByCompanyAndDepartment("IYCNC", "ITO");
 	}
 	
@@ -35,7 +35,7 @@ public class IYCNCSalesEstimationBatchConfig {
 		LocalDateTime nextMonth = now.plusMonths(1);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
 		String yyyymm = nextMonth.format(formatter);
-		System.out.println(yyyymm + ": IYCNC IDC 매출추정 배치 작업");
+		System.out.println(yyyymm + ": IYCNC IDC 매출추정 배치 작업" + " [실행시간: " + now.format(DateTimeFormatter.ofPattern("yy/MM/dd HH:mm")) + "]");
 		salesEstimationBatchService.monthlySalesBatchByCompanyAndDepartment("IYCNC", "IDC");
 	}
 	
@@ -46,7 +46,7 @@ public class IYCNCSalesEstimationBatchConfig {
 		LocalDateTime nextMonth = now.plusMonths(1);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
 		String yyyymm = nextMonth.format(formatter);
-		System.out.println(yyyymm + ": IYCNC CONVERSION 매출추정 배치 작업");
+		System.out.println(yyyymm + ": IYCNC CONVERSION 매출추정 배치 작업" + " [실행시간: " + now.format(DateTimeFormatter.ofPattern("yy/MM/dd HH:mm")) + "]");
 		salesEstimationBatchService.monthlySalesBatchByCompanyAndDepartment("IYCNC", "CONVERSION");
 	}
 }

@@ -7,9 +7,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/icon/favicon.ico">
     <title>컨택한 인재DB 진행 현황 [인력풀]: IYF 영업관리시스템</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -308,7 +307,7 @@
                 rowHeaders: ['rowNum'],
                 pageOptions: {
 	                useClient: true,
-	                perPage: 50
+	                perPage: 10
                 },
                 contextMenu: ({ rowKey, columnName }) => (
                         [

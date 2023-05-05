@@ -7,9 +7,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/icon/favicon.ico">
     <title>IBTS IDC 매출실적 수기데이터 등록 페이지: IYF 영업관리시스템</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
