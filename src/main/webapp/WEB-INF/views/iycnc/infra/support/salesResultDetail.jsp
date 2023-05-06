@@ -11,7 +11,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
 	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/icon/favicon.ico">
-    <title>IYCNC ITO 매출실적 상세 페이지: IYF 영업관리시스템</title>
+    <title>IYCNC 인프라 매출실적 상세 페이지: IYF 영업관리시스템</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -51,7 +51,7 @@
         <section>
             <div class="container">
                 
-                <h1>IYCNC ITO 매출실적 상세 페이지</h1>
+                <h1>IYCNC 인프라 매출실적 상세 페이지</h1>
                 <form id="salesResultForm">
                 	<input type="hidden" class="form-control" id="sales_result_id" name="sales_result_id">
                 	<div class="form-group mb-3">
@@ -64,7 +64,8 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="department">사업부서:</label>
-                        <input type="text" class="form-control" id="department" name="department" value="ITO" readonly>
+                        <input type="text" class="form-control" id="display-department" name="display-department" value="인프라" readonly>
+                        <input type="hidden" class="form-control" id="department" name="department" value="INFRA">
                     </div>
                     <div class="form-group mb-3">
                         <label for="site">사이트명:</label>

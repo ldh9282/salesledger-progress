@@ -98,7 +98,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="handwrite">수기작성여부:</label>
-                        <input type="date" class="form-control" id="handwrite" name="handwrite" value="Y" readonly>
+                        <input type="text" class="form-control" id="handwrite" name="handwrite" value="Y" readonly>
                     </div>
                 </form>
                 

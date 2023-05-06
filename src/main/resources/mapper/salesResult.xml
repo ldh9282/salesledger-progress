@@ -6,9 +6,9 @@
 		<result property="sales_result_id" column="sales_result_id"/>
 		<result property="total_sales_amount" column="total_sales_amount"/>
 		<result property="total_purchase_amount" column="total_purchase_amount"/>
-		<result property="sales_source" column="sales_source"/>
+		<result property="site" column="site"/>
 		<result property="client" column="client"/>
-		<result property="subcontract" column="subcontract"/>
+		<result property="brief" column="brief"/>
 		<result property="project_name" column="project_name"/>
 		<result property="batch_month" column="batch_month"/>
 		<result property="company" column="company"/>

@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
-<security:authentication var="principal" property="principal"/>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
 	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/icon/favicon.ico">
-    <title>IYCNC ITO 매출실적 상세 페이지: IYF 영업관리시스템</title>
+    <title>IYCNC 컨버전스 매출실적 수기데이터 등록 페이지: IYF 영업관리시스템</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -47,24 +44,26 @@
 </head>
 
 <body>
+
     <main id="main" class="main">
+
         <section>
             <div class="container">
-                
-                <h1>IYCNC ITO 매출실적 상세 페이지</h1>
+                <h3>IYCNC 컨버전스 매출실적 수기데이터 등록 페이지</h3>
+                <hr>
                 <form id="salesResultForm">
-                	<input type="hidden" class="form-control" id="sales_result_id" name="sales_result_id">
-                	<div class="form-group mb-3">
+                    <div class="form-group mb-3">
                         <label for="batch_month">해당년월:</label>
-                        <input type="text" class="form-control" id="batch_month" name="batch_month" readonly>
+                        <input type="text" class="form-control" id="batch_month" name="batch_month" placeholder="YYYYMM">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="company">소속:</label>
-                        <input type="text" class="form-control" id="company" name="company" value="IYCNC" readonly>
+                        <label for="company">회사:</label>
+                        <input type="text" class="form-control" id="company" name="company" readonly value="IYCNC">
                     </div>
                     <div class="form-group mb-3">
                         <label for="department">사업부서:</label>
-                        <input type="text" class="form-control" id="department" name="department" value="ITO" readonly>
+                        <input type="text" class="form-control" id="display-department" name="display-department" value="컨버전스" readonly>
+                        <input type="hidden" class="form-control" id="department" name="department" value="INFRA">
                     </div>
                     <div class="form-group mb-3">
                         <label for="site">사이트명:</label>
@@ -79,120 +78,91 @@
                         <input type="text" class="form-control" id="project_name" name="project_name">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="brief">적요란</label>
+                        <label for="brief">적요란:</label>
                         <input type="text" class="form-control" id="brief" name="brief">
-                    </div>                    
-                	<hr>
+                    </div>
                     <div class="form-group mb-3">
                         <label for="total_sales_amount">매출가:</label>
-                        <input type="text" class="form-control" id="total_sales_amount" name="total_sales_amount">
+                        <input type="text" class="form-control" id="total_sales_amount" name="total_sales_amount" value="0">
                     </div>
                     <div class="form-group mb-3">
                         <label for="total_purchase_amount">매입가:</label>
-                        <input type="text" class="form-control" id="total_purchase_amount" name="total_purchase_amount">
+                        <input type="text" class="form-control" id="total_purchase_amount" name="total_purchase_amount" value="0">
                     </div>
                     <div class="form-group mb-3">
                         <label for="total_margin_amount">이익:</label>
-                        <input type="text" class="form-control" id="total_margin_amount" name="total_margin_amount" readonly>
+                        <input type="text" class="form-control" id="total_margin_amount" name="total_margin_amount" value="0" readonly="readonly">
                     </div>
                     <div class="form-group mb-3">
                         <label for="handwrite">수기작성여부:</label>
-                        <input type="text" class="form-control" id="handwrite" name="handwrite" value="Y" readonly>
+                        <input type="text" class="form-control" id="handwrite" name="handwrite" readonly value="Y">
                     </div>
                 </form>
-                
-                <button type="button" class="btn btn-primary" id="btnUpdate">수정</button>
-                <button type="button" class="btn btn-danger float-end" id="btnDelete">삭제</button>
+
+                <div class="form-group mt-3">
+                    <button type="button" class="btn btn-primary float-end" id="btnInsert">등록</button>
+                </div>
             </div>
         </section>
-    
+
     </main><!-- End #main -->
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
+            $('#btnInsert').click(function() {
+            	
+                if (!$('#batch_month').val()) {
+                    alert('해당년월(YYYYMM)을 입력해주세요');
+                    return;
+                }
+                const year = $('#batch_month').val().substring(0, 4);
+                const month = $('#batch_month').val().substring(4);
 
-        	const urlParmas = new URLSearchParams(window.location.search);
-            const sales_result_id = urlParmas.get('sales_result_id'); 
-            
-            // 상세정보 조회
-            $.ajax({
-            	url: '${pageContext.request.contextPath}/salesResult.ajax/sales_result_id/' + sales_result_id,
-            	type: 'GET',
-            	dataType: 'json',
-            	success: function (salesResult) {
-            		
-            		$('#sales_result_id').val(salesResult.sales_result_id);
-            		$('#batch_month').val(salesResult.batch_month);
-            		$('#company').val(salesResult.company);
-            		$('#department').val(salesResult.department);
-            		$('#site').val(salesResult.site);
-            		$('#client').val(salesResult.client);
-            		$('#project_name').val(salesResult.project_name);
-            		$('#brief').val(salesResult.brief);
-            		$('#total_sales_amount').val(salesResult.total_sales_amount.toLocaleString('ko-KR'));
-            		$('#total_purchase_amount').val(salesResult.total_purchase_amount.toLocaleString('ko-KR'));
-            		$('#total_margin_amount').val((Number(salesResult.total_sales_amount) - Number(salesResult.total_purchase_amount)).toLocaleString('ko-KR'));
-            		$('#handwrite').val(salesResult.handwrite);
+                if (!confirm(year + '년 ' + month + '월 매출 실적에 해당 데이터를 수기로 추가하시겠습니까?')) {
+                    return;
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYCNC/department/INFRA/batch_month/" + $('#batch_month').val(),
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                            batch_month: $('#batch_month').val(),
+                            company: $('#company').val(),
+                            department: $('#department').val(),
+                            site: $('#site').val(),
+                            client: $('#client').val(),
+                            project_name: $('#project_name').val(),
+                            brief: $('#brief').val(),
+                            total_sales_amount: $('#total_sales_amount').val().replaceAll(',', ''),
+                            total_purchase_amount: $('#total_purchase_amount').val().replaceAll(',', ''),
+                            handwrite: $('#handwrite').val(),
+                            
+                        }),
+                        success: function () {
+                        	opener.parent.location.href = opener.parent.location.pathname + '?batch_month=' + $('#batch_month').val();
+                            window.close();
+                        },
+                        error: function () {
+                            opener.parent.location.reload();
+                            window.close();
+                        }
+                    });
 
-
-				},
-				error: function(xhr, status, error) {
-                    
                 }
             });
-            
-         	// 수정하기 버튼 클릭 시
-            $('#btnUpdate').click(function() {
-            	const salesResult = {
-         			sales_result_id: $('#sales_result_id').val(), 
-         			batch_month: $('#batch_month').val(), 
-         			company: $('#company').val(), 
-         			department: $('#department').val(), 
-         			site: $('#site').val(), 
-         			client: $('#client').val(), 
-         			project_name: $('#project_name').val(), 
-         			brief: $('#brief').val(), 
-         			total_sales_amount: $('#total_sales_amount').val().replaceAll(',', ''),
-                    total_purchase_amount: $('#total_purchase_amount').val().replaceAll(',', ''), 
-         			handwrite: $('#handwrite').val(), 
-	            }
-	            $.ajax({
-	                type: "PUT",
-	                url: "${pageContext.request.contextPath}/salesResult.ajax",
-	                contentType: "application/json",
-	                data: JSON.stringify(salesResult),
-	                success: function() {
-	                    opener.parent.location.reload();
-	                    window.location.reload();
-	                },
-	                error: function() {
-	                    opener.parent.location.reload();
-	                    window.close();
-	                }
-	            });
-			});
-            
-         	// 삭제하기 버튼 클릭 시
-            $('#btnDelete').click(function() {
-            	if (!confirm('정말로 해당 수기데이터를 삭제하시겠습니까?')) {
-            		return;
-            	} else {
-		            $.ajax({
-		                type: "DELETE",
-		                url: "${pageContext.request.contextPath}/salesResult.ajax/sales_result_id/" + sales_result_id,
-		                success: function() {
-		                    opener.parent.location.reload();
-		                    window.close();
-		                },
-		                error: function() {
-		                    opener.parent.location.reload();
-		                    window.close();
-		                }
-		            });
-            	}
-			});
-         	
-        	 // 금액에 문자 입력 방지 및 세자리 단위 콤마로 디스플레이
+
+            $('#batch_month').change(function() {
+                const regex = /^(19|20)\d\d(0[1-9]|1[0-2])$/;
+
+                if (regex.test($('#batch_month').val())) {
+                    
+                } else {
+                    alert('올바른 해당년월(YYYYMM)을 입력해주세요');
+                    $('#batch_month').val('');
+                }
+            })
+
+            // 금액에 문자 입력 방지 및 세자리 단위 콤마로 디스플레이
             $('#total_sales_amount').keyup(function(e) {
                 let value = e.target.value;
                 value = Number(value.replaceAll(',', ''))
@@ -237,12 +207,13 @@
                 
                 $('#total_margin_amount').val((total_sales_amount - total_purchase_amount).toLocaleString('ko-KR'));
             })
-        	
-            
-        });
 
+
+        });
     </script>
     
+    
+
 
     <!-- Excel Export JS File-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
@@ -267,6 +238,9 @@
 
     <!-- NiceAdmin: Template Main JS File -->
     <script src="${pageContext.request.contextPath}/resources/NiceAdmin/assets/js/main.js"></script>
+
+
+
 
 </body>
 

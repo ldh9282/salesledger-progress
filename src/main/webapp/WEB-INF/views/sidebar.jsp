@@ -113,24 +113,40 @@
 				</a>
 				<ul id="iycnc-infra-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 					<li>
-						<a href="${pageContext.request.contextPath}/iys/empLedgerList">
-							<i class="bi bi-circle"></i><span>인력기초원장</span>
+						<a class="nav-link collapsed" data-bs-target="#iycnc-infra-maintenance-nav" data-bs-toggle="collapse" href="#">
+							<i class="bi bi-grid"></i><span>유지보수</span>
 						</a>
+						<ul id="iycnc-infra-maintenance-nav" class="nav-content collapse " data-bs-parent="#iycnc-infra-nav">
+							<li>
+								<a href="${pageContext.request.contextPath}/iycnc/infra/maintenance/salesResultList" style="padding: 10px 0 10px 61px; font-size: 13px;">
+									<i class="bi bi-circle"></i><span>실적</span>
+								</a>
+							</li>
+						</ul>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iys/salesLedgerList">
-							<i class="bi bi-circle"></i><span>매출원장</span>
+						<a class="nav-link collapsed" data-bs-target="#iycnc-infra-merchandise-nav" data-bs-toggle="collapse" href="#">
+							<i class="bi bi-grid"></i><span>상품</span>
 						</a>
+						<ul id="iycnc-infra-merchandise-nav" class="nav-content collapse " data-bs-parent="#iycnc-infra-nav">
+							<li>
+								<a href="${pageContext.request.contextPath}/iycnc/infra/merchandise/salesResultList" style="padding: 10px 0 10px 61px; font-size: 13px;">
+									<i class="bi bi-circle"></i><span>실적</span>
+								</a>
+							</li>
+						</ul>
 					</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/iys/salesEstimationList">
-							<i class="bi bi-circle"></i><span>추정</span>
+						<a class="nav-link collapsed" data-bs-target="#iycnc-infra-support-nav" data-bs-toggle="collapse" href="#">
+							<i class="bi bi-grid"></i><span>기술지원</span>
 						</a>
-					</li>
-					<li>
-						<a href="${pageContext.request.contextPath}/iys/salesResultList">
-							<i class="bi bi-circle"></i><span>실적</span>
-						</a>
+						<ul id="iycnc-infra-support-nav" class="nav-content collapse " data-bs-parent="#iycnc-infra-nav">
+							<li>
+								<a href="${pageContext.request.contextPath}/iycnc/infra/support/salesResultList" style="padding: 10px 0 10px 61px; font-size: 13px;">
+									<i class="bi bi-circle"></i><span>실적</span>
+								</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</li><!-- End INFRA Nav -->
