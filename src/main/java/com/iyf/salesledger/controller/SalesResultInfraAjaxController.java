@@ -28,7 +28,7 @@ public class SalesResultInfraAjaxController {
 		return salesResultInfraService.listByCompanyAndDepartmentAndCategoryAndBatchMonth(company, department, category, batch_month);
 	}
 	
-	@PostMapping("/salesResultInfra.ajax/company/{company}/department/{department}/batch_month/{batch_month}")
+	@PostMapping("/salesResultInfra.ajax/company/{company}/department/{department}/category/{category}/batch_month/{batch_month}")
 	public void insertSalesResultByCompanyAndDepartmentAndBatchMonth(@RequestBody SalesResultInfra salesResultInfra) {
 		salesResultInfraService.insertByHandwrite(salesResultInfra);
 	}

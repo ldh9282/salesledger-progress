@@ -8,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
 	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/icon/favicon.ico">
-    <title>IYCNC 인프라 용역 매출 현황 [매출실적]: IYF 영업관리시스템</title>
+    <title>IYCNC 인프라 유지보수 매출 현황 [매출추정]: IYF 영업관리시스템</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -62,7 +62,7 @@
 <!--         <section> -->
 <!--             <div class="container"> -->
 				<div id="title" class="d-flex justify-content-center" style="width: 80vw;">
-			  		<span style="font-size: 20px; font-weight: 550; color: #012970c7; font-family: 'Nunito', sans-serif;">IYCNC 인프라 <span id="year"></span>년 <span id="month"></span>월 용역 매출 현황 [매출실적]</span>
+			  		<span style="font-size: 20px; font-weight: 550; color: #012970c7; font-family: 'Nunito', sans-serif;">IYCNC 인프라 유지보수 <span id="year"></span>년 <span id="month"></span>월 매출 현황 [매출추정]</span>
 				</div>
                 <i class="ri-arrow-down-s-fill" id="toggle-icon"><span>접기/내리기</span></i>
                 <div class="toggle-content mt-3" id="toggle-item">
@@ -79,79 +79,85 @@
                         <div class="row row-cols-4 mb-3">
                             <div class="col">
                                <label class="form-check">
-                                   <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="batch_month" checked>
+                                   <input class="form-check-input" type="checkbox" data-table="sales-result-infra" name="column" value="batch_month" checked>
                                    <span class="form-check-label">해당년월</span>
                                </label>
                             </div>
                             <div class="col">
                                <label class="form-check">
-                                   <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="date" checked>
+                                   <input class="form-check-input" type="checkbox" data-table="sales-result-infra" name="column" value="date" checked>
                                    <span class="form-check-label">날짜</span>
                                </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="company" checked>
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result-infra" name="column" value="company" checked>
                                     <span class="form-check-label">소속</span>
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="department" checked>
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result-infra" name="column" value="department" checked>
                                     <span class="form-check-label">사업부서</span>
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="client" checked>
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result-infra" name="column" value="category" checked>
+                                    <span class="form-check-label">카테고리</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result-infra" name="column" value="client" checked>
                                     <span class="form-check-label">진행업체</span>
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="brief" checked>
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result-infra" name="column" value="brief" checked>
                                     <span class="form-check-label">적요란</span>
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="total_sales_amount" checked>
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result-infra" name="column" value="total_sales_amount" checked>
                                     <span class="form-check-label">매출가</span>
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="total_purchase_amount" checked>
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result-infra" name="column" value="total_purchase_amount" checked>
                                     <span class="form-check-label">매입가</span>
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="total_margin_amount" checked>
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result-infra" name="column" value="total_margin_amount" checked>
                                     <span class="form-check-label">이익</span>
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="note" checked>
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result-infra" name="column" value="note" checked>
                                     <span class="form-check-label">비고</span>
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="business_reg_num" checked>
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result-infra" name="column" value="business_reg_num" checked>
                                     <span class="form-check-label">사업자등록번호</span>
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="email" checked>
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result-infra" name="column" value="email" checked>
                                     <span class="form-check-label">담당메일주소</span>
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="handwrite" checked>
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result-infra" name="column" value="handwrite" checked>
                                     <span class="form-check-label">수기작성여부</span>
                                 </label>
                             </div>
@@ -191,7 +197,7 @@
 
         	// 년도와 월을 가져옵니다.
         	const year = currentDate.getFullYear();
-        	const month = currentDate.getMonth() + 1;
+        	const month = currentDate.getMonth() + 2;
 
         	// 월이 10월 이전인 경우, 숫자 앞에 0을 추가합니다.
         	const monthString = month < 10 ? "0" + month : month.toString();
@@ -232,6 +238,13 @@
                     {
                         header: '사업부서',
                         name: 'department',
+                        width: 'auto',
+                        align: 'center',
+                        filter: 'select',
+                    },
+                    {
+                        header: '카테고리',
+                        name: 'category',
                         width: 'auto',
                         align: 'center',
                         filter: 'select',
@@ -384,18 +397,22 @@
 			if (!params.get('batch_month')) {
 				// 그리드 데이터 ajax로 가져오기 (현재날짜의 해당년월)
 	            $.ajax({
-	                url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYCNC/department/INFRA/batch_month/" + yyyymm,
+	                url: "${pageContext.request.contextPath}/salesEstimationInfra.ajax/company/IYCNC/department/INFRA/category/MAINTENANCE/batch_month/" + yyyymm,
 	                method: "GET",
-	                success: function (salesResult) {
-	                	salesResult.forEach(item => {
-	                		item.total_margin_amount = Number(item.total_sales_amount) - Number(item.total_purchase_amount);
-	                		
+	                success: function (salesEstimationInfra) {
+	                	salesEstimationInfra.forEach(item => {
+                            item.total_margin_amount = Number(item.total_sales_amount) - Number(item.total_purchase_amount);
+                            
 	                     	// 인프라 Formatting (한글 가독성 배려)
 	                        if (item.department === 'INFRA') {
 	                        	item.department = '인프라';
 	                        }
-	                	});
-	                    grid.resetData(salesResult);
+	                     	// 유지보수 Formatting (한글 가독성 배려)
+	                        if (item.category === 'MAINTENANCE') {
+	                        	item.category = '유지보수';
+	                        }
+                        });
+                        grid.resetData(salesEstimationInfra);
 	                    
 	               		// 페이지 타이틀 세팅: yyyy 및 mm (현재날짜 기준)
 	               		$('#year').text(year);
@@ -408,18 +425,22 @@
 			} else {
 				// 그리드 데이터 ajax로 가져오기 (수기데이터 등록팝업페이지에서 추가할 때 해당년월)
 				$.ajax({
-                    url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYCNC/department/INFRA/batch_month/" + params.get('batch_month'),
+                    url: "${pageContext.request.contextPath}/salesEstimationInfra.ajax/company/IYCNC/department/INFRA/category/MAINTENANCE/batch_month/" + params.get('batch_month'),
                     method: "GET",
-                    success: function (salesResult) {
-                        salesResult.forEach(item => {
+                    success: function (salesEstimationInfra) {
+                    	salesEstimationInfra.forEach(item => {
                             item.total_margin_amount = Number(item.total_sales_amount) - Number(item.total_purchase_amount);
                             
 	                     	// 인프라 Formatting (한글 가독성 배려)
 	                        if (item.department === 'INFRA') {
 	                        	item.department = '인프라';
 	                        }
+	                     	// 유지보수 Formatting (한글 가독성 배려)
+	                        if (item.category === 'MAINTENANCE') {
+	                        	item.category = '유지보수';
+	                        }
                         });
-                        grid.resetData(salesResult);
+                        grid.resetData(salesEstimationInfra);
                         
                      	// 페이지 타이틀 세팅: yyyy 및 mm (키워드 기준)
                         $('#year').text(params.get('batch_month').substring(0,4));
@@ -493,18 +514,22 @@
                 if (regex.test($('#keyword').val())) {
                     // 그리드 데이터 ajax로 가져오기 (키워드에 의한 해당년월)
                     $.ajax({
-                        url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYCNC/department/INFRA/batch_month/" + $('#keyword').val(),
+                        url: "${pageContext.request.contextPath}/salesEstimationInfra.ajax/company/IYCNC/department/INFRA/category/MAINTENANCE/batch_month/" + $('#keyword').val(),
                         method: "GET",
-                        success: function (salesResult) {
-                            salesResult.forEach(item => {
+                        success: function (salesEstimationInfra) {
+                        	salesEstimationInfra.forEach(item => {
                                 item.total_margin_amount = Number(item.total_sales_amount) - Number(item.total_purchase_amount);
                                 
     	                     	// 인프라 Formatting (한글 가독성 배려)
     	                        if (item.department === 'INFRA') {
     	                        	item.department = '인프라';
     	                        }
+    	                     	// 유지보수 Formatting (한글 가독성 배려)
+    	                        if (item.category === 'MAINTENANCE') {
+    	                        	item.category = '유지보수';
+    	                        }
                             });
-                            grid.resetData(salesResult);
+                            grid.resetData(salesEstimationInfra);
                             
                          	// 페이지 타이틀 세팅: yyyy 및 mm (키워드 기준)
                             $('#year').text($('#keyword').val().substring(0,4));
@@ -521,8 +546,8 @@
 
             // 수기데이터 등록페이지 버튼 클릭 이벤트: 수기데이터 등록페이지 팝업
             $('#btnShowRegisterPage').click(function () {
-                const popupUrl = '${pageContext.request.contextPath}/iycnc/infra/salesResultRegister';
-                const popupName = 'empPoolRegister-popup';
+                const popupUrl = '${pageContext.request.contextPath}/iycnc/infra/maintenance/salesEstimationInfraRegister';
+                const popupName = 'salesEstimationInfraRegister-popup';
                 const popupWidth = 800;
                 const popupHeight = 600;
                 const left = (screen.width - popupWidth) / 2;
@@ -533,13 +558,13 @@
        		
             // 그리드 Row 더블 클릭시 이벤트: 상세정보페이지 팝업
             grid.on('dblclick', function(ev) {
-                const salesResult = grid.getRow(ev.rowKey);
-                if (salesResult.handwrite === 'N') {
+                const salesEstimationInfra = grid.getRow(ev.rowKey);
+                if (salesEstimationInfra.handwrite === 'N') {
                 	alert('수기로 입력한 데이터만 수정 가능합니다')
                 	return;
                 }
-                const popupUrl = '${pageContext.request.contextPath}/iycnc/infra/salesResultDetail?sales_result_id='+ salesResult.sales_result_id;
-                const popupName = 'salesResultDetail-popup';
+                const popupUrl = '${pageContext.request.contextPath}/iycnc/infra/maintenance/salesEstimationInfraDetail?sales_estimation_infra_id='+ salesEstimationInfra.sales_estimation_infra_id;
+                const popupName = 'salesEstimationInfraDetail-popup';
                 const popupWidth = 800;
                 const popupHeight = 600;
                 const left = (screen.width - popupWidth) / 2;
@@ -571,7 +596,12 @@
             $('a[data-bs-target="#iycnc-infra-nav"]').attr('aria-expanded', true);
             $('a[data-bs-target="#iycnc-infra-nav"]').attr('class', 'nav-link');
        		$('ul#iycnc-infra-nav').attr('class', 'nav-content collapse show');
-       		$('ul#iycnc-infra-nav li:eq(3) a').attr('class', 'active');
+       		
+            $('a[data-bs-target="#iycnc-infra-maintenance-nav"]').attr('aria-expanded', true);
+            $('a[data-bs-target="#iycnc-infra-maintenance-nav"]').attr('class', 'nav-link');
+       		$('ul#iycnc-infra-maintenance-nav').attr('class', 'nav-content collapse show');
+       		
+       		$('ul#iycnc-infra-maintenance-nav li:eq(0) a').attr('class', 'active');
        		
        		
             $('th[data-column-name=total_sales_amount]').attr('title', '매출가는 매출원장의 매출MM 과 매출단가를 계산한 결과입니다.');

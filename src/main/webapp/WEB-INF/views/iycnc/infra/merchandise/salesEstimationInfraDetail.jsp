@@ -11,7 +11,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
 	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/icon/favicon.ico">
-    <title>IYCNC 인프라 매출실적 상세 페이지: IYF 영업관리시스템</title>
+    <title>IYCNC 인프라 상품 매출추정 상세 페이지: IYF 영업관리시스템</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -51,16 +51,20 @@
         <section>
             <div class="container">
                 
-                <h1>IYCNC 인프라 매출실적 상세 페이지</h1>
-                <form id="salesResultForm">
-                	<input type="hidden" class="form-control" id="sales_result_id" name="sales_result_id">
-                	<div class="form-group mb-3">
+                <h1>IYCNC 인프라 상품 매출추정 상세 페이지</h1>
+                <form id="salesEstimationInfraForm">
+                	<input type="hidden" id="sales_estimation_infra_id" name="sales_estimation_infra_id">
+                    <div class="form-group mb-3">
                         <label for="batch_month">해당년월:</label>
-                        <input type="text" class="form-control" id="batch_month" name="batch_month" readonly>
+                        <input type="text" class="form-control" id="batch_month" name="batch_month" placeholder="YYYYMM">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="company">소속:</label>
-                        <input type="text" class="form-control" id="company" name="company" value="IYCNC" readonly>
+                        <label for="batch_month">날짜:</label>
+                        <input type="date" class="form-control" id="date" name="date">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="company">회사:</label>
+                        <input type="text" class="form-control" id="company" name="company" readonly value="IYCNC">
                     </div>
                     <div class="form-group mb-3">
                         <label for="department">사업부서:</label>
@@ -68,37 +72,45 @@
                         <input type="hidden" class="form-control" id="department" name="department" value="INFRA">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="site">사이트명:</label>
-                        <input type="text" class="form-control" id="site" name="site">
+                        <label for="category">카테고리:</label>
+                        <input type="text" class="form-control" id="display-category" name="display-category" value="상품" readonly>
+                        <input type="hidden" class="form-control" id="category" name="category" value="MERCHANDISE">
                     </div>
                     <div class="form-group mb-3">
                         <label for="client">진행업체:</label>
                         <input type="text" class="form-control" id="client" name="client">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="project_name">프로젝트명:</label>
-                        <input type="text" class="form-control" id="project_name" name="project_name">
+                        <label for="brief">적요란:</label>
+                        <input type="text" class="form-control" id="brief" name="brief">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="brief">적요란</label>
-                        <input type="text" class="form-control" id="brief" name="brief">
-                    </div>                    
-                	<hr>
-                    <div class="form-group mb-3">
                         <label for="total_sales_amount">매출가:</label>
-                        <input type="text" class="form-control" id="total_sales_amount" name="total_sales_amount">
+                        <input type="text" class="form-control" id="total_sales_amount" name="total_sales_amount" value="0">
                     </div>
                     <div class="form-group mb-3">
                         <label for="total_purchase_amount">매입가:</label>
-                        <input type="text" class="form-control" id="total_purchase_amount" name="total_purchase_amount">
+                        <input type="text" class="form-control" id="total_purchase_amount" name="total_purchase_amount" value="0">
                     </div>
                     <div class="form-group mb-3">
                         <label for="total_margin_amount">이익:</label>
-                        <input type="text" class="form-control" id="total_margin_amount" name="total_margin_amount" readonly>
+                        <input type="text" class="form-control" id="total_margin_amount" name="total_margin_amount" value="0" readonly="readonly">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="note">비고:</label>
+                        <input type="text" class="form-control" id="note" name="note">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="business_reg_num">사업자등록번호:</label>
+                        <input type="text" class="form-control" id="business_reg_num" name="business_reg_num">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="email">담당메일주소:</label>
+                        <input type="text" class="form-control" id="email" name="email">
                     </div>
                     <div class="form-group mb-3">
                         <label for="handwrite">수기작성여부:</label>
-                        <input type="text" class="form-control" id="handwrite" name="handwrite" value="Y" readonly>
+                        <input type="text" class="form-control" id="handwrite" name="handwrite" readonly value="Y">
                     </div>
                 </form>
                 
@@ -113,27 +125,30 @@
         $(document).ready(function() {
 
         	const urlParmas = new URLSearchParams(window.location.search);
-            const sales_result_id = urlParmas.get('sales_result_id'); 
+            const sales_estimation_infra_id = urlParmas.get('sales_estimation_infra_id'); 
             
             // 상세정보 조회
             $.ajax({
-            	url: '${pageContext.request.contextPath}/salesResult.ajax/sales_result_id/' + sales_result_id,
+            	url: '${pageContext.request.contextPath}/salesEstimationInfra.ajax/sales_estimation_infra_id/' + sales_estimation_infra_id,
             	type: 'GET',
             	dataType: 'json',
-            	success: function (salesResult) {
+            	success: function (salesEstimationInfra) {
             		
-            		$('#sales_result_id').val(salesResult.sales_result_id);
-            		$('#batch_month').val(salesResult.batch_month);
-            		$('#company').val(salesResult.company);
-            		$('#department').val(salesResult.department);
-            		$('#site').val(salesResult.site);
-            		$('#client').val(salesResult.client);
-            		$('#project_name').val(salesResult.project_name);
-            		$('#brief').val(salesResult.brief);
-            		$('#total_sales_amount').val(salesResult.total_sales_amount.toLocaleString('ko-KR'));
-            		$('#total_purchase_amount').val(salesResult.total_purchase_amount.toLocaleString('ko-KR'));
-            		$('#total_margin_amount').val((Number(salesResult.total_sales_amount) - Number(salesResult.total_purchase_amount)).toLocaleString('ko-KR'));
-            		$('#handwrite').val(salesResult.handwrite);
+            		$('#sales_estimation_infra_id').val(salesEstimationInfra.sales_estimation_infra_id);
+            		$('#batch_month').val(salesEstimationInfra.batch_month);
+            		$('#date').val(salesEstimationInfra.date);
+            		$('#company').val(salesEstimationInfra.company);
+            		$('#department').val(salesEstimationInfra.department);
+            		$('#category').val(salesEstimationInfra.category);
+            		$('#client').val(salesEstimationInfra.client);
+            		$('#brief').val(salesEstimationInfra.brief);
+            		$('#total_sales_amount').val(salesEstimationInfra.total_sales_amount.toLocaleString('ko-KR'));
+            		$('#total_purchase_amount').val(salesEstimationInfra.total_purchase_amount.toLocaleString('ko-KR'));
+            		$('#total_margin_amount').val((Number(salesEstimationInfra.total_sales_amount) - Number(salesEstimationInfra.total_purchase_amount)).toLocaleString('ko-KR'));
+            		$('#note').val(salesEstimationInfra.note);
+            		$('#business_reg_num').val(salesEstimationInfra.business_reg_num);
+            		$('#email').val(salesEstimationInfra.email);
+            		$('#handwrite').val(salesEstimationInfra.handwrite);
 
 
 				},
@@ -144,24 +159,27 @@
             
          	// 수정하기 버튼 클릭 시
             $('#btnUpdate').click(function() {
-            	const salesResult = {
-         			sales_result_id: $('#sales_result_id').val(), 
+            	const salesEstimationInfra = {
+           			sales_estimation_infra_id: $('#sales_estimation_infra_id').val(), 
          			batch_month: $('#batch_month').val(), 
+         			date: $('#date').val(), 
          			company: $('#company').val(), 
          			department: $('#department').val(), 
-         			site: $('#site').val(), 
+         			category: $('#category').val(), 
          			client: $('#client').val(), 
-         			project_name: $('#project_name').val(), 
          			brief: $('#brief').val(), 
          			total_sales_amount: $('#total_sales_amount').val().replaceAll(',', ''),
                     total_purchase_amount: $('#total_purchase_amount').val().replaceAll(',', ''), 
+                    note: $('#note').val(), 
+                    business_reg_num: $('#business_reg_num').val(), 
+                    email: $('#email').val(), 
          			handwrite: $('#handwrite').val(), 
 	            }
 	            $.ajax({
 	                type: "PUT",
-	                url: "${pageContext.request.contextPath}/salesResult.ajax",
+	                url: "${pageContext.request.contextPath}/salesEstimationInfra.ajax",
 	                contentType: "application/json",
-	                data: JSON.stringify(salesResult),
+	                data: JSON.stringify(salesEstimationInfra),
 	                success: function() {
 	                    opener.parent.location.reload();
 	                    window.location.reload();
@@ -180,7 +198,7 @@
             	} else {
 		            $.ajax({
 		                type: "DELETE",
-		                url: "${pageContext.request.contextPath}/salesResult.ajax/sales_result_id/" + sales_result_id,
+		                url: "${pageContext.request.contextPath}/salesEstimationInfra.ajax/sales_estimation_infra_id/" + sales_estimation_infra_id,
 		                success: function() {
 		                    opener.parent.location.reload();
 		                    window.close();

@@ -118,7 +118,12 @@
 						</a>
 						<ul id="iycnc-infra-maintenance-nav" class="nav-content collapse " data-bs-parent="#iycnc-infra-nav">
 							<li>
-								<a href="${pageContext.request.contextPath}/iycnc/infra/maintenance/salesResultList" style="padding: 10px 0 10px 61px; font-size: 13px;">
+								<a href="${pageContext.request.contextPath}/iycnc/infra/maintenance/salesEstimationInfraList" style="padding: 10px 0 10px 61px; font-size: 13px;">
+									<i class="bi bi-circle"></i><span>추정</span>
+								</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/iycnc/infra/maintenance/salesResultInfraList" style="padding: 10px 0 10px 61px; font-size: 13px;">
 									<i class="bi bi-circle"></i><span>실적</span>
 								</a>
 							</li>
@@ -130,7 +135,12 @@
 						</a>
 						<ul id="iycnc-infra-merchandise-nav" class="nav-content collapse " data-bs-parent="#iycnc-infra-nav">
 							<li>
-								<a href="${pageContext.request.contextPath}/iycnc/infra/merchandise/salesResultList" style="padding: 10px 0 10px 61px; font-size: 13px;">
+								<a href="${pageContext.request.contextPath}/iycnc/infra/merchandise/salesEstimationInfraList" style="padding: 10px 0 10px 61px; font-size: 13px;">
+									<i class="bi bi-circle"></i><span>추정</span>
+								</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/iycnc/infra/merchandise/salesResultInfraList" style="padding: 10px 0 10px 61px; font-size: 13px;">
 									<i class="bi bi-circle"></i><span>실적</span>
 								</a>
 							</li>
@@ -142,7 +152,12 @@
 						</a>
 						<ul id="iycnc-infra-support-nav" class="nav-content collapse " data-bs-parent="#iycnc-infra-nav">
 							<li>
-								<a href="${pageContext.request.contextPath}/iycnc/infra/support/salesResultList" style="padding: 10px 0 10px 61px; font-size: 13px;">
+								<a href="${pageContext.request.contextPath}/iycnc/infra/support/salesEstimationInfraList" style="padding: 10px 0 10px 61px; font-size: 13px;">
+									<i class="bi bi-circle"></i><span>추정</span>
+								</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/iycnc/infra/support/salesResultInfraList" style="padding: 10px 0 10px 61px; font-size: 13px;">
 									<i class="bi bi-circle"></i><span>실적</span>
 								</a>
 							</li>
