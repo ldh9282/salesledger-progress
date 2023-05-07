@@ -24,4 +24,5 @@ public class EmpPool {
 	private String career_level;
 	private int project_assign;
 	private String del;
+	private int hope_purchase_unit;
 }

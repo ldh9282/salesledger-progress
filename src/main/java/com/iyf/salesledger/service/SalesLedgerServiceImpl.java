@@ -7,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.iyf.salesledger.dao.ClientDao;
 import com.iyf.salesledger.dao.EmpLedgerDao;
 import com.iyf.salesledger.dao.EmpPoolDao;
 import com.iyf.salesledger.dao.SalesLedgerDao;
-import com.iyf.salesledger.model.Client;
 import com.iyf.salesledger.model.EmpLedger;
 import com.iyf.salesledger.model.EmpPool;
 import com.iyf.salesledger.model.SalesLedger;
@@ -27,9 +25,6 @@ public class SalesLedgerServiceImpl implements SalesLedgerService{
 	
 	@Autowired
 	private EmpPoolDao empPoolDao;
-	
-	@Autowired
-	private ClientDao clientDao;
 	
 	@Override
 	public List<SalesLedger> list() {
@@ -73,20 +68,12 @@ public class SalesLedgerServiceImpl implements SalesLedgerService{
 	}
 	
 	@Override @Transactional
-	public void update(SalesLedger salesLedger, EmpLedger empLedger, Client client, EmpPool empPool) {
+	public void update(SalesLedger salesLedger, EmpLedger empLedger, EmpPool empPool) {
 		EmpLedger theEmpLedger = empLedgerDao.selectOne(salesLedger.getEmp_id());
 		if (theEmpLedger != null) {
 			empLedger.setEmp_id(theEmpLedger.getEmp_id());
 			empLedgerDao.update(empLedger);
 		}
-		
-		Client theClient = clientDao.selectOne(empLedger.getClient_id());
-		if (theClient != null) {
-			
-			client.setClient_id(theClient.getClient_id());
-			clientDao.update(client);
-		}
-		
 		
 		EmpPool theEmpPool = empPoolDao.selectOne(empLedger.getEmp_pool_id());
 		

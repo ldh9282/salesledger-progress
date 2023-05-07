@@ -8,9 +8,9 @@ public class SalesResult {
 	private long sales_result_id;
 	private long total_sales_amount;
 	private long total_purchase_amount;
-	private String sales_source;
+	private String site;
 	private String client;
-	private String subcontract;
+	private String brief;
 	private String project_name;
 	private String batch_month;
 	private String company;

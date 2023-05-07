@@ -12,7 +12,7 @@
 		  <a href="mailto:ldh9282@naver.com" class="text-dark ms-1">ldh9282@naver.com</a>
 	  </div>
 	  
-	  <div class="d-flex justify-content-end mt-3">
+	  <div class="d-flex justify-content-end mt-3 mb-5">
 	  	<a href="#" class="btn btn-outline-secondary">맨 위로 가기</a>
 	  </div>
 <!--     </div> -->

@@ -7,9 +7,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/icon/favicon.ico">
     <title>IYCNC ITO 매출실적 수기데이터 등록 페이지: IYF 영업관리시스템</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -66,32 +65,32 @@
                         <input type="text" class="form-control" id="department" name="department" readonly value="ITO">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="sales_source">매출처:</label>
-                        <input type="text" class="form-control" id="sales_source" name="sales_source">
+                        <label for="site">사이트명:</label>
+                        <input type="text" class="form-control" id="site" name="site">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="client">거래처:</label>
+                        <label for="client">진행업체:</label>
                         <input type="text" class="form-control" id="client" name="client">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="subcontract">도급내역:</label>
-                        <input type="text" class="form-control" id="subcontract" name="subcontract">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="project_name">프로젝트:</label>
+                        <label for="project_name">프로젝트명:</label>
                         <input type="text" class="form-control" id="project_name" name="project_name">
                     </div>
                     <div class="form-group mb-3">
+                        <label for="brief">적요란:</label>
+                        <input type="text" class="form-control" id="brief" name="brief">
+                    </div>
+                    <div class="form-group mb-3">
                         <label for="total_sales_amount">매출가:</label>
-                        <input type="text" class="form-control" id="total_sales_amount" name="total_sales_amount">
+                        <input type="text" class="form-control" id="total_sales_amount" name="total_sales_amount" value="0">
                     </div>
                     <div class="form-group mb-3">
                         <label for="total_purchase_amount">매입가:</label>
-                        <input type="text" class="form-control" id="total_purchase_amount" name="total_purchase_amount">
+                        <input type="text" class="form-control" id="total_purchase_amount" name="total_purchase_amount" value="0">
                     </div>
                     <div class="form-group mb-3">
                         <label for="total_margin_amount">이익:</label>
-                        <input type="text" class="form-control" id="total_margin_amount" name="total_margin_amount" readonly="readonly">
+                        <input type="text" class="form-control" id="total_margin_amount" name="total_margin_amount" value="0" readonly="readonly">
                     </div>
                     <div class="form-group mb-3">
                         <label for="handwrite">수기작성여부:</label>
@@ -110,6 +109,7 @@
     <script>
         $(document).ready(function () {
             $('#btnInsert').click(function() {
+            	
                 if (!$('#batch_month').val()) {
                     alert('해당년월(YYYYMM)을 입력해주세요');
                     return;
@@ -128,18 +128,17 @@
                             batch_month: $('#batch_month').val(),
                             company: $('#company').val(),
                             department: $('#department').val(),
-                            sales_source: $('#sales_source').val(),
+                            site: $('#site').val(),
                             client: $('#client').val(),
-                            subcontract: $('#subcontract').val(),
                             project_name: $('#project_name').val(),
+                            brief: $('#brief').val(),
                             total_sales_amount: $('#total_sales_amount').val().replaceAll(',', ''),
                             total_purchase_amount: $('#total_purchase_amount').val().replaceAll(',', ''),
-                            total_margin_amount: $('#total_margin_amount').val().replaceAll(',', ''),
                             handwrite: $('#handwrite').val(),
                             
                         }),
                         success: function () {
-                            opener.parent.location.reload();
+                        	opener.parent.location.href = opener.parent.location.pathname + '?batch_month=' + $('#batch_month').val();
                             window.close();
                         },
                         error: function () {

@@ -26,4 +26,19 @@ public class SalesResultServiceImpl implements SalesResultService {
 		salesResultDao.insert(salesResult);
 	}
 
+	@Override
+	public Map<String, Object> selectOne(long sales_result_id) {
+		return salesResultDao.selectOne(sales_result_id);
+	}
+
+	@Override
+	public void delete(long sales_result_id) {
+		salesResultDao.delete(sales_result_id);
+	}
+
+	@Override
+	public void update(SalesResult salesResult) {
+		salesResultDao.update(salesResult);
+	}
+
 }

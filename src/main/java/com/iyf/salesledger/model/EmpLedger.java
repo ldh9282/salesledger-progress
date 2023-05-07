@@ -1,6 +1,5 @@
 package com.iyf.salesledger.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import lombok.Data;
@@ -10,9 +9,8 @@ public class EmpLedger {
 
 	private long emp_id;
     private Long emp_pool_id;
-    private Long client_id;
-    private String company;
-    private String department;
+    private String company; // 소속
+    private String department; // 부서
     private Date assign_date;
     private Date end_date;
     private double sales_mm;
@@ -28,4 +26,9 @@ public class EmpLedger {
     private String progress_reason;
     private String issues;
     private String del;
+    private String site; // 사이트명
+    private String client; // 진행업체
+    private String project_name; // 프로젝트명
+    private String brief; // 적요란
+    
 }

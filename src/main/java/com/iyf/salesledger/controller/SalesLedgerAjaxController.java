@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-import com.iyf.salesledger.model.Client;
 import com.iyf.salesledger.model.EmpLedger;
 import com.iyf.salesledger.model.EmpPool;
 import com.iyf.salesledger.model.SalesLedger;
@@ -41,9 +40,8 @@ public class SalesLedgerAjaxController {
 		Gson gson = new Gson();
 		SalesLedger salesLedger = gson.fromJson(gson.toJson(requestBodyMap.get("salesLedger")), SalesLedger.class);
 		EmpLedger empLedger = gson.fromJson(gson.toJson(requestBodyMap.get("empLedger")), EmpLedger.class);
-		Client client = gson.fromJson(gson.toJson(requestBodyMap.get("client")), Client.class);
 		EmpPool empPool= gson.fromJson(gson.toJson(requestBodyMap.get("empPool")), EmpPool.class);
 		
-		salesLedgerService.update(salesLedger, empLedger, client, empPool);
+		salesLedgerService.update(salesLedger, empLedger, empPool);
 	}
 }

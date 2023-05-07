@@ -7,9 +7,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/icon/favicon.ico">
     <title>컨택한 인재DB 진행 현황 [인력풀]: IYF 영업관리시스템</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -161,6 +160,13 @@
 	                                <span class="form-check-label">등급</span>
 	                            </label>
 	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="hope_purchase_unit"
+	                                    checked>
+	                                <span class="form-check-label">희망단가</span>
+	                            </label>
+	                        </div>
 	                    </div>
 	                </div>
 	                <!-- End 그리드에서 보여줄 필드 체크리스트-->
@@ -191,11 +197,11 @@
                 scrollX: true,
                 scrollY: true,
                 columnOptions: {
-                    minWidth: 120
+                    minWidth: 130
                 },
                 columns: [
                     {
-                        header: '진행프로젝트 수',
+                        header: '진행 개수',
                         name: 'project_assign',
                         width: 'auto',
                         align: 'center',
@@ -220,7 +226,8 @@
                         name: 'phonenumber',
                         width: 'auto',
                         align: 'center',
-                        filter: 'select'
+                        filter: 'select',
+                        
                     },
                     {
                         header: '생년월일',
@@ -285,12 +292,22 @@
                         align: 'center',
                         filter: 'select'
                     },
+                    {
+                        header: '희망단가',
+                        name: 'hope_purchase_unit',
+                        width: 'auto',
+                        align: 'center',
+                        filter: 'number',
+                        formatter({value}) {
+                        	return value.toLocaleString('ko-KR');
+                        }
+                    },
 
                 ],
                 rowHeaders: ['rowNum'],
                 pageOptions: {
 	                useClient: true,
-	                perPage: 50
+	                perPage: 10
                 },
                 contextMenu: ({ rowKey, columnName }) => (
                         [
@@ -308,14 +325,14 @@
                                                     name: 'csvExport',
                                                     label: 'CSV export',
                                                     action: () => {
-                                                        grid.export('csv', { fileName: '테스트제목' });
+                                                        grid.export('csv', { fileName: $('#title').text().trim() });
                                                     }
                                                 },
                                                 {
                                                     name: 'excelExport',
                                                     label: 'Excel export',
                                                     action: () => {
-                                                        grid.export('xlsx', { fileName: '테스트제목' });
+                                                        grid.export('xlsx', { fileName:$('#title').text().trim() });
                                                     }
                                                 },
                                             ]
@@ -329,14 +346,14 @@
                                                     name: 'csvExport',
                                                     label: 'CSV export',
                                                     action: () => {
-                                                        grid.export('csv', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                        grid.export('csv', { includeHeader: false, fileName:  $('#title').text().trim() + '(헤더 미포함)' });
                                                     }
                                                 },
                                                 {
                                                     name: 'excelExport',
                                                     label: 'Excel export',
                                                     action: () => {
-                                                        grid.export('xlsx', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                        grid.export('xlsx', { includeHeader: false, fileName: $('#title').text().trim() + '(헤더 미포함)' });
                                                     }
                                                 },
                                             ]
@@ -370,20 +387,18 @@
                         return empPool.del !== 'Y';
                     });
 
-                    // 생년월일 Formatting
                     empPoolList.forEach(empPool => {
+	                    // 생년월일 Formatting
                         if (empPool.birthdate) {
                             const birthdate = new Date(empPool.birthdate);
                             empPool.birthdate = birthdate.getFullYear() + '-' + String(Number(birthdate.getMonth() + 1)).padStart(2, '0') + '-' + String(birthdate.getDate()).padStart(2, '0');
                         }
-                    });
-                    // 생년월일 Formatting
-                    empPoolList.forEach(empPool => {
-                        if (empPool.birthdate) {
-                            const birthdate = new Date(empPool.birthdate);
-                            empPool.birthdate = birthdate.getFullYear() + '-' + String(Number(birthdate.getMonth() + 1)).padStart(2, '0') + '-' + String(birthdate.getDate()).padStart(2, '0');
+	                    // 휴대폰번호 Formatting
+                        if (empPool.phonenumber) {
+                            empPool.phonenumber = empPool.phonenumber.substr(0,3) + '-' + empPool.phonenumber.substr(3, 4) + '-' + empPool.phonenumber.substr(7,4);
                         }
                     });
+                    
                     grid.resetData(empPoolList);
 
 

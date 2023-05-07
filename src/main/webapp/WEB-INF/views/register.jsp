@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+  <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/icon/favicon.ico">
   <title>회원가입: IYF 영업관리시스템</title>
   <meta content="" name="description">
   <meta content="" name="keywords">

@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/icon/favicon.ico">
     <title>IYCNC ITO 개발자 프로파일 진행 현황 [인력기초원장]: IYF 영업관리시스템</title>
     
      <!-- Google Fonts -->
@@ -75,13 +76,6 @@
 	                    <div class="row row-cols-4 mb-3">
 	                        <div class="col">
 	                            <label class="form-check">
-	                                <input class="form-check-input" type="checkbox" name="check-client"
-	                                    checked>
-	                                <span class="form-check-label">거래처정보</span>
-	                            </label>
-	                        </div>
-	                        <div class="col">
-	                            <label class="form-check">
 	                                <input class="form-check-input" type="checkbox" name="check-emp-pool"
 	                                    checked>
 	                                <span class="form-check-label">인력풀정보</span>
@@ -113,44 +107,44 @@
 	                        </div>
 	                        <div class="col">
 	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="client" type="checkbox" name="column" value="sales_source"
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="company"
 	                                    checked>
-	                                <span class="form-check-label">매출처</span>
+	                                <span class="form-check-label">소속</span>
 	                            </label>
 	                        </div>
 	                        <div class="col">
 	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="client" type="checkbox" name="column" value="client"
-	                                    checked>
-	                                <span class="form-check-label">거래처</span>
-	                            </label>
-	                        </div>
-	                        <div class="col">
-	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="client" type="checkbox" name="column" value="subcontract"
-	                                    checked>
-	                                <span class="form-check-label">도급내역</span>
-	                            </label>
-	                        </div>
-	                        <div class="col">
-	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="client" type="checkbox" name="column" value="project_name"
-	                                    checked>
-	                                <span class="form-check-label">프로젝트명</span>
-	                            </label>
-	                        </div>
-	                        <div class="col">
-	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="client" type="checkbox" name="column" value="business_department"
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="department"
 	                                    checked>
 	                                <span class="form-check-label">사업부서</span>
 	                            </label>
 	                        </div>
 	                        <div class="col">
 	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="client" type="checkbox" name="column" value="business_manager"
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="site"
 	                                    checked>
-	                                <span class="form-check-label">사업관리담당자</span>
+	                                <span class="form-check-label">사이트명</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="client"
+	                                    checked>
+	                                <span class="form-check-label">진행업체</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="project_name"
+	                                    checked>
+	                                <span class="form-check-label">프로젝트명</span>
+	                            </label>
+	                        </div>
+	                        <div class="col">
+	                            <label class="form-check">
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="brief"
+	                                    checked>
+	                                <span class="form-check-label">적요란</span>
 	                            </label>
 	                        </div>
 	                        <div class="col">
@@ -162,13 +156,13 @@
 	                        </div>
 	                        <div class="col">
 	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="name" checked>
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="name" checked>
 	                                <span class="form-check-label">이름</span>
 	                            </label>
 	                        </div>
 	                        <div class="col">
 	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="phonenumber"
+	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="phonenumber"
 	                                    checked>
 	                                <span class="form-check-label">전화번호</span>
 	                            </label>
@@ -229,20 +223,6 @@
 	                                <input class="form-check-input" data-table="emp-pool" type="checkbox" name="column" value="career_level"
 	                                    checked>
 	                                <span class="form-check-label">등급</span>
-	                            </label>
-	                        </div>
-	                        <div class="col">
-	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="company"
-	                                    checked>
-	                                <span class="form-check-label">소속</span>
-	                            </label>
-	                        </div>
-	                        <div class="col">
-	                            <label class="form-check">
-	                                <input class="form-check-input" data-table="emp-ledger" type="checkbox" name="column" value="department"
-	                                    checked>
-	                                <span class="form-check-label">사업부서</span>
 	                            </label>
 	                        </div>
 	                        <div class="col">
@@ -365,22 +345,29 @@
                         filter: 'select'
                     },
                     {
-                        header: '매출처',
-                        name: 'sales_source',
+                        header: '소속',
+                        name: 'company',
                         width: 'auto',
                         align: 'center',
                         filter: 'select'
                     },
                     {
-                        header: '거래처',
+                        header: '사업부서',
+                        name: 'department',
+                        width: 'auto',
+                        align: 'center',
+                        filter: 'select'
+                    },
+                    {
+                        header: '사이트',
+                        name: 'site',
+                        width: 'auto',
+                        align: 'center',
+                        filter: 'select'
+                    },
+                    {
+                        header: '진행업체',
                         name: 'client',
-                        width: 'auto',
-                        align: 'center',
-                        filter: 'select'
-                    },
-                    {
-                        header: '도급내역',
-                        name: 'subcontract',
                         width: 'auto',
                         align: 'center',
                         filter: 'select'
@@ -393,15 +380,8 @@
                         filter: 'select'
                     },
                     {
-                        header: '사업부서',
-                        name: 'business_department',
-                        width: 'auto',
-                        align: 'center',
-                        filter: 'select'
-                    },
-                    {
-                        header: '사업관리담당자',
-                        name: 'business_manager',
+                        header: '적요란',
+                        name: 'brief',
                         width: 'auto',
                         align: 'center',
                         filter: 'select'
@@ -425,7 +405,7 @@
                         name: 'phonenumber',
                         width: 'auto',
                         align: 'center',
-                        filter: 'select'
+                        filter: 'select',
                     },
                     {
                         header: '생년월일',
@@ -491,20 +471,6 @@
                         filter: 'select'
                     },
                     {
-                        header: '소속',
-                        name: 'company',
-                        width: 'auto',
-                        align: 'center',
-                        filter: 'select'
-                    },
-                    {
-                        header: '사업부서',
-                        name: 'department',
-                        width: 'auto',
-                        align: 'center',
-                        filter: 'select'
-                    },
-                    {
                         header: '투입일',
                         name: 'assign_date',
                         width: 'auto',
@@ -541,14 +507,20 @@
                         name: 'sales_unit',
                         width: 'auto',
                         align: 'right',
-                        filter: 'number'
+                        filter: 'number',
+                        formatter({value}) {
+                        	return value.toLocaleString('ko-KR');
+                        }
                     },
                     {
                         header: '매입단가',
                         name: 'purchase_unit',
                         width: 'auto',
                         align: 'right',
-                        filter: 'number'
+                        filter: 'number',
+                        formatter({value}) {
+                        	return value.toLocaleString('ko-KR');
+                        }
                     },
                     {
                         header: '이력서제출일자',
@@ -580,7 +552,7 @@
                 rowHeaders: ['rowNum'],
                 pageOptions: {
 	                useClient: true,
-	                perPage: 50
+	                perPage: 10
                 },
                 contextMenu: ({ rowKey, columnName }) => (
                         [
@@ -598,14 +570,14 @@
                                                     name: 'csvExport',
                                                     label: 'CSV export',
                                                     action: () => {
-                                                        grid.export('csv', { fileName: '테스트제목' });
+                                                        grid.export('csv', { fileName: $('#title').text().trim() });
                                                     }
                                                 },
                                                 {
                                                     name: 'excelExport',
                                                     label: 'Excel export',
                                                     action: () => {
-                                                        grid.export('xlsx', { fileName: '테스트제목' });
+                                                        grid.export('xlsx', { fileName: $('#title').text().trim() });
                                                     }
                                                 },
                                             ]
@@ -619,14 +591,14 @@
                                                     name: 'csvExport',
                                                     label: 'CSV export',
                                                     action: () => {
-                                                        grid.export('csv', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                        grid.export('csv', { includeHeader: false, fileName: $('#title').text().trim() + '(헤더 미포함)' });
                                                     }
                                                 },
                                                 {
                                                     name: 'excelExport',
                                                     label: 'Excel export',
                                                     action: () => {
-                                                        grid.export('xlsx', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                        grid.export('xlsx', { includeHeader: false, fileName: $('#title').text().trim() + '(헤더 미포함)' });
                                                     }
                                                 },
                                             ]
@@ -655,8 +627,8 @@
                 url: "${pageContext.request.contextPath}/empLedger.ajax/company/IYCNC/department/ITO" ,
                 method: "GET",
                 success: function (empLedgerList) {
-                    // Date 년월일 Formatting
                     empLedgerList.forEach(empLedger => {
+	                    // Date 년월일 Formatting
                         if (empLedger.birthdate) {
                             const birthdate = new Date(empLedger.birthdate);
                             empLedger.birthdate = birthdate.getFullYear() + '-' + String(Number(birthdate.getMonth() + 1)).padStart(2, '0') + '-' + String(birthdate.getDate()).padStart(2, '0');
@@ -685,6 +657,10 @@
                             const c_contract_date = new Date(empLedger.c_contract_date);
                             empLedger.c_contract_date = c_contract_date.getFullYear() + '-' + String(Number(c_contract_date.getMonth() + 1)).padStart(2, '0') + '-' + String(c_contract_date.getDate()).padStart(2, '0');
                         }
+                     	// 휴대폰번호 Formatting
+                        if (empLedger.phonenumber) {
+                        	empLedger.phonenumber = empLedger.phonenumber.substr(0,3) + '-' + empLedger.phonenumber.substr(3, 4) + '-' + empLedger.phonenumber.substr(7,4);
+                        }
                     });
                     grid.resetData(empLedgerList);
                 }
@@ -693,28 +669,16 @@
             // 모든 정보 체크해제시 이벤트: 컬럼 show 및 hide
             $('input[name=all-check]').click(function(){
                 if (this.checked){
-                    $('input[name=check-client]').prop('checked', true);
                     $('input[name=check-emp-pool]').prop('checked', true);
                     $('input[name=check-emp-ledger]').prop('checked', true);
                     $('input[name=column]').prop('checked', true);
                 } else{
-                    $('input[name=check-client]').prop('checked', false);
                     $('input[name=check-emp-pool]').prop('checked', false);
                     $('input[name=check-emp-ledger]').prop('checked', false);
                     $('input[name=column]').prop('checked', false);
                 }
                 updateColumns();
             });
-
-            // 거래처 테이블 정보 체크해제시 이벤트: 컬럼 show 및 hide
-            $('input[name=check-client]').click(function() {
-                if (this.checked){
-                    $('input[data-table=client]').prop('checked', true);
-                } else{
-                    $('input[data-table=client').prop('checked', false);
-                }
-                updateColumns('client');
-            })
 
             // 인력풀 테이블 정보 체크해제시 이벤트: 컬럼 show 및 hide
             $('input[name=check-emp-pool]').click(function() {
@@ -778,7 +742,7 @@
             grid.on('dblclick', function(ev) {
                 const empLedger = grid.getRow(ev.rowKey)
                 const popupUrl = '${pageContext.request.contextPath}/iycnc/ito/empLedgerDetail?emp_id='+ empLedger.emp_id;
-                const popupName = 'empPoolDetail-popup';
+                const popupName = 'empLedgerDetail-popup';
                 const popupWidth = 800;
                 const popupHeight = 600;
                 const left = (screen.width - popupWidth) / 2;

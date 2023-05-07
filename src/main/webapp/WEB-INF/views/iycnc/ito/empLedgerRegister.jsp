@@ -7,9 +7,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/icon/favicon.ico">
     <title>IYCNC ITO 인력 투입예정 페이지: IYF 영업관리시스템</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -54,41 +53,30 @@
                     <div class="col-md-7">
                         <h3>IYCNC ITO 인력 투입예정 페이지</h3>
                         <hr>
-                        <form id="clientForm">
-                            <div class="form-group mb-3">
-                                <label for="sales_source">매출처:</label>
-                                <input type="text" class="form-control" id="sales_source" name="sales_source">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="client">거래처:</label>
-                                <input type="text" class="form-control" id="client" name="client">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="subcontract">도급내역:</label>
-                                <input type="text" class="form-control" id="subcontract" name="subcontract">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="project_name">프로젝트명:</label>
-                                <input type="text" class="form-control" id="project_name" name="project_name">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="business_department">사업부서:</label>
-                                <input type="text" class="form-control" id="business_department" name="business_department" readonly="readonly" value="ITO">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="business_manager">사업관리담당자:</label>
-                                <input type="text" class="form-control" id="business_manager" name="business_manager">
-                            </div>
-                        </form>
-                        <hr>
                         <form id="empLedgerForm">
                             <div class="form-group mb-3">
                                 <label for="company">소속:</label>
                                 <input type="text" class="form-control" id="company" name="company" value="IYCNC" readonly>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="company">소속:</label>
+                                <label for="department">사업부서:</label>
                                 <input type="text" class="form-control" id="department" name="department" value="ITO" readonly>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="site">사이트명:</label>
+                                <input type="text" class="form-control" id="site" name="site">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="client">진행업체:</label>
+                                <input type="text" class="form-control" id="client" name="client">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="project_name">프로젝트명:</label>
+                                <input type="text" class="form-control" id="project_name" name="project_name">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="brief">적요란:</label>
+                                <input type="text" class="form-control" id="brief" name="brief">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="assign_date">투입일:</label>
@@ -112,11 +100,11 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="sales_unit">매출단가(원):</label>
-                                <input type="text" class="form-control" id="sales_unit" name="sales_unit" data-type="money" step="1000000">
+                                <input type="text" class="form-control" id="sales_unit" name="sales_unit" data-type="money">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="purchase_unit">매입단가(원):</label>
-                                <input type="text" class="form-control" id="purchase_unit" name="purchase_unit" data-type="money" step="1000000">
+                                <input type="text" class="form-control" id="purchase_unit" name="purchase_unit" data-type="money">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="resume_submit_date">이력서제출일자:</label>
@@ -199,6 +187,10 @@
                                 <label for="career_level">등급:</label>
                                 <input type="text" class="form-control" id="career_level" name="career_level" readonly>
                             </div>
+			                <div class="form-group mb-3">
+			                    <label for="hope_purchase_unit">희망단가:</label>
+			                    <input type="text" class="form-control" id="hope_purchase_unit" name="hope_purchase_unit" data-type="money" readonly>
+			                </div>
                         </form>
                     </div>
                 </div>
@@ -232,14 +224,10 @@
                             "resign_date": new Date($('input[name=resign_date]').val()),
                             "i_contract_date": new Date($('input[name=i_contract_date]').val()),
                             "c_contract_date": new Date($('input[name=c_contract_date]').val()),
-                        },
-                        "client": {
-                            "sales_source": $('input[name=sales_source]').val(),
+                            "site": $('input[name=site]').val(),
                             "client": $('input[name=client]').val(),
-                            "subcontract": $('input[name=subcontract]').val(),
                             "project_name": $('input[name=project_name]').val(),
-                            "business_department": $('input[name=business_department]').val(),
-                            "business_manager": $('input[name=business_manager]').val()
+                            "brief": $('input[name=brief]').val(),
                         }
                     }),
                     success: function() {
@@ -280,6 +268,7 @@
                                 $('input[name=career_years]').val('');
                                 $('input[name=career_field]').val('');
                                 $('input[name=career_level]').val('');
+                                $('input[name=hope_purchase_unit]').val('');
                                 // 인력 투입예정 버튼 비활성화
                                 $('#btnExpectedInsert').attr('disabled', true);
                                 return;
@@ -307,6 +296,7 @@
                             $('input[name=career_years]').val(empPool.career_years);
                             $('input[name=career_field]').val(empPool.career_field);
                             $('input[name=career_level]').val(empPool.career_level);
+                            $('input[name=hope_purchase_unit]').val(empPool.hope_purchase_unit.toLocaleString('ko-KR'));
                             // 인력 투입예정 버튼 활성화
                             $('#btnExpectedInsert').attr('disabled', false);;
                         },

@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/icon/favicon.ico">
     <title>IYCNC ITO 용역 매출 현황 [매출실적]: IYF 영업관리시스템</title>
 
     <!-- Google Fonts -->
@@ -85,37 +86,37 @@
                             <div class="col">
                                 <label class="form-check">
                                     <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="company" checked>
-                                    <span class="form-check-label">회사</span>
+                                    <span class="form-check-label">소속</span>
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
                                     <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="department" checked>
-                                    <span class="form-check-label">부서</span>
+                                    <span class="form-check-label">사업부서</span>
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="sales_source" checked>
-                                    <span class="form-check-label">매출처</span>
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="site" checked>
+                                    <span class="form-check-label">사이트명</span>
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
                                     <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="client" checked>
-                                    <span class="form-check-label">거래처</span>
-                                </label>
-                            </div>
-                            <div class="col">
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="subcontract" checked>
-                                    <span class="form-check-label">도급내역</span>
+                                    <span class="form-check-label">진행업체</span>
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="form-check">
                                     <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="project_name" checked>
-                                    <span class="form-check-label">프로젝트</span>
+                                    <span class="form-check-label">프로젝트명</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" data-table="sales-result" name="column" value="brief" checked>
+                                    <span class="form-check-label">적요란</span>
                                 </label>
                             </div>
                             <div class="col">
@@ -203,13 +204,13 @@
                         filter: 'select'
                     },
                     {
-                        header: '회사',
+                        header: '소속',
                         name: 'company',
                         width: 'auto',
                         align: 'center',
                         filter: 'select'
                     },
-                    {//
+                    {
                         header: '사업부서',
                         name: 'department',
                         width: 'auto',
@@ -217,29 +218,29 @@
                         filter: 'select'
                     },
                     {
-                        header: '매출처',
-                        name: 'sales_source',
+                        header: '사이트명',
+                        name: 'site',
                         width: 'auto',
                         align: 'center',
                         filter: 'select'
                     },
                     {
-                        header: '거래처',
+                        header: '진행업체',
                         name: 'client',
                         width: 'auto',
                         align: 'center',
                         filter: 'select'
                     },
                     {
-                        header: '도급내역',
-                        name: 'subcontract',
+                        header: '프로젝트명',
+                        name: 'project_name',
                         width: 'auto',
                         align: 'center',
                         filter: 'select'
                     },
                     {
-                        header: '프로젝트',
-                        name: 'project_name',
+                        header: '적요란',
+                        name: 'brief',
                         width: 'auto',
                         align: 'center',
                         filter: 'select'
@@ -249,21 +250,30 @@
                         name: 'total_sales_amount',
                         width: 'auto',
                         align: 'center',
-                        filter: 'number'
+                        filter: 'number',
+                        formatter({value}) {
+                        	return value.toLocaleString('ko-KR');
+                        }
                     },
                     {
                         header: '매입가',
                         name: 'total_purchase_amount',
                         width: 'auto',
                         align: 'center',
-                        filter: 'number'
+                        filter: 'number',
+                        formatter({value}) {
+                        	return value.toLocaleString('ko-KR');
+                        }
                     },
                     {
                         header: '이익',
                         name: 'total_margin_amount',
                         width: 'auto',
                         align: 'center',
-                        filter: 'number'
+                        filter: 'number',
+                        formatter({value}) {
+                        	return value.toLocaleString('ko-KR');
+                        }
                     },
                     {
                         header: '수기작성여부',
@@ -276,7 +286,7 @@
                 rowHeaders: ['rowNum'],
                 pageOptions: {
 	                useClient: true,
-	                perPage: 50
+	                perPage: 10
                 },
                 contextMenu: ({ rowKey, columnName }) => (
                     [
@@ -294,14 +304,14 @@
                                                 name: 'csvExport',
                                                 label: 'CSV export',
                                                 action: () => {
-                                                    grid.export('csv', { fileName: '테스트제목' });
+                                                    grid.export('csv', { fileName: $('#title').text().trim() });
                                                 }
                                             },
                                             {
                                                 name: 'excelExport',
                                                 label: 'Excel export',
                                                 action: () => {
-                                                    grid.export('xlsx', { fileName: '테스트제목' });
+                                                    grid.export('xlsx', { fileName: $('#title').text().trim() });
                                                 }
                                             },
                                         ]
@@ -315,14 +325,14 @@
                                                 name: 'csvExport',
                                                 label: 'CSV export',
                                                 action: () => {
-                                                    grid.export('csv', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                    grid.export('csv', { includeHeader: false, fileName: $('#title').text().trim() + '(헤더 미포함)' });
                                                 }
                                             },
                                             {
                                                 name: 'excelExport',
                                                 label: 'Excel export',
                                                 action: () => {
-                                                    grid.export('xlsx', { includeHeader: false, fileName: '테스트제목(헤더 미포함)' });
+                                                    grid.export('xlsx', { includeHeader: false, fileName: $('#title').text().trim() + '(헤더 미포함)' });
                                                 }
                                             },
                                         ]
@@ -344,19 +354,48 @@
                     }
                 }
             });
-
-            // 그리드 데이터 ajax로 가져오기 (현재날짜의 해당년월)
-            $.ajax({
-                url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYCNC/department/ITO/batch_month/" + yyyymm,
-                method: "GET",
-                success: function (salesResult) {
-                	salesResult.forEach(item => {
-                		item.total_margin_amount = Number(item.total_sales_amount) - Number(item.total_purchase_amount);
-                	});
-                    grid.resetData(salesResult);
-                }
-            });
-
+            const params = new URLSearchParams(location.search);
+			if (!params.get('batch_month')) {
+				// 그리드 데이터 ajax로 가져오기 (현재날짜의 해당년월)
+	            $.ajax({
+	                url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYCNC/department/ITO/batch_month/" + yyyymm,
+	                method: "GET",
+	                success: function (salesResult) {
+	                	salesResult.forEach(item => {
+	                		item.total_margin_amount = Number(item.total_sales_amount) - Number(item.total_purchase_amount);
+	                	});
+	                    grid.resetData(salesResult);
+	                    
+	               		// 페이지 타이틀 세팅: yyyy 및 mm (현재날짜 기준)
+	               		$('#year').text(year);
+	               		$('#month').text(monthString);
+	               		
+	                 	// 해당년월 키워드 세팅:
+                   		$('#keyword').val(yyyymm);
+	                }
+	            });
+			} else {
+				// 그리드 데이터 ajax로 가져오기 (수기데이터 등록팝업페이지에서 추가할 때 해당년월)
+				$.ajax({
+                    url: "${pageContext.request.contextPath}/salesResult.ajax/company/IYCNC/department/ITO/batch_month/" + params.get('batch_month'),
+                    method: "GET",
+                    success: function (salesResult) {
+                        salesResult.forEach(item => {
+                            item.total_margin_amount = Number(item.total_sales_amount) - Number(item.total_purchase_amount);
+                        });
+                        grid.resetData(salesResult);
+                        
+                     	// 페이지 타이틀 세팅: yyyy 및 mm (키워드 기준)
+                        $('#year').text(params.get('batch_month').substring(0,4));
+                   		$('#month').text(params.get('batch_month').substring(4,6));
+                   		
+                   		// 해당년월 키워드 세팅:
+                   		$('#keyword').val(params.get('batch_month'));
+                    }
+                });
+			}
+            
+            
             // 모든 정보 체크해제시 이벤트: 컬럼 show 및 hide
             $('input[name=all-check]').click(function () {
                 if (this.checked) {
@@ -451,6 +490,23 @@
                 window.open(popupUrl, popupName, 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + left + ', top=' + top);
             });
        		
+            // 그리드 Row 더블 클릭시 이벤트: 상세정보페이지 팝업
+            grid.on('dblclick', function(ev) {
+                const salesResult = grid.getRow(ev.rowKey);
+                if (salesResult.handwrite === 'N') {
+                	alert('수기로 입력한 데이터만 수정 가능합니다')
+                	return;
+                }
+                const popupUrl = '${pageContext.request.contextPath}/iycnc/ito/salesResultDetail?sales_result_id='+ salesResult.sales_result_id;
+                const popupName = 'salesResultDetail-popup';
+                const popupWidth = 800;
+                const popupHeight = 600;
+                const left = (screen.width - popupWidth) / 2;
+                const top = (screen.height - popupHeight) / 2;
+                
+                window.open(popupUrl, popupName, 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + left + ', top=' + top);
+            });
+       		
        		// 사이드바 접을 때 그리드 리사이징
             $('i.toggle-sidebar-btn').click(function() {
             	if ($('body').attr('class') === 'toggle-sidebar') {
@@ -475,10 +531,6 @@
             $('a[data-bs-target="#iycnc-ito-nav"]').attr('class', 'nav-link');
        		$('ul#iycnc-ito-nav').attr('class', 'nav-content collapse show');
        		$('ul#iycnc-ito-nav li:eq(3) a').attr('class', 'active');
-       		
-       		// 페이지 타이틀 세팅: yyyy 및 mm (현재날짜 기준)
-       		$('#year').text(year);
-       		$('#month').text(monthString);
        		
        		
             $('th[data-column-name=total_sales_amount]').attr('title', '매출가는 매출원장의 매출MM 과 매출단가를 계산한 결과입니다.');

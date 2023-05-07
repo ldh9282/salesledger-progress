@@ -3,7 +3,6 @@ package com.iyf.salesledger.service;
 import java.util.List;
 import java.util.Map;
 
-import com.iyf.salesledger.model.Client;
 import com.iyf.salesledger.model.EmpLedger;
 import com.iyf.salesledger.model.EmpPool;
 
@@ -16,6 +15,8 @@ public interface EmpLedgerService {
 	EmpLedger selectOne(long emp_id);
 	
 	void insert(EmpLedger empLedger);
+	
+	void insertByProgress(EmpLedger empLedger);
 
 	void update(EmpLedger empLedger);
 	
@@ -23,9 +24,7 @@ public interface EmpLedgerService {
 	
 	void patchProgressReason(long emp_id, String progress_reason);
 
-	void update(EmpLedger empLedger, Client client, EmpPool empPool);
-
-	void insert(EmpLedger empLedger, Client client);
+	void update(EmpLedger empLedger, EmpPool empPool);
 
 	void patchDel(long emp_id, String del);
 
